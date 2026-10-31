@@ -21,4 +21,5 @@ for name, f, az in [("healthy", None, 68.0), ("mli", "mli_discoloration", 68.0),
     im = imgs(build_satellite(f, az), ic)
     d = detect(m, im, ic, tau, comp_thresholds=thr)
     cl = classify_components(m, im, ic, d, log=lambda *a: None)
-    print(name, verdict(cl), {k: (v["type"][:3], v["vanished_share"], v["inconsistent_share"], v["new_matter_fraction"], v["gaussians_tested"]) for k, v in cl.items()}, flush=True)
+    print(name, "tau %.3f" % tau, {k: (v["fraction"], round(thr[k], 3)) for k, v in d.components.items() if v["flagged"] > 30})
+    print("   ", verdict(cl), {k: (v["type"][:3], v["vanished_share"], v["inconsistent_share"], v["new_matter_fraction"], v["gaussians_tested"]) for k, v in cl.items()}, flush=True)

@@ -6,7 +6,7 @@ Stages (matching the Project Larissa pipeline):
   3. vote per Gaussian across views, so a change must be seen consistently
   4. report per component
   5. classify each flagged component as a geometric or an appearance change
-     by testing whether a colour-only refit of the baseline can explain it
+     from what every camera now sees where the component's Gaussians project
 """
 from __future__ import annotations
 
@@ -165,6 +165,17 @@ def calibrate_components(model: GaussianModel, images, cams, tau: float, factor:
     healthy satellite produces (rendering error around glints, fine texture)."""
     det = detect(model, images, cams, tau)
     return {name: max(factor * c["fraction"], c["fraction"] + offset) for name, c in det.components.items()}
+
+
+def _footprints(det: Detection, sel: torch.Tensor, H: int, W: int, grow: int = 21):
+    """Per view, the image region covered by the selected Gaussians, grown by `grow` px."""
+    fps = []
+    for (u, v, on) in det.proj:
+        m = torch.zeros(H, W, dtype=torch.bool)
+        k = sel & on
+        m[v[k], u[k]] = True
+        fps.append(dilate(m, grow) if k.any() else m)
+    return fps
 
 
 def _lum(x: torch.Tensor) -> torch.Tensor:
