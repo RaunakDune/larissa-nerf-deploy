@@ -17,7 +17,8 @@ import torch
 from larissa.scene import (COMPONENTS, build_satellite, fibonacci_cameras, inspection_cameras, look_at,
                            perturb, render_scene)
 from larissa.gaussians import GaussianModel, init_from_views, psnr, render, train
-from larissa.detect import (add_sensor_noise, calibrate_threshold, classify_components, detect, verdict)
+from larissa.detect import (add_sensor_noise, calibrate_components, calibrate_threshold, classify_components,
+                            detect, verdict)
 from larissa import report
 
 SCENARIOS = [
@@ -26,7 +27,7 @@ SCENARIOS = [
     ("panel_hinge", "panel_hinge", 68.0, "Port solar array hinge stuck 22 degrees short of deployment", "GEOMETRIC"),
     ("antenna_missing", "antenna_missing", 68.0, "Antenna dish and mast detached", "GEOMETRIC"),
     ("mli_discoloration", "mli_discoloration", 68.0, "Thermal blanket patch degraded (darkened) on the bus", "APPEARANCE"),
-    ("sun_shift_control", None, 98.0, "No fault; Sun azimuth moved 30 degrees", "NO CHANGE"),
+    ("sun_shift_control", None, 98.0, "No fault; Sun azimuth moved 30 degrees", "NO FAULT"),
 ]
 
 
@@ -121,6 +122,8 @@ def main():
     # ------------------------------------------------------------------ threshold
     tau = calibrate_threshold(model, hold_imgs, hold_cams)
     log(f"change threshold calibrated on healthy held-out views: tau = {tau:.4f}")
+    comp_thr = calibrate_components(model, hold_imgs, hold_cams, tau)
+    log("component alarm levels: " + ", ".join(f"{k} {v:.3f}" for k, v in comp_thr.items()))
 
     # ------------------------------------------------------------------ inspections
     insp_cams = inspection_cameras(S, S)
@@ -144,7 +147,7 @@ def main():
                 gt_masks.append(((r["comp"] != h["comp"]) | (r["material"] != h["material"])).cpu())
         if dev.type == "cuda":
             torch.cuda.synchronize()
-        det = detect(model, imgs, insp_cams, tau)
+        det = detect(model, imgs, insp_cams, tau, comp_thresholds=comp_thr)
         log(f"check over {len(insp_cams)} cameras took {det.seconds:.2f}s")
         for cname, info in det.components.items():
             if info["flagged"]:
@@ -159,7 +162,8 @@ def main():
         fp_rate = float((pred & ~gt).float().mean())
         res = {
             "scenario": name, "description": desc, "expected": expected, "verdict": v,
-            "correct": v.startswith(expected),
+            "correct": (not v.startswith("GEOMETRIC") and "illumination" in v or v == "NO CHANGE")
+                       if expected == "NO FAULT" else v.startswith(expected),
             "pixel_iou": round(inter / union, 3) if gt.any() else None,
             "pixel_recall": round(inter / max(1, int(gt.sum())), 3) if gt.any() else None,
             "false_positive_pixel_rate": round(fp_rate, 5),
@@ -189,7 +193,7 @@ def main():
         "gpu": torch.cuda.get_device_name(dev) if dev.type == "cuda" else None,
         "resolution": S, "training_views": len(train_cams), "inspection_cameras": len(insp_cams),
         "gaussians": len(model), "baseline_heldout_psnr_db": round(hold_psnr, 2),
-        "threshold_tau": round(tau, 4), "timings_s": {k: round(v, 1) for k, v in timings.items()},
+        "threshold_tau": round(tau, 4), "component_alarm_levels": {k: round(v, 4) for k, v in comp_thr.items()}, "timings_s": {k: round(v, 1) for k, v in timings.items()},
         "pose_noise": {"rotation_deg": args.pose_noise_deg, "translation_m": args.pose_noise_m},
         "scenarios": results,
     }

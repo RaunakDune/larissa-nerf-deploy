@@ -71,7 +71,7 @@ def dilate(mask: torch.Tensor, k: int = 5) -> torch.Tensor:
 
 
 @torch.no_grad()
-def calibrate_threshold(model: GaussianModel, images, cams, quantile: float = 0.999, margin: float = 1.25,
+def calibrate_threshold(model: GaussianModel, images, cams, quantile: float = 0.995, margin: float = 1.0,
                         floor: float = 0.04) -> float:
     """Threshold set from healthy held-out captures, so it reflects the
     reconstruction error, sensor noise and pose error of the system itself."""
@@ -102,8 +102,10 @@ class Detection:
 
 @torch.no_grad()
 def detect(model: GaussianModel, images, cams: list[Camera], tau: float, min_views: int = 2,
-           vote_thresh: float = 0.5, comp_frac: float = 0.15, comp_min: int = 25,
+           vote_thresh: float = 0.5, comp_thresholds: dict | None = None, comp_min: int = 60,
            depth_tol: float = 0.08) -> Detection:
+    """`comp_thresholds` maps component name to the flagged fraction that
+    counts as a change (see calibrate_components); without it, 15% is used."""
     t0 = time.time()
     dev = model.means.device
     N = len(model)
@@ -147,10 +149,22 @@ def detect(model: GaussianModel, images, cams: list[Camera], tau: float, min_vie
         n_eval = int(sel.sum())
         n_flag = int((det.flagged & (comps == cid)).sum())
         frac = n_flag / max(1, n_eval)
+        thr = (comp_thresholds or {}).get(name, 0.15)
         det.components[name] = {"id": cid, "evaluated": n_eval, "flagged": n_flag, "fraction": round(frac, 4),
-                                "changed": bool(frac >= comp_frac and n_flag >= comp_min)}
+                                "threshold": round(thr, 4),
+                                "changed": bool(frac >= thr and n_flag >= comp_min)}
     det.seconds = time.time() - t0
     return det
+
+
+@torch.no_grad()
+def calibrate_components(model: GaussianModel, images, cams, tau: float, factor: float = 3.0,
+                         offset: float = 0.04) -> dict:
+    """Per-component alarm level from healthy held-out captures: a component
+    counts as changed only if its flagged fraction clearly exceeds what the
+    healthy satellite produces (rendering error around glints, fine texture)."""
+    det = detect(model, images, cams, tau)
+    return {name: max(factor * c["fraction"], c["fraction"] + offset) for name, c in det.components.items()}
 
 
 def _residual(model, images, cams, regions):
