@@ -16,7 +16,7 @@ sequence of `run_demo.py`.
 | `holdout/` | 12 × `rgb` | Healthy satellite at held-out poses with pose error; used only for calibration |
 | `inspection/<scenario>/` | 8 × (`rgb`, `gt`, `comp`) | Eight fixed inspection cameras (8.5 m, two rings at +28° and −12° elevation) |
 | `dataset.json` | | Cameras for every image, component and material tables, noise settings |
-| `baseline_gaussians.pt` | | Trained 3DGS baseline (43,390 Gaussians, component-labelled) |
+| `baseline_gaussians.pt` | | Trained 3DGS baseline (43,929 Gaussians, component-labelled) |
 | `baseline_meta.json` | | Baseline training time and settings |
 
 Scenarios: `healthy_control`, `panel_hinge` (port array rotated 22° about its

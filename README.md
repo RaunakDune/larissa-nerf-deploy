@@ -55,53 +55,61 @@ It is a proof of concept on a synthetic satellite, not the full research system.
 ## Results
 
 Single end-to-end run of `run_demo.py` (default settings, training from scratch)
-on one Tesla P40 in `joshi.hpcc.uh.edu`, at commit `4fe95a3`. Full output: [`results/summary.md`](results/summary.md),
-[`results/summary.json`](results/summary.json), [`results/log.txt`](results/log.txt).
+on one Tesla P40 in `joshi.hpcc.uh.edu`, at commit `4e61b23`. Full output:
+[`results/summary.md`](results/summary.md), [`results/summary.json`](results/summary.json),
+[`results/log.txt`](results/log.txt).
 
-**4 of 5 scenarios gave the expected verdict.** All three faults were detected,
+**All 5 scenarios gave the expected verdict.** The three faults were detected,
 attributed to the right component and given the right type; the healthy control
-raised no alarm; the Sun-shift control raised false alarms.
+raised no alarm; the Sun-shift control raised no fault, only an illumination
+notice.
 
-| Scenario | Verdict | Correct | Flagged Gaussians on the faulty part | Pixel recall | Pixel IoU |
-|---|---|---|---|---|---|
-| Healthy control | No change | yes | none above alarm level | | |
-| Panel hinge | Geometric: port solar array | yes | 1981 / 2191 (90%) | 0.49 | 0.29 |
-| Antenna missing | Geometric: antenna | yes | 420 / 462 (91%) | 0.62 | 0.27 |
-| Blanket discoloration | Appearance: bus | yes | 305 / 4277 (7%; the patch is about 5% of the bus) | 0.93 | 0.40 |
-| Sun shift (no fault) | Geometric: port solar array, antenna | **no** | (false alarm) | | |
+| Scenario | Verdict | Flagged Gaussians on the changed part | Pixel recall | Pixel IoU |
+|---|---|---|---|---|
+| Healthy control | No change | none above alarm level | | |
+| Panel hinge | Geometric: port solar array | 8114 / 8977 (90%) | 0.74 | 0.43 |
+| Antenna missing | Geometric: antenna | 1956 / 1956 (100%) | 0.95 | 0.54 |
+| Blanket discoloration | Appearance: bus | 2182 / 19943 (11%; the patch is about 5% of the bus surface, alarm level 2%) | 1.00 | 0.67 |
+| Sun shift (no fault) | Illumination notice: bus, port array, antenna (all appearance) | (no fault reported) | | |
 
-**Speed.** Once the baseline exists, one inspection pass (rendering the
-baseline at 8 camera poses, comparing, voting and reporting) takes **0.46 s**
-on the P40. Building the baseline took 36 minutes (5000 iterations, 43,390
-Gaussians, held-out PSNR 32.5 dB) because the rasterizer is plain PyTorch;
-compiled 3DGS libraries report minutes or less for comparable scenes.
+**Baseline.** 43,929 Gaussians, held-out PSNR 39.3 dB, trained in 15 minutes.
+
+**Speed.** Once the baseline exists, detection over 8 cameras (render, compare,
+vote, report) takes **0.52 s** on the P40; with classification a complete pass
+takes at most 1.3 s.
 
 **How to read the figure.** The third column shows pixel-level changes
-*before* voting. Even the healthy control has a few scattered red pixels (about
-0.5% of the image) where the baseline renders glints and fine blanket texture
-imperfectly. These do not raise an alarm because a change has to be seen
-consistently by most cameras viewing a Gaussian, and a component has to exceed
-the level its healthy views produce. The fourth column shows the Gaussians that
-survived voting, on a 3D overview of the satellite.
+*before* voting; the fourth shows the Gaussians that survive voting on a 3D
+overview. A small cluster on the antenna dish is flagged in every scenario,
+including the healthy control (253 of 1,956 antenna Gaussians): the baseline
+renders the thin, tilted dish slightly differently from the ray-tracer.
+Calibration on healthy views absorbs this by raising the antenna's alarm level
+to 22%, which also makes the antenna the least sensitive component.
 
-**Pixel IoU is modest by design.** The decision is made per component, not per
-pixel: the masks are deliberately smoothed and partly miss thin or grazing
-regions, while the component-level verdicts are right.
+**The illumination control.** Moving the Sun 30° moves every shadow and glint,
+and 45% of the bus, 8% of the port array and 75% of the antenna are flagged.
+The cameras still agree on a single new colour for each Gaussian, so all three
+are classified as appearance changes, and because three parts change at once
+the pass is reported as a likely illumination change, not a fault. This is
+acceptable here, but it means a real appearance fault (such as the blanket
+discoloration) occurring together with a change in Sun angle would be hidden in
+that notice. A Sun-aware baseline, or comparison only against captures at
+matching Sun geometry, remains the key next step.
 
-**Why the Sun-shift control fails.** Moving the Sun by 30° moves every shadow
-and glint. The detector correctly sees that the sunlit side changed (48% of the
-bus flagged), but the classifier cannot tell moved glints from moved hardware,
-because the baseline was captured under a single Sun angle. This is the main
-open problem identified in the literature review, and a natural first work
-package for the funded project: a baseline that can be re-rendered for the current Sun
-direction (for example Park and D'Amico, iSpaRo 2025), or comparison only
-against captures at matching Sun geometry.
+**A bug found and fixed.** An earlier version of the rasterizer kept at most
+768 Gaussians per 16 x 16 pixel tile. Crowded tiles hold up to about 9,800,
+so every render (training and detection) was silently truncated. With that
+bug the baseline reached only 32.5 dB, the threshold had to be twice as high,
+and the Sun-shift control was misclassified as a geometric fault (4/5 correct).
+The bug was found while preparing paper figures and fixed in commit `4e61b23`;
+the renderer now matches a brute-force reference to within 4e-7. The detection
+rules were not changed after the fix. The git history keeps the earlier results.
 
 ## Dataset and notebook
 
 - **[`data/larissa_synth_v1`](data/larissa_synth_v1)**: Larissa-Synth v1, every
   image, depth map, component label, camera pose and ground-truth change mask
-  used in the results above, plus the trained baseline (38 MB). See its
+  used in the results above, plus the trained baseline (about 38 MB). See its
   [README](data/larissa_synth_v1/README.md).
 - **[`notebooks/larissa_walkthrough.ipynb`](notebooks/larissa_walkthrough.ipynb)**:
   loads the dataset and baseline, calibrates on the healthy held-out views, runs
@@ -119,7 +127,7 @@ bash run_demo.sh 0            # GPU index; creates ./venv on first use
 pip install -r requirements.txt && python run_demo.py --device cpu --quick
 ```
 
-Expect about 40 minutes on a Tesla P40, almost all of it baseline training. To
+Expect about 16 minutes on a Tesla P40, almost all of it baseline training. To
 re-run only the detection on a saved baseline:
 `python run_demo.py --load-baseline results/baseline_gaussians.pt --out results_rerun`.
 
@@ -143,7 +151,7 @@ not committed).
 The rasterizer is written with ordinary PyTorch operations, without custom
 CUDA kernels. That makes it portable (it runs on the Tesla P40 cards in
 `joshi.hpcc.uh.edu`, which recent compiled 3DGS libraries no longer target)
-but several times slower than the reference implementation. Swapping in a
+but slower than the reference implementation. Swapping in a
 compiled rasterizer such as `gsplat` is the obvious first speed-up.
 
 ## Limitations
@@ -158,9 +166,11 @@ funded project.
   implemented.
 - **Initialization from depth.** The baseline is seeded from rendered depth,
   standing in for a structure-from-motion point cloud.
-- **Fixed illumination model.** The baseline has no notion of Sun angle, and
-  the Sun-shift control fails because of it (see Results). A Sun-aware
-  relightable baseline is the planned fix.
+- **Fixed illumination model.** The baseline has no notion of Sun angle. The
+  Sun-shift control is handled only by a heuristic (three or more parts with
+  appearance changes at once is reported as illumination), which would mask a
+  real appearance fault under a new Sun angle. A Sun-aware relightable baseline
+  is the planned fix.
 - **Simple detector.** Render-and-compare with voting, not a reimplementation of
   published methods such as MV3DCD or GS-Diff.
 - **Rules tuned on the scenarios they are tested on.** The detector went
