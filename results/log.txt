@@ -1,67 +1,60 @@
 Project Larissa demo | device cuda:0 (Tesla P40) | res 256
-captured 96 training and 12 held-out views in 11.1s
+captured 96 training and 12 held-out views in 11.4s
 initialized 44565 Gaussians (labelled by component)
-iter   500  loss 0.0276  gaussians 44565
-iter  1000  loss 0.0183  gaussians 44565
-iter  1500  loss 0.0201  gaussians 44217
-iter  2000  loss 0.0128  gaussians 44217
-iter  2500  loss 0.0156  gaussians 44217
-iter  3000  loss 0.0165  gaussians 43390
-iter  3500  loss 0.0129  gaussians 43390
-iter  4000  loss 0.0187  gaussians 43390
-iter  4500  loss 0.0177  gaussians 43390
-iter  5000  loss 0.0121  gaussians 43390
-baseline trained in 2161.6s
-baseline: 43390 Gaussians | held-out PSNR 32.45 dB
-change threshold calibrated on healthy held-out views: tau = 0.0770
-component alarm levels: bus 0.022, solar_array_port 0.050, solar_array_starboard 0.070, antenna 0.054, thruster 0.020
+iter   500  loss 0.0217  gaussians 44565
+iter  1000  loss 0.0103  gaussians 44565
+iter  1500  loss 0.0097  gaussians 44345
+iter  2000  loss 0.0097  gaussians 44345
+iter  2500  loss 0.0097  gaussians 44345
+iter  3000  loss 0.0097  gaussians 43929
+iter  3500  loss 0.0092  gaussians 43929
+iter  4000  loss 0.0098  gaussians 43929
+iter  4500  loss 0.0093  gaussians 43929
+iter  5000  loss 0.0095  gaussians 43929
+baseline trained in 914.0s
+baseline: 43929 Gaussians | held-out PSNR 39.31 dB
+change threshold calibrated on healthy held-out views: tau = 0.0400
+component alarm levels: bus 0.020, solar_array_port 0.020, solar_array_starboard 0.020, antenna 0.217, thruster 0.020
 
 === scenario: healthy_control | No fault; same Sun angle; pose error and sensor noise only
-check over 8 cameras took 0.46s
-  bus                    flagged    44/ 4277 (1.0%) 
-  solar_array_port       flagged    57/ 2191 (2.6%) 
-  solar_array_starboard  flagged    31/ 1551 (2.0%) 
-  antenna                flagged    24/  462 (5.2%) 
+check over 8 cameras took 0.52s
+  antenna                flagged   253/ 1956 (12.9%) 
 VERDICT: NO CHANGE
 
 === scenario: panel_hinge | Port solar array hinge stuck 22 degrees short of deployment
-check over 8 cameras took 0.46s
-  bus                    flagged    49/ 4277 (1.1%) 
-  solar_array_port       flagged  1981/ 2191 (90.4%) CHANGED
-  solar_array_starboard  flagged    22/ 1551 (1.4%) 
-  antenna                flagged    22/  462 (4.8%) 
-  solar_array_port: geometric (vanished 0.60, inconsistent 0.01, new-matter 0.04)
+check over 8 cameras took 0.52s
+  bus                    flagged     5/19943 (0.0%) 
+  solar_array_port       flagged  8114/ 8977 (90.4%) CHANGED
+  antenna                flagged   253/ 1956 (12.9%) 
+  solar_array_port: geometric (vanished 0.21, inconsistent 0.05, new-matter 0.14)
 VERDICT: GEOMETRIC CHANGE: solar_array_port
 
 === scenario: antenna_missing | Antenna dish and mast detached
-check over 8 cameras took 0.46s
-  bus                    flagged   125/ 4277 (2.9%) CHANGED
-  solar_array_port       flagged    65/ 2191 (3.0%) 
-  solar_array_starboard  flagged    22/ 1551 (1.4%) 
-  antenna                flagged   420/  462 (90.9%) CHANGED
-  bus: appearance (vanished 0.00, inconsistent 0.16, new-matter 0.04)
-  antenna: geometric (vanished 0.44, inconsistent 0.04, new-matter 0.03)
+check over 8 cameras took 0.52s
+  bus                    flagged   927/19943 (4.7%) CHANGED
+  antenna                flagged  1956/ 1956 (100.0%) CHANGED
+  bus: appearance (vanished 0.00, inconsistent 0.03, new-matter 0.00)
+  antenna: geometric (vanished 0.68, inconsistent 0.03, new-matter 0.00)
 VERDICT: GEOMETRIC CHANGE: antenna
 
 === scenario: mli_discoloration | Thermal blanket patch degraded (darkened) on the bus
-check over 8 cameras took 0.46s
-  bus                    flagged   305/ 4277 (7.1%) CHANGED
-  solar_array_port       flagged    65/ 2191 (3.0%) 
-  solar_array_starboard  flagged    23/ 1551 (1.5%) 
-  antenna                flagged    18/  462 (3.9%) 
-  bus: appearance (vanished 0.00, inconsistent 0.18, new-matter 0.05)
+check over 8 cameras took 0.52s
+  bus                    flagged  2182/19943 (10.9%) CHANGED
+  solar_array_starboard  flagged     1/ 9359 (0.0%) 
+  antenna                flagged   253/ 1956 (12.9%) 
+  bus: appearance (vanished 0.00, inconsistent 0.01, new-matter 0.00)
 VERDICT: APPEARANCE CHANGE: bus
 
 === scenario: sun_shift_control | No fault; Sun azimuth moved 30 degrees
-check over 8 cameras took 0.46s
-  bus                    flagged  2055/ 4277 (48.0%) CHANGED
-  solar_array_port       flagged   691/ 2191 (31.5%) CHANGED
-  solar_array_starboard  flagged    52/ 1551 (3.4%) 
-  antenna                flagged   230/  462 (49.8%) CHANGED
-  bus: appearance (vanished 0.06, inconsistent 0.30, new-matter 0.02)
-  solar_array_port: geometric (vanished 0.03, inconsistent 0.59, new-matter 0.03)
-  antenna: geometric (vanished 0.00, inconsistent 0.30, new-matter 0.09)
-VERDICT: GEOMETRIC CHANGE: solar_array_port, antenna
+check over 8 cameras took 0.52s
+  bus                    flagged  8990/19943 (45.1%) CHANGED
+  solar_array_port       flagged   717/ 8977 (8.0%) CHANGED
+  solar_array_starboard  flagged   103/ 9359 (1.1%) 
+  antenna                flagged  1458/ 1956 (74.5%) CHANGED
+  bus: appearance (vanished 0.05, inconsistent 0.14, new-matter 0.00)
+  solar_array_port: appearance (vanished 0.00, inconsistent 0.08, new-matter 0.00)
+  antenna: appearance (vanished 0.00, inconsistent 0.08, new-matter 0.00)
+VERDICT: APPEARANCE CHANGE ON MANY PARTS (likely illumination): bus, solar_array_port, antenna
 
-wrote results_final/summary.json, summary.md, scenarios.png
-4/5 scenarios matched the expected verdict
+wrote results_v2/summary.json, summary.md, scenarios.png
+5/5 scenarios matched the expected verdict

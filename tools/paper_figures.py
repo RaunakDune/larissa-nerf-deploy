@@ -30,7 +30,10 @@ COMP_COLORS = {0: (0, 0, 0), 1: (0.85, 0.55, 0.15), 2: (0.20, 0.45, 0.85), 3: (0
                4: (0.85, 0.25, 0.30), 5: (0.55, 0.55, 0.60)}
 SHORT = {"healthy_control": "Healthy\ncontrol", "panel_hinge": "Panel\nhinge", "antenna_missing": "Antenna\nmissing",
          "mli_discoloration": "Blanket\ndiscoloration", "sun_shift_control": "Sun shift\n(no fault)"}
-VERD = {"NO CHANGE": "No change", "GEOMETRIC CHANGE": "Geometric", "APPEARANCE CHANGE": "Appearance"}
+VERD = {"NO CHANGE": "No change", "GEOMETRIC CHANGE": "Geometric",
+        "APPEARANCE CHANGE ON MANY PARTS": "Illumination notice", "APPEARANCE CHANGE": "Appearance"}
+EXPECTED = {"healthy_control": "No change", "panel_hinge": "Geometric", "antenna_missing": "Geometric",
+            "mli_discoloration": "Appearance", "sun_shift_control": ("No change", "Illumination notice")}
 
 
 def crop(img, box):
@@ -70,8 +73,8 @@ def main():
         a.imshow(np.clip(crop(im, box), 0, 1)); a.set_title(t, fontsize=10); a.axis("off")
     names = ["bus", "port array", "stbd array", "antenna", "thruster"]
     handles = [plt.Line2D([], [], marker="s", ls="", color=COMP_COLORS[i + 1], markersize=8, label=n) for i, n in enumerate(names)]
-    fig.legend(handles=handles, loc="lower center", ncol=5, fontsize=10, frameon=False, bbox_to_anchor=(0.5, -0.06))
-    plt.tight_layout(rect=(0, 0.08, 1, 1))
+    fig.legend(handles=handles, loc="lower center", ncol=5, fontsize=10, frameon=False, bbox_to_anchor=(0.5, 0.0))
+    plt.tight_layout(rect=(0, 0.1, 1, 1))
     fig.savefig(out / "fig_scene.png", bbox_inches="tight", facecolor="white")
     plt.close(fig)
 
@@ -112,9 +115,10 @@ def main():
             for sp in ax[rr, k].spines.values():
                 sp.set_visible(False)
         ax[0, k].set_title(SHORT[s], fontsize=10)
-        wrong = s == "sun_shift_control"
-        ax[2, k].set_xlabel(short + ("\n" + parts if parts else "\n "), fontsize=10,
-                            color="#B22222" if wrong else ("#1B5E20" if s != "healthy_control" or short == "No change" else "k"))
+        exp = EXPECTED[s]
+        ok = short in exp if isinstance(exp, tuple) else short == exp
+        colr = "#B22222" if not ok else ("#9A5B00" if short == "Illumination notice" else "#1B5E20")
+        ax[2, k].set_xlabel(short + ("\n" + parts if parts else "\n "), fontsize=10, color=colr)
     for rr, t in enumerate(["Inspection\nimage", "Pixel change\nvs truth", "Flagged\nGaussians"]):
         ax[rr, 0].set_ylabel(t, fontsize=10)
     plt.tight_layout(w_pad=0.3, h_pad=0.4)
