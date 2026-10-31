@@ -97,6 +97,18 @@ package for the funded project: a baseline that can be re-rendered for the curre
 direction (for example Park and D'Amico, iSpaRo 2025), or comparison only
 against captures at matching Sun geometry.
 
+## Dataset and notebook
+
+- **[`data/larissa_synth_v1`](data/larissa_synth_v1)**: Larissa-Synth v1, every
+  image, depth map, component label, camera pose and ground-truth change mask
+  used in the results above, plus the trained baseline (38 MB). See its
+  [README](data/larissa_synth_v1/README.md).
+- **[`notebooks/larissa_walkthrough.ipynb`](notebooks/larissa_walkthrough.ipynb)**:
+  loads the dataset and baseline, calibrates on the healthy held-out views, runs
+  all five inspection scenarios and checks the verdicts against
+  `results/summary.json`. Executed on a Tesla P40; it reproduces the original
+  run exactly (same threshold, same flagged-Gaussian counts) in a few seconds.
+
 ## Running it
 
 ```bash
@@ -122,6 +134,8 @@ not committed).
 | `larissa/scene.py` | Procedural satellite, fault variants, GPU ray-caster with shadows and procedural textures, camera rigs |
 | `larissa/gaussians.py` | 3D Gaussian Splatting: model, tile-based differentiable rasterizer in plain PyTorch, training |
 | `larissa/detect.py` | Calibration on healthy views, shift-tolerant render-and-compare, multi-view voting, per-component report, geometric versus appearance test |
+| `larissa/dataset.py` | Loader for the released dataset |
+| `tools/export_dataset.py` | Regenerates the dataset (replays the random sequence of `run_demo.py`) |
 | `tools/classifier_check.py` | Re-runs detection and classification on all scenarios using a saved baseline (minutes, not the full training time) |
 | `larissa/report.py` | Figures and the markdown summary |
 | `run_demo.py` | End-to-end script |
