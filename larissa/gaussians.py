@@ -69,10 +69,15 @@ def rgb_to_sh_dc(rgb: torch.Tensor) -> torch.Tensor:
     return (rgb - 0.5) / SH_C0
 
 
-def render(model: GaussianModel, cam: Camera, bg: float = 0.0, tile: int = 16, max_per_tile: int = 768,
+def render(model: GaussianModel, cam: Camera, bg: float = 0.0, tile: int = 16,
            colors_override: torch.Tensor | None = None, chunk_elems: int = 24_000_000):
     """Render a model. Returns dict rgb (H,W,3), depth (H,W), alpha (H,W),
-    and per-Gaussian camera-space depth and pixel coordinates."""
+    and per-Gaussian camera-space depth and pixel coordinates.
+
+    Exact up to the standard 1/255 alpha cut-off: every Gaussian overlapping a
+    tile is composited. Tiles are processed in groups of similar occupancy,
+    each padded only to its own maximum, which bounds memory without
+    truncating crowded tiles."""
     dev = model.means.device
     W, H = cam.W, cam.H
     R = cam.R.to(dev)
@@ -105,9 +110,16 @@ def render(model: GaussianModel, cam: Camera, bg: float = 0.0, tile: int = 16, m
     conic = torch.stack([c / det, -b / det, a / det], 1)
     mid = 0.5 * (a + c)
     lam = mid + torch.sqrt((mid * mid - det).clamp(min=0.1))
-    radius = torch.ceil(3.0 * torch.sqrt(lam)).detach()
+    opac = torch.sigmoid(model.opacity_logit)
+    with torch.no_grad():
+        # radius beyond which alpha < 1/255 (and is cut off anyway)
+        k_sigma = torch.sqrt((2 * torch.log((255 * opac).clamp(min=1.0))).clamp(min=0))
+        radius = torch.ceil(k_sigma * torch.sqrt(lam))
+        valid = valid & (radius > 0)
 
     TX, TY = math.ceil(W / tile), math.ceil(H / tile)
+    T = TX * TY
+    P = tile * tile
     with torch.no_grad():
         tx0 = torch.floor((u - radius) / tile).clamp(0, TX - 1).long()
         tx1 = torch.floor((u + radius) / tile).clamp(0, TX - 1).long()
@@ -131,15 +143,10 @@ def render(model: GaussianModel, cam: Camera, bg: float = 0.0, tile: int = 16, m
         key = tile_id * len(model) + depth_rank[pair_g]
         order = torch.argsort(key)
         pair_g, tile_id = pair_g[order], tile_id[order]
-        T = TX * TY
         counts = torch.bincount(tile_id, minlength=T)
-        Mmax = int(min(int(counts.max()) if total > 0 else 1, max_per_tile))
-        Mmax = max(Mmax, 1)
         tstart = torch.cumsum(counts, 0) - counts
-        pos = torch.arange(total, device=dev) - tstart[tile_id]
-        ok = pos < Mmax
-        idx = torch.full((T, Mmax), -1, dtype=torch.long, device=dev)
-        idx[tile_id[ok], pos[ok]] = pair_g[ok]
+        tile_order = torch.argsort(counts, descending=True)
+        sorted_counts = counts[tile_order].tolist()
         # pixel coordinates per tile
         ly, lx = torch.meshgrid(torch.arange(tile, device=dev), torch.arange(tile, device=dev), indexing="ij")
         tyy, txx = torch.meshgrid(torch.arange(TY, device=dev), torch.arange(TX, device=dev), indexing="ij")
@@ -152,34 +159,41 @@ def render(model: GaussianModel, cam: Camera, bg: float = 0.0, tile: int = 16, m
         colors = sh_to_rgb(model.sh, dirs)
     else:
         colors = colors_override
-    opac = torch.sigmoid(model.opacity_logit)
-
     feats = torch.cat([colors, z[:, None]], 1)  # rgb + depth
-    P = tile * tile
-    out_rgbd = []
-    out_a = []
-    tiles_per_chunk = max(1, chunk_elems // max(1, P * Mmax))
-    for s in range(0, T, tiles_per_chunk):
-        e = min(T, s + tiles_per_chunk)
-        ii = idx[s:e]
-        m = ii >= 0
-        ic = ii.clamp(min=0)
-        mu_u, mu_v = u[ic], v[ic]                 # (t,M)
-        cn = conic[ic]                            # (t,M,3)
+
+    done_tiles, out_rgbd, out_a = [], [], []
+    s = 0
+    while s < T and sorted_counts[s] > 0:
+        Mg = sorted_counts[s]                       # largest occupancy in this group
+        n = max(1, chunk_elems // (P * Mg))
+        grp = tile_order[s:s + n]
+        cnt = counts[grp]
+        grp = grp[cnt > 0]
+        cnt = cnt[cnt > 0]
+        s += n
+        ar = torch.arange(Mg, device=dev)
+        m = ar[None, :] < cnt[:, None]              # (t,M)
+        ic = pair_g[(tstart[grp][:, None] + ar[None, :]).clamp(max=max(total - 1, 0))]
+        mu_u, mu_v = u[ic], v[ic]
+        cn = conic[ic]
         op = opac[ic] * m
-        dx = px[s:e, :, None] - mu_u[:, None, :]  # (t,P,M)
-        dy = py[s:e, :, None] - mu_v[:, None, :]
+        dx = px[grp][:, :, None] - mu_u[:, None, :]  # (t,P,M)
+        dy = py[grp][:, :, None] - mu_v[:, None, :]
         power = -0.5 * (cn[:, None, :, 0] * dx * dx + cn[:, None, :, 2] * dy * dy) - cn[:, None, :, 1] * dx * dy
         alpha = (op[:, None, :] * torch.exp(power.clamp(max=0))).clamp(max=0.99)
         alpha = alpha * (alpha > 1.0 / 255).float() * (power <= 0).float()
         trans = torch.cumprod(1 - alpha, dim=2)
         trans = torch.cat([torch.ones_like(trans[..., :1]), trans[..., :-1]], 2)
-        w = alpha * trans                          # (t,P,M)
-        f = feats[ic]                              # (t,M,4)
-        out_rgbd.append(torch.einsum("tpm,tmc->tpc", w, f))
+        w = alpha * trans
+        out_rgbd.append(torch.einsum("tpm,tmc->tpc", w, feats[ic]))
         out_a.append(w.sum(2))
-    rgbd = torch.cat(out_rgbd, 0)
-    acc = torch.cat(out_a, 0)
+        done_tiles.append(grp)
+    rgbd = torch.zeros(T, P, 4, device=dev, dtype=feats.dtype)
+    acc = torch.zeros(T, P, device=dev, dtype=feats.dtype)
+    if done_tiles:
+        idx_all = torch.cat(done_tiles)
+        rgbd = rgbd.index_copy(0, idx_all, torch.cat(out_rgbd, 0))
+        acc = acc.index_copy(0, idx_all, torch.cat(out_a, 0))
 
     def untile(x):  # (T,P,C) -> (H,W,C)
         C = x.shape[-1]
