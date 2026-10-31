@@ -1,0 +1,379 @@
+{
+  "device": "cuda:0",
+  "gpu": "Tesla P40",
+  "resolution": 256,
+  "training_views": 96,
+  "inspection_cameras": 8,
+  "gaussians": 43390,
+  "baseline_heldout_psnr_db": 32.45,
+  "threshold_tau": 0.077,
+  "component_alarm_levels": {
+    "bus": 0.0224,
+    "solar_array_port": 0.0501,
+    "solar_array_starboard": 0.0696,
+    "antenna": 0.054,
+    "thruster": 0.02
+  },
+  "timings_s": {
+    "capture_s": 11.1,
+    "baseline_train_s": 2161.6
+  },
+  "pose_noise": {
+    "rotation_deg": 0.15,
+    "translation_m": 0.01
+  },
+  "scenarios": [
+    {
+      "scenario": "healthy_control",
+      "description": "No fault; same Sun angle; pose error and sensor noise only",
+      "expected": "NO CHANGE",
+      "verdict": "NO CHANGE",
+      "correct": true,
+      "pixel_iou": null,
+      "pixel_recall": null,
+      "false_positive_pixel_rate": 0.00459,
+      "changed_pixels_predicted": 2406,
+      "changed_pixels_true": 0,
+      "unexplained_pixels": 506,
+      "check_seconds": 0.46,
+      "components": {
+        "bus": {
+          "id": 1,
+          "evaluated": 4277,
+          "flagged": 44,
+          "fraction": 0.0103,
+          "threshold": 0.0224,
+          "changed": false
+        },
+        "solar_array_port": {
+          "id": 2,
+          "evaluated": 2191,
+          "flagged": 57,
+          "fraction": 0.026,
+          "threshold": 0.0501,
+          "changed": false
+        },
+        "solar_array_starboard": {
+          "id": 3,
+          "evaluated": 1551,
+          "flagged": 31,
+          "fraction": 0.02,
+          "threshold": 0.0696,
+          "changed": false
+        },
+        "antenna": {
+          "id": 4,
+          "evaluated": 462,
+          "flagged": 24,
+          "fraction": 0.0519,
+          "threshold": 0.054,
+          "changed": false
+        },
+        "thruster": {
+          "id": 5,
+          "evaluated": 30,
+          "flagged": 0,
+          "fraction": 0.0,
+          "threshold": 0.02,
+          "changed": false
+        }
+      },
+      "classification": {}
+    },
+    {
+      "scenario": "panel_hinge",
+      "description": "Port solar array hinge stuck 22 degrees short of deployment",
+      "expected": "GEOMETRIC",
+      "verdict": "GEOMETRIC CHANGE: solar_array_port",
+      "correct": true,
+      "pixel_iou": 0.287,
+      "pixel_recall": 0.486,
+      "false_positive_pixel_rate": 0.01139,
+      "changed_pixels_predicted": 10161,
+      "changed_pixels_true": 8614,
+      "unexplained_pixels": 2024,
+      "check_seconds": 0.46,
+      "components": {
+        "bus": {
+          "id": 1,
+          "evaluated": 4277,
+          "flagged": 49,
+          "fraction": 0.0115,
+          "threshold": 0.0224,
+          "changed": false
+        },
+        "solar_array_port": {
+          "id": 2,
+          "evaluated": 2191,
+          "flagged": 1981,
+          "fraction": 0.9042,
+          "threshold": 0.0501,
+          "changed": true
+        },
+        "solar_array_starboard": {
+          "id": 3,
+          "evaluated": 1551,
+          "flagged": 22,
+          "fraction": 0.0142,
+          "threshold": 0.0696,
+          "changed": false
+        },
+        "antenna": {
+          "id": 4,
+          "evaluated": 462,
+          "flagged": 22,
+          "fraction": 0.0476,
+          "threshold": 0.054,
+          "changed": false
+        },
+        "thruster": {
+          "id": 5,
+          "evaluated": 30,
+          "flagged": 0,
+          "fraction": 0.0,
+          "threshold": 0.02,
+          "changed": false
+        }
+      },
+      "classification": {
+        "solar_array_port": {
+          "type": "geometric",
+          "note": "part has vanished: cameras now see empty space where a lit surface was",
+          "gaussians_tested": 1981,
+          "vanished_share": 0.603,
+          "inconsistent_share": 0.014,
+          "new_matter_fraction": 0.042,
+          "seconds": 0.21
+        }
+      }
+    },
+    {
+      "scenario": "antenna_missing",
+      "description": "Antenna dish and mast detached",
+      "expected": "GEOMETRIC",
+      "verdict": "GEOMETRIC CHANGE: antenna",
+      "correct": true,
+      "pixel_iou": 0.274,
+      "pixel_recall": 0.622,
+      "false_positive_pixel_rate": 0.00671,
+      "changed_pixels_predicted": 5233,
+      "changed_pixels_true": 2759,
+      "unexplained_pixels": 369,
+      "check_seconds": 0.46,
+      "components": {
+        "bus": {
+          "id": 1,
+          "evaluated": 4277,
+          "flagged": 125,
+          "fraction": 0.0292,
+          "threshold": 0.0224,
+          "changed": true
+        },
+        "solar_array_port": {
+          "id": 2,
+          "evaluated": 2191,
+          "flagged": 65,
+          "fraction": 0.0297,
+          "threshold": 0.0501,
+          "changed": false
+        },
+        "solar_array_starboard": {
+          "id": 3,
+          "evaluated": 1551,
+          "flagged": 22,
+          "fraction": 0.0142,
+          "threshold": 0.0696,
+          "changed": false
+        },
+        "antenna": {
+          "id": 4,
+          "evaluated": 462,
+          "flagged": 420,
+          "fraction": 0.9091,
+          "threshold": 0.054,
+          "changed": true
+        },
+        "thruster": {
+          "id": 5,
+          "evaluated": 30,
+          "flagged": 0,
+          "fraction": 0.0,
+          "threshold": 0.02,
+          "changed": false
+        }
+      },
+      "classification": {
+        "bus": {
+          "type": "appearance",
+          "note": "surface still in place with a consistent new colour",
+          "gaussians_tested": 125,
+          "vanished_share": 0.0,
+          "inconsistent_share": 0.16,
+          "new_matter_fraction": 0.036,
+          "seconds": 0.17
+        },
+        "antenna": {
+          "type": "geometric",
+          "note": "part has vanished: cameras now see empty space where a lit surface was",
+          "gaussians_tested": 420,
+          "vanished_share": 0.436,
+          "inconsistent_share": 0.036,
+          "new_matter_fraction": 0.029,
+          "seconds": 0.27
+        }
+      }
+    },
+    {
+      "scenario": "mli_discoloration",
+      "description": "Thermal blanket patch degraded (darkened) on the bus",
+      "expected": "APPEARANCE",
+      "verdict": "APPEARANCE CHANGE: bus",
+      "correct": true,
+      "pixel_iou": 0.395,
+      "pixel_recall": 0.931,
+      "false_positive_pixel_rate": 0.00476,
+      "changed_pixels_predicted": 4203,
+      "changed_pixels_true": 1836,
+      "unexplained_pixels": 567,
+      "check_seconds": 0.46,
+      "components": {
+        "bus": {
+          "id": 1,
+          "evaluated": 4277,
+          "flagged": 305,
+          "fraction": 0.0713,
+          "threshold": 0.0224,
+          "changed": true
+        },
+        "solar_array_port": {
+          "id": 2,
+          "evaluated": 2191,
+          "flagged": 65,
+          "fraction": 0.0297,
+          "threshold": 0.0501,
+          "changed": false
+        },
+        "solar_array_starboard": {
+          "id": 3,
+          "evaluated": 1551,
+          "flagged": 23,
+          "fraction": 0.0148,
+          "threshold": 0.0696,
+          "changed": false
+        },
+        "antenna": {
+          "id": 4,
+          "evaluated": 462,
+          "flagged": 18,
+          "fraction": 0.039,
+          "threshold": 0.054,
+          "changed": false
+        },
+        "thruster": {
+          "id": 5,
+          "evaluated": 30,
+          "flagged": 0,
+          "fraction": 0.0,
+          "threshold": 0.02,
+          "changed": false
+        }
+      },
+      "classification": {
+        "bus": {
+          "type": "appearance",
+          "note": "surface still in place with a consistent new colour",
+          "gaussians_tested": 305,
+          "vanished_share": 0.0,
+          "inconsistent_share": 0.184,
+          "new_matter_fraction": 0.046,
+          "seconds": 0.17
+        }
+      }
+    },
+    {
+      "scenario": "sun_shift_control",
+      "description": "No fault; Sun azimuth moved 30 degrees",
+      "expected": "NO FAULT",
+      "verdict": "GEOMETRIC CHANGE: solar_array_port, antenna",
+      "correct": false,
+      "pixel_iou": null,
+      "pixel_recall": null,
+      "false_positive_pixel_rate": 0.02617,
+      "changed_pixels_predicted": 13723,
+      "changed_pixels_true": 0,
+      "unexplained_pixels": 446,
+      "check_seconds": 0.46,
+      "components": {
+        "bus": {
+          "id": 1,
+          "evaluated": 4277,
+          "flagged": 2055,
+          "fraction": 0.4805,
+          "threshold": 0.0224,
+          "changed": true
+        },
+        "solar_array_port": {
+          "id": 2,
+          "evaluated": 2191,
+          "flagged": 691,
+          "fraction": 0.3154,
+          "threshold": 0.0501,
+          "changed": true
+        },
+        "solar_array_starboard": {
+          "id": 3,
+          "evaluated": 1551,
+          "flagged": 52,
+          "fraction": 0.0335,
+          "threshold": 0.0696,
+          "changed": false
+        },
+        "antenna": {
+          "id": 4,
+          "evaluated": 462,
+          "flagged": 230,
+          "fraction": 0.4978,
+          "threshold": 0.054,
+          "changed": true
+        },
+        "thruster": {
+          "id": 5,
+          "evaluated": 30,
+          "flagged": 0,
+          "fraction": 0.0,
+          "threshold": 0.02,
+          "changed": false
+        }
+      },
+      "classification": {
+        "bus": {
+          "type": "appearance",
+          "note": "surface still in place with a consistent new colour",
+          "gaussians_tested": 2055,
+          "vanished_share": 0.06,
+          "inconsistent_share": 0.298,
+          "new_matter_fraction": 0.024,
+          "seconds": 0.28
+        },
+        "solar_array_port": {
+          "type": "geometric",
+          "note": "part moved or deformed: cameras disagree on what is now at its location",
+          "gaussians_tested": 691,
+          "vanished_share": 0.032,
+          "inconsistent_share": 0.593,
+          "new_matter_fraction": 0.026,
+          "seconds": 0.17
+        },
+        "antenna": {
+          "type": "geometric",
+          "note": "part moved or deformed: cameras disagree on what is now at its location",
+          "gaussians_tested": 230,
+          "vanished_share": 0.0,
+          "inconsistent_share": 0.304,
+          "new_matter_fraction": 0.086,
+          "seconds": 0.27
+        }
+      }
+    }
+  ]
+}
