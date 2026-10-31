@@ -191,9 +191,9 @@ def _footprints(det: Detection, sel: torch.Tensor, H: int, W: int, grow: int = 2
     return fps
 
 
-def classify_components(model: GaussianModel, images, cams, det: Detection, iters: int = 150,
-                        recover: float = 0.6, new_matter: float = 0.10, dark: float = 0.05,
-                        seed: int = 0, log=print) -> dict:
+def classify_components(model: GaussianModel, images, cams, det: Detection, iters: int = 300,
+                        recover: float = 0.6, new_matter: float = 0.10, dark: float = 0.05, lr: float = 0.05,
+                        scope: str = "component", seed: int = 0, log=print) -> dict:
     """Decide, for each changed component, whether the change is geometric or
     an appearance change. Three tests, in order:
 
@@ -212,22 +212,24 @@ def classify_components(model: GaussianModel, images, cams, det: Detection, iter
         if not info["changed"]:
             continue
         t0 = time.time()
-        sel_cpu = det.flagged & (comps == info["id"])
+        flagged_cpu = det.flagged & (comps == info["id"])
+        fps = _footprints(det, flagged_cpu, H, W)
+        # colours that may change: every Gaussian of the component (or only flagged ones)
+        sel_cpu = (comps == info["id"]) if scope == "component" else flagged_cpu
         sel = sel_cpu.to(model.means.device)
-        fps = _footprints(det, sel_cpu, H, W)
         regions = [m & f for m, f in zip(masks, fps)]
         raw = [m & f for m, f in zip(det.masks, fps)]
         n_region = sum(int(r.sum()) for r in regions)
         n_new = sum(int((r & e).sum()) for r, e in zip(raw, det.empty))
         new_frac = n_new / max(1, sum(int(r.sum()) for r in raw))
-        base_res = _residual(model, images, cams, regions)
+        base_res = _residual(model, images, cams, raw)
         m2 = model.clone()
         sh = m2.sh.clone().requires_grad_(True)
         m2.sh = sh
-        opt = torch.optim.Adam([sh], lr=0.02)
-        g = torch.Generator().manual_seed(seed)
-        for _ in range(iters):
-            i = int(torch.randint(len(images), (1,), generator=g))
+        opt = torch.optim.Adam([sh], lr=lr)
+        views = [i for i, r in enumerate(regions) if r.any()] or list(range(len(images)))
+        for it in range(iters):
+            i = views[it % len(views)]
             out = render(m2, cams[i])
             loss = (out["rgb"] - images[i]).abs().mean()
             opt.zero_grad(set_to_none=True)
@@ -237,9 +239,10 @@ def classify_components(model: GaussianModel, images, cams, det: Detection, iter
             with torch.no_grad():
                 sh[~sel] = model.sh[~sel]
         m2.sh = sh.detach()
-        after = _residual(m2, images, cams, regions)
-        lum_before = float((SH_C0 * model.sh.detach()[sel, 0] + 0.5).clamp(min=0).mean())
-        lum_after = float((SH_C0 * m2.sh[sel, 0] + 0.5).clamp(min=0).mean())
+        after = _residual(m2, images, cams, raw)
+        fl = flagged_cpu.to(model.means.device)
+        lum_before = float((SH_C0 * model.sh.detach()[fl, 0] + 0.5).clamp(min=0).mean())
+        lum_after = float((SH_C0 * m2.sh[fl, 0] + 0.5).clamp(min=0).mean())
         reduction = 1 - after / max(base_res, 1e-6)
         if new_frac >= new_matter:
             kind, note = "geometric", "material appears where the baseline is empty (moved or deformed part)"
