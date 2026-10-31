@@ -159,7 +159,7 @@ def detect(model: GaussianModel, images, cams: list[Camera], tau: float, min_vie
 
 @torch.no_grad()
 def calibrate_components(model: GaussianModel, images, cams, tau: float, factor: float = 3.0,
-                         offset: float = 0.04) -> dict:
+                         offset: float = 0.02) -> dict:
     """Per-component alarm level from healthy held-out captures: a component
     counts as changed only if its flagged fraction clearly exceeds what the
     healthy satellite produces (rendering error around glints, fine texture)."""
@@ -229,9 +229,17 @@ def classify_components(model: GaussianModel, images, cams, det: Detection, blac
         obs, base = obs[ok], base[ok]
         lo, lb = _lum(torch.nan_to_num(obs, nan=0.0)), _lum(torch.nan_to_num(base, nan=0.0))
         valid = ~torch.isnan(obs[..., 0])
-        big = torch.tensor(9.0)
+        k = valid.sum(1)
+        rows = torch.arange(len(k))
+
         def spread(l):
-            return torch.where(valid, l, -big).max(1).values - torch.where(valid, l, big).min(1).values
+            # trimmed range: drop the brightest and darkest camera when 4 or more see the point,
+            # so a glint or a deep shadow in a single camera does not count as inconsistency
+            srt = torch.sort(torch.where(valid, l, torch.tensor(float("inf"))), dim=1).values
+            trim = (k >= 4).long()
+            lo_ = srt[rows, trim]
+            hi_ = srt[rows, (k - 1 - trim).clamp(min=0)]
+            return hi_ - lo_
         med = lambda l: torch.nanmedian(torch.where(valid, l, torch.tensor(float("nan"))), dim=1).values
         vanished = (med(lo) < black) & (med(lb) > lit)
         inconsistent = spread(lo) > spread(lb) + spread_margin
