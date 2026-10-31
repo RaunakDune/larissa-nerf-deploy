@@ -4,3 +4,5 @@ __pycache__/
 venv/
 .venv/
 results/log_*.txt
+!data/**/*.pt
+!results/baseline_gaussians.pt
