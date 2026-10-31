@@ -43,6 +43,7 @@ def main():
     ap.add_argument("--out", default="results")
     ap.add_argument("--quick", action="store_true", help="tiny settings for a CPU smoke test")
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--load-baseline", default=None, help="reuse a trained baseline_gaussians.pt (skips training)")
     args = ap.parse_args()
     if args.quick:
         args.res, args.train_views, args.holdout_views, args.iters, args.refit_iters = 96, 24, 4, 150, 20
@@ -88,21 +89,34 @@ def main():
     # ------------------------------------------------------------------ baseline
     t0 = time.time()
     views_cpu = [{"rgb": v["rgb"].cpu(), "depth": v["depth"], "comp": v["comp"]} for v in train_views]
-    model = init_from_views(views_cpu, [c for c in train_cams], stride=2 if S <= 128 else 3,
-                            voxel=0.035 if S <= 128 else 0.02, max_points=6000 if args.quick else 60000,
-                            device=dev)
-    log(f"initialized {len(model)} Gaussians (labelled by component)")
-    model = train(model, [v["rgb"] for v in train_views], train_cams, iters=args.iters,
-                  log_every=max(1, args.iters // 10),
-                  prune_at=tuple(int(args.iters * f) for f in (0.3, 0.6)), log=log)
-    if dev.type == "cuda":
-        torch.cuda.synchronize()
-    timings["baseline_train_s"] = time.time() - t0
+    if args.load_baseline:
+        model = GaussianModel.from_state_dict(torch.load(args.load_baseline), dev)
+        meta_path = Path(args.load_baseline).with_name("baseline_meta.json")
+        meta = json.loads(meta_path.read_text()) if meta_path.exists() else {}
+        timings["baseline_train_s"] = meta.get("train_seconds", float("nan"))
+        log(f"loaded baseline with {len(model)} Gaussians from {args.load_baseline} "
+            f"(originally trained in {timings['baseline_train_s']:.0f}s)")
+    else:
+        model = init_from_views(views_cpu, list(train_cams), stride=2 if S <= 128 else 3,
+                                voxel=0.035 if S <= 128 else 0.02, max_points=6000 if args.quick else 60000,
+                                device=dev)
+        log(f"initialized {len(model)} Gaussians (labelled by component)")
+        model = train(model, [v["rgb"] for v in train_views], train_cams, iters=args.iters,
+                      log_every=max(1, args.iters // 10),
+                      prune_at=tuple(int(args.iters * f) for f in (0.3, 0.6)), log=log)
+        if dev.type == "cuda":
+            torch.cuda.synchronize()
+        timings["baseline_train_s"] = time.time() - t0
+        log(f"baseline trained in {timings['baseline_train_s']:.1f}s")
     with torch.no_grad():
         clean_hold = [render_scene(healthy, c, device=dev)["rgb"] for c in hold_cams]
         hold_psnr = sum(psnr(render(model, c)["rgb"].clamp(0, 1), g) for c, g in zip(hold_cams, clean_hold)) / len(hold_cams)
-    log(f"baseline trained in {timings['baseline_train_s']:.1f}s | {len(model)} Gaussians | held-out PSNR {hold_psnr:.2f} dB")
-    torch.save(model.state_dict(), out / "baseline_gaussians.pt")
+    log(f"baseline: {len(model)} Gaussians | held-out PSNR {hold_psnr:.2f} dB")
+    if not args.load_baseline:
+        (out / "baseline_meta.json").write_text(json.dumps({"train_seconds": timings["baseline_train_s"],
+                                                             "iters": args.iters, "res": S}))
+    if not args.load_baseline:
+        torch.save(model.state_dict(), out / "baseline_gaussians.pt")
 
     # ------------------------------------------------------------------ threshold
     tau = calibrate_threshold(model, hold_imgs, hold_cams)

@@ -16,7 +16,7 @@ from dataclasses import dataclass, field
 import torch
 import torch.nn.functional as F
 
-from .gaussians import GaussianModel, render, ssim_map, SH_C0
+from .gaussians import GaussianModel, render, SH_C0
 from .scene import COMPONENTS, Camera
 
 
@@ -30,17 +30,40 @@ def _box_blur(x: torch.Tensor, k: int = 5) -> torch.Tensor:
     return F.avg_pool2d(x[None, None], k, stride=1, padding=k // 2, count_include_pad=False)[0, 0]
 
 
-def difference_map(obs: torch.Tensor, rend: torch.Tensor) -> torch.Tensor:
-    """Per-pixel change score in [0, ~1]: blurred colour difference plus structural (SSIM) difference."""
-    l1 = _box_blur((obs - rend).abs().mean(-1))
-    dssim = ((1 - ssim_map(obs, rend)) / 2).clamp(0, 1)
-    return 0.5 * l1 + 0.5 * dssim
+def _shift_min(a: torch.Tensor, b: torch.Tensor, r: int) -> torch.Tensor:
+    """For each pixel of a, the smallest colour distance to b within a (2r+1)^2 window."""
+    H, W, C = b.shape
+    bp = F.pad(b.permute(2, 0, 1)[None], (r, r, r, r), mode="replicate")[0]
+    best = None
+    for dy in range(2 * r + 1):
+        for dx in range(2 * r + 1):
+            d = (a - bp[:, dy:dy + H, dx:dx + W].permute(1, 2, 0)).abs().mean(-1)
+            best = d if best is None else torch.minimum(best, d)
+    return best
+
+
+def difference_map(obs: torch.Tensor, rend: torch.Tensor, shift: int = 2) -> torch.Tensor:
+    """Per-pixel change score, tolerant to small misregistration.
+
+    Each pixel is compared with the best-matching pixel of the other image
+    within +/- `shift` pixels, in both directions, after a light blur. A camera
+    pose error of a pixel or two therefore does not register as change along
+    the sharp silhouette of the spacecraft, while real changes (which persist
+    under any small shift) do."""
+    k = lambda x: F.avg_pool2d(x.permute(2, 0, 1)[None], 3, 1, 1, count_include_pad=False)[0].permute(1, 2, 0)
+    o, r = k(obs), k(rend)
+    d = torch.maximum(_shift_min(o, r, shift), _shift_min(r, o, shift))
+    return _box_blur(d, 5)
 
 
 def binary_open(mask: torch.Tensor, k: int = 3) -> torch.Tensor:
     m = mask.float()[None, None]
     er = -F.max_pool2d(-m, k, 1, k // 2)
     return F.max_pool2d(er, k, 1, k // 2)[0, 0] > 0.5
+
+
+def erode(mask: torch.Tensor, k: int = 5) -> torch.Tensor:
+    return -F.max_pool2d(-mask.float()[None, None], k, 1, k // 2)[0, 0] > 0.5
 
 
 def dilate(mask: torch.Tensor, k: int = 5) -> torch.Tensor:
@@ -72,6 +95,8 @@ class Detection:
     flagged: torch.Tensor | None = None
     components: dict = field(default_factory=dict)
     unexplained_px: int = 0
+    proj: list = field(default_factory=list)    # per view: (u, v, on_surface) of every Gaussian
+    empty: list = field(default_factory=list)   # per view: pixels where the baseline has no surface
     seconds: float = 0.0
 
 
@@ -94,7 +119,10 @@ def detect(model: GaussianModel, images, cams: list[Camera], tau: float, min_vie
         det.dmaps.append(d.cpu())
         det.renders.append(out["rgb"].clamp(0, 1).cpu())
         # change where the baseline has nothing (new geometry over empty space)
-        unexplained += int((mask & (out["alpha"] < 0.5)).sum())
+        # pixels clearly away from any baseline surface (eroded so silhouette edges do not count)
+        empty = erode(out["alpha"] < 0.5, 5)
+        unexplained += int((mask & empty).sum())
+        det.empty.append(empty.cpu())
         # vote: is each Gaussian on the visible surface, and is its pixel changed?
         u = out["u"].round().long()
         v = out["v"].round().long()
@@ -103,6 +131,7 @@ def detect(model: GaussianModel, images, cams: list[Camera], tau: float, min_vie
         surf_depth = out["depth"][vv, uu]
         cover = out["alpha"][vv, uu]
         on_surface = inside & (out["z"] <= surf_depth + depth_tol) & (cover > 0.5)
+        det.proj.append((uu.cpu(), vv.cpu(), on_surface.cpu()))
         mk = dilate(mask, 5)[vv, uu]
         visible += on_surface.float()
         changed += (on_surface & mk).float()
@@ -124,10 +153,10 @@ def detect(model: GaussianModel, images, cams: list[Camera], tau: float, min_vie
     return det
 
 
-def _masked_residual(model, images, cams, masks):
+def _residual(model, images, cams, regions):
     tot, n = 0.0, 0
     with torch.no_grad():
-        for img, cam, m in zip(images, cams, masks):
+        for img, cam, m in zip(images, cams, regions):
             if m.sum() == 0:
                 continue
             r = render(model, cam)["rgb"]
@@ -137,21 +166,47 @@ def _masked_residual(model, images, cams, masks):
     return tot / max(n, 1)
 
 
+def _footprints(det: Detection, sel: torch.Tensor, H: int, W: int, grow: int = 21):
+    """Per view, the image region covered by the selected Gaussians, grown by `grow` px."""
+    fps = []
+    for (u, v, on) in det.proj:
+        m = torch.zeros(H, W, dtype=torch.bool)
+        k = sel & on
+        m[v[k], u[k]] = True
+        fps.append(dilate(m, grow) if k.any() else m)
+    return fps
+
+
 def classify_components(model: GaussianModel, images, cams, det: Detection, iters: int = 150,
-                        recover: float = 0.6, dark: float = 0.05, seed: int = 0, log=print) -> dict:
-    """For each changed component, refit only the colours of its flagged
-    Gaussians (geometry frozen). If colour alone explains the change, it is an
-    appearance change; if it cannot, or the part must turn black to match
-    (i.e. it has vanished against empty space), it is geometric."""
+                        recover: float = 0.6, new_matter: float = 0.10, dark: float = 0.05,
+                        seed: int = 0, log=print) -> dict:
+    """Decide, for each changed component, whether the change is geometric or
+    an appearance change. Three tests, in order:
+
+    1. New matter in empty space: changed pixels near the component where the
+       baseline has no surface at all. Repainting the baseline cannot create
+       material, so a sizeable share of these means a geometric change.
+    2. Vanishing: refitting only the colours of the flagged Gaussians (geometry
+       frozen) drives them to black, i.e. the part has gone.
+    3. Colour-only refit: if colour alone removes most of the residual in the
+       changed region, it is an appearance change; otherwise geometric."""
     results = {}
     comps = model.comp.cpu()
+    H, W = det.masks[0].shape
     masks = [dilate(m, 3) for m in det.masks]
-    base_res = _masked_residual(model, images, cams, masks)
     for name, info in det.components.items():
         if not info["changed"]:
             continue
         t0 = time.time()
-        sel = (det.flagged & (comps == info["id"])).to(model.means.device)
+        sel_cpu = det.flagged & (comps == info["id"])
+        sel = sel_cpu.to(model.means.device)
+        fps = _footprints(det, sel_cpu, H, W)
+        regions = [m & f for m, f in zip(masks, fps)]
+        raw = [m & f for m, f in zip(det.masks, fps)]
+        n_region = sum(int(r.sum()) for r in regions)
+        n_new = sum(int((r & e).sum()) for r, e in zip(raw, det.empty))
+        new_frac = n_new / max(1, sum(int(r.sum()) for r in raw))
+        base_res = _residual(model, images, cams, regions)
         m2 = model.clone()
         sh = m2.sh.clone().requires_grad_(True)
         m2.sh = sh
@@ -168,21 +223,25 @@ def classify_components(model: GaussianModel, images, cams, det: Detection, iter
             with torch.no_grad():
                 sh[~sel] = model.sh[~sel]
         m2.sh = sh.detach()
-        after = _masked_residual(m2, images, cams, masks)
+        after = _residual(m2, images, cams, regions)
         lum_before = float((SH_C0 * model.sh.detach()[sel, 0] + 0.5).clamp(min=0).mean())
         lum_after = float((SH_C0 * m2.sh[sel, 0] + 0.5).clamp(min=0).mean())
         reduction = 1 - after / max(base_res, 1e-6)
-        if lum_after < dark and lum_before > 2 * dark:
-            kind, note = "geometric", "part missing or displaced (colour refit drives it to empty space)"
+        if new_frac >= new_matter:
+            kind, note = "geometric", "material appears where the baseline is empty (moved or deformed part)"
+        elif lum_after < dark and lum_before > 2 * dark:
+            kind, note = "geometric", "part has vanished (colour refit drives it to empty space)"
         elif reduction >= recover:
             kind, note = "appearance", "explained by a change of surface colour"
         else:
             kind, note = "geometric", "shape or position change (colour refit cannot explain it)"
-        results[name] = {"type": kind, "note": note, "residual_before": round(base_res, 4),
-                         "residual_after": round(after, 4), "residual_reduction": round(reduction, 3),
+        results[name] = {"type": kind, "note": note, "new_matter_fraction": round(new_frac, 3),
+                         "residual_before": round(base_res, 4), "residual_after": round(after, 4),
+                         "residual_reduction": round(reduction, 3),
                          "luminance_before": round(lum_before, 3), "luminance_after": round(lum_after, 3),
                          "seconds": round(time.time() - t0, 1)}
-        log(f"  {name}: {kind} (residual reduction {reduction:.2f}, luminance {lum_before:.2f}->{lum_after:.2f})")
+        log(f"  {name}: {kind} (new-matter {new_frac:.2f}, residual reduction {reduction:.2f}, "
+            f"luminance {lum_before:.2f}->{lum_after:.2f})")
     return results
 
 
