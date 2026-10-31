@@ -1,6 +1,7 @@
 # Project Larissa: change-detection demo
 
-A small, self-contained demonstration of the core idea behind Project Larissa:
+This is a novel research project that has just started. We demonstrate here a small, 
+self-contained implementation of the core idea behind Project Larissa:
 **detect mechanical faults on a spacecraft by comparing new camera images
 against a 3D Gaussian Splatting (3DGS) model of the spacecraft in a known-good
 state.**
