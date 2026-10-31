@@ -85,10 +85,11 @@ def write_markdown(summary: dict, path: Path):
         if not r["classification"]:
             continue
         L.append(f"**{r['scenario']}** component classification:\n")
-        L.append("| Component | Flagged Gaussians | Type | Residual reduction after colour-only refit | Note |")
-        L.append("|---|---|---|---|---|")
+        L.append("| Component | Flagged Gaussians | Type | Vanished share | Inconsistent share | New-matter share | Note |")
+        L.append("|---|---|---|---|---|---|---|")
         for k, c in r["classification"].items():
             ci = r["components"][k]
-            L.append(f"| {k} | {ci['flagged']}/{ci['evaluated']} | {c['type']} | {c['residual_reduction']:.2f} | {c['note']} |")
+            L.append(f"| {k} | {ci['flagged']}/{ci['evaluated']} | {c['type']} | {c['vanished_share']:.2f} | "
+                     f"{c['inconsistent_share']:.2f} | {c['new_matter_fraction']:.2f} | {c['note']} |")
         L.append("")
     path.write_text("\n".join(L))

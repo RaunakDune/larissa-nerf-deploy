@@ -167,98 +167,81 @@ def calibrate_components(model: GaussianModel, images, cams, tau: float, factor:
     return {name: max(factor * c["fraction"], c["fraction"] + offset) for name, c in det.components.items()}
 
 
-def _residual(model, images, cams, regions):
-    tot, n = 0.0, 0
-    with torch.no_grad():
-        for img, cam, m in zip(images, cams, regions):
-            if m.sum() == 0:
-                continue
-            r = render(model, cam)["rgb"]
-            mm = m.to(img.device)
-            tot += float((r - img).abs().mean(-1)[mm].sum())
-            n += int(mm.sum())
-    return tot / max(n, 1)
+def _lum(x: torch.Tensor) -> torch.Tensor:
+    return x @ torch.tensor([0.299, 0.587, 0.114], device=x.device)
 
 
-def _footprints(det: Detection, sel: torch.Tensor, H: int, W: int, grow: int = 21):
-    """Per view, the image region covered by the selected Gaussians, grown by `grow` px."""
-    fps = []
-    for (u, v, on) in det.proj:
-        m = torch.zeros(H, W, dtype=torch.bool)
-        k = sel & on
-        m[v[k], u[k]] = True
-        fps.append(dilate(m, grow) if k.any() else m)
-    return fps
-
-
-def classify_components(model: GaussianModel, images, cams, det: Detection, iters: int = 300,
-                        recover: float = 0.6, new_matter: float = 0.10, dark: float = 0.05, lr: float = 0.05,
-                        scope: str = "component", seed: int = 0, log=print) -> dict:
+def classify_components(model: GaussianModel, images, cams, det: Detection, black: float = 0.035,
+                        lit: float = 0.08, spread_margin: float = 0.12, vanish_share: float = 0.4,
+                        incons_share: float = 0.3, new_matter: float = 0.10, log=print) -> dict:
     """Decide, for each changed component, whether the change is geometric or
-    an appearance change. Three tests, in order:
+    an appearance change, from what the inspection cameras now see at the
+    location of each flagged Gaussian.
 
-    1. New matter in empty space: changed pixels near the component where the
-       baseline has no surface at all. Repainting the baseline cannot create
-       material, so a sizeable share of these means a geometric change.
-    2. Vanishing: refitting only the colours of the flagged Gaussians (geometry
-       frozen) drives them to black, i.e. the part has gone.
-    3. Colour-only refit: if colour alone removes most of the residual in the
-       changed region, it is an appearance change; otherwise geometric."""
+    The baseline knows where every Gaussian projects in every camera. For each
+    flagged Gaussian we sample the new image there in every camera that sees it:
+
+    * appearance change (discoloration, shadow): the surface is still there, so
+      all cameras see one consistent new colour (sunlit diffuse shading does not
+      depend on viewpoint);
+    * vanished part: cameras see black space where a lit surface used to be;
+    * moved or deformed part: cameras see whatever lies behind, which differs
+      from camera to camera, so the colours are inconsistent.
+
+    Inconsistency is measured relative to the baseline's own rendered colours at
+    the same pixels, which absorbs normal view-dependent effects such as glints.
+    A large share of changed pixels where the baseline has no surface at all
+    (new material in empty space) is also geometric."""
     results = {}
     comps = model.comp.cpu()
     H, W = det.masks[0].shape
-    masks = [dilate(m, 3) for m in det.masks]
+    blur = lambda x: F.avg_pool2d(x.permute(2, 0, 1)[None], 3, 1, 1, count_include_pad=False)[0].permute(1, 2, 0)
+    obs_imgs = [blur(im.float()).cpu() for im in images]
+    base_imgs = [blur(r.float()) for r in det.renders]
     for name, info in det.components.items():
         if not info["changed"]:
             continue
         t0 = time.time()
-        flagged_cpu = det.flagged & (comps == info["id"])
-        fps = _footprints(det, flagged_cpu, H, W)
-        # colours that may change: every Gaussian of the component (or only flagged ones)
-        sel_cpu = (comps == info["id"]) if scope == "component" else flagged_cpu
-        sel = sel_cpu.to(model.means.device)
-        regions = [m & f for m, f in zip(masks, fps)]
+        fl = det.flagged & (comps == info["id"])
+        idx = torch.nonzero(fl).squeeze(1)
+        obs = torch.full((len(idx), len(images), 3), float("nan"))
+        base = torch.full_like(obs, float("nan"))
+        for vi, (u, v, on) in enumerate(det.proj):
+            vis = on[idx]
+            if not vis.any():
+                continue
+            uu, vv = u[idx][vis], v[idx][vis]
+            obs[vis, vi] = obs_imgs[vi][vv, uu]
+            base[vis, vi] = base_imgs[vi][vv, uu]
+        nvis = (~torch.isnan(obs[..., 0])).sum(1)
+        ok = nvis >= 2
+        obs, base = obs[ok], base[ok]
+        lo, lb = _lum(torch.nan_to_num(obs, nan=0.0)), _lum(torch.nan_to_num(base, nan=0.0))
+        valid = ~torch.isnan(obs[..., 0])
+        big = torch.tensor(9.0)
+        def spread(l):
+            return torch.where(valid, l, -big).max(1).values - torch.where(valid, l, big).min(1).values
+        med = lambda l: torch.nanmedian(torch.where(valid, l, torch.tensor(float("nan"))), dim=1).values
+        vanished = (med(lo) < black) & (med(lb) > lit)
+        inconsistent = spread(lo) > spread(lb) + spread_margin
+        n = max(1, int(ok.sum()))
+        v_share = float(vanished.float().sum()) / n
+        i_share = float((inconsistent & ~vanished).float().sum()) / n
+        # new material in empty space near the component
+        fps = _footprints(det, fl, H, W)
         raw = [m & f for m, f in zip(det.masks, fps)]
-        n_region = sum(int(r.sum()) for r in regions)
         n_new = sum(int((r & e).sum()) for r, e in zip(raw, det.empty))
         new_frac = n_new / max(1, sum(int(r.sum()) for r in raw))
-        base_res = _residual(model, images, cams, raw)
-        m2 = model.clone()
-        sh = m2.sh.clone().requires_grad_(True)
-        m2.sh = sh
-        opt = torch.optim.Adam([sh], lr=lr)
-        views = [i for i, r in enumerate(regions) if r.any()] or list(range(len(images)))
-        for it in range(iters):
-            i = views[it % len(views)]
-            out = render(m2, cams[i])
-            loss = (out["rgb"] - images[i]).abs().mean()
-            opt.zero_grad(set_to_none=True)
-            loss.backward()
-            sh.grad[~sel] = 0
-            opt.step()
-            with torch.no_grad():
-                sh[~sel] = model.sh[~sel]
-        m2.sh = sh.detach()
-        after = _residual(m2, images, cams, raw)
-        fl = flagged_cpu.to(model.means.device)
-        lum_before = float((SH_C0 * model.sh.detach()[fl, 0] + 0.5).clamp(min=0).mean())
-        lum_after = float((SH_C0 * m2.sh[fl, 0] + 0.5).clamp(min=0).mean())
-        reduction = 1 - after / max(base_res, 1e-6)
-        if new_frac >= new_matter:
-            kind, note = "geometric", "material appears where the baseline is empty (moved or deformed part)"
-        elif lum_after < dark and lum_before > 2 * dark:
-            kind, note = "geometric", "part has vanished (colour refit drives it to empty space)"
-        elif reduction >= recover:
-            kind, note = "appearance", "explained by a change of surface colour"
+        if v_share >= vanish_share:
+            kind, note = "geometric", "part has vanished: cameras now see empty space where a lit surface was"
+        elif i_share >= incons_share or new_frac >= new_matter:
+            kind, note = "geometric", "part moved or deformed: cameras disagree on what is now at its location"
         else:
-            kind, note = "geometric", "shape or position change (colour refit cannot explain it)"
-        results[name] = {"type": kind, "note": note, "new_matter_fraction": round(new_frac, 3),
-                         "residual_before": round(base_res, 4), "residual_after": round(after, 4),
-                         "residual_reduction": round(reduction, 3),
-                         "luminance_before": round(lum_before, 3), "luminance_after": round(lum_after, 3),
-                         "seconds": round(time.time() - t0, 1)}
-        log(f"  {name}: {kind} (new-matter {new_frac:.2f}, residual reduction {reduction:.2f}, "
-            f"luminance {lum_before:.2f}->{lum_after:.2f})")
+            kind, note = "appearance", "surface still in place with a consistent new colour"
+        results[name] = {"type": kind, "note": note, "gaussians_tested": n,
+                         "vanished_share": round(v_share, 3), "inconsistent_share": round(i_share, 3),
+                         "new_matter_fraction": round(new_frac, 3), "seconds": round(time.time() - t0, 2)}
+        log(f"  {name}: {kind} (vanished {v_share:.2f}, inconsistent {i_share:.2f}, new-matter {new_frac:.2f})")
     return results
 
 

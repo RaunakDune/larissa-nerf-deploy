@@ -38,7 +38,6 @@ def main():
     ap.add_argument("--train-views", type=int, default=96)
     ap.add_argument("--holdout-views", type=int, default=12)
     ap.add_argument("--iters", type=int, default=5000)
-    ap.add_argument("--refit-iters", type=int, default=200)
     ap.add_argument("--pose-noise-deg", type=float, default=0.15)
     ap.add_argument("--pose-noise-m", type=float, default=0.01)
     ap.add_argument("--out", default="results")
@@ -47,7 +46,7 @@ def main():
     ap.add_argument("--load-baseline", default=None, help="reuse a trained baseline_gaussians.pt (skips training)")
     args = ap.parse_args()
     if args.quick:
-        args.res, args.train_views, args.holdout_views, args.iters, args.refit_iters = 96, 24, 4, 150, 20
+        args.res, args.train_views, args.holdout_views, args.iters = 96, 24, 4, 150
 
     torch.manual_seed(args.seed)
     dev = torch.device(args.device)
@@ -153,7 +152,7 @@ def main():
             if info["flagged"]:
                 log(f"  {cname:22s} flagged {info['flagged']:5d}/{info['evaluated']:5d} "
                     f"({100 * info['fraction']:.1f}%) {'CHANGED' if info['changed'] else ''}")
-        classes = classify_components(model, imgs, insp_cams, det, iters=args.refit_iters, log=log)
+        classes = classify_components(model, imgs, insp_cams, det, log=log)
         v = verdict(classes)
         log(f"VERDICT: {v}")
         pred = torch.stack(det.masks)
