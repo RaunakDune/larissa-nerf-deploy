@@ -1,0 +1,6714 @@
+{
+ "calibration": {
+  "pixels": 786432,
+  "foreground_share": 0.10118357837200165,
+  "q995_all": 0.03436426818370819,
+  "q999_all": 0.10947215557098389,
+  "q995_foreground": 0.1444104015827179,
+  "q995_background": 0.006868876051157713,
+  "max": 0.19034622609615326,
+  "share_above_0.04": 0.0036163330078125,
+  "share_above_0.04_foreground": 0.0344710573554039,
+  "tau": 0.04,
+  "healthy_fraction": {
+   "bus": 0.0,
+   "solar_array_port": 0.00022279157847833353,
+   "solar_array_starboard": 0.0,
+   "antenna": 0.07232546459065796,
+   "thruster": 0.0
+  },
+  "healthy_flagged": {
+   "bus": 0,
+   "solar_array_port": 2,
+   "solar_array_starboard": 0,
+   "antenna": 144,
+   "thruster": 0
+  },
+  "levels": {
+   "bus": 0.02,
+   "solar_array_port": 0.0202,
+   "solar_array_starboard": 0.02,
+   "antenna": 0.2169,
+   "thruster": 0.02
+  }
+ },
+ "scenarios": {
+  "healthy_control": {
+   "verdict": "NO CHANGE",
+   "correct": true,
+   "pred_px": 300,
+   "true_px": 0,
+   "inter": 0,
+   "union": 300,
+   "fp_px": 300,
+   "fp_rate": 0.00057220458984375,
+   "flagged": {
+    "bus": 0,
+    "solar_array_port": 0,
+    "solar_array_starboard": 0,
+    "antenna": 253,
+    "thruster": 0
+   },
+   "classes": {}
+  },
+  "panel_hinge": {
+   "verdict": "GEOMETRIC CHANGE: solar_array_port",
+   "correct": true,
+   "pred_px": 12672,
+   "true_px": 8614,
+   "inter": 6352,
+   "union": 14934,
+   "fp_px": 6320,
+   "fp_rate": 0.012054443359375,
+   "iou": 0.425338154546672,
+   "recall": 0.737404225679127,
+   "precision": 0.5012626262626263,
+   "fp_dist_to_truth_px": {
+    "median": 4.47213595499958,
+    "within_3px": 0.42515822784810126,
+    "within_6px": 0.6022151898734177,
+    "max": 105.11898020814318
+   },
+   "flagged": {
+    "bus": 5,
+    "solar_array_port": 8114,
+    "solar_array_starboard": 0,
+    "antenna": 253,
+    "thruster": 0
+   },
+   "classes": {
+    "solar_array_port": {
+     "type": "geometric",
+     "note": "part moved or deformed: cameras disagree on what is now at its location",
+     "gaussians_tested": 8114,
+     "vanished_share": 0.207,
+     "inconsistent_share": 0.053,
+     "new_matter_fraction": 0.14,
+     "seconds": 0.28
+    }
+   },
+   "recall_by_contrast": {
+    "<0.02": {
+     "true_px": 1367,
+     "recall": 0.12362838332114119
+    },
+    "0.02-0.04": {
+     "true_px": 225,
+     "recall": 0.12
+    },
+    "0.04-0.08": {
+     "true_px": 2373,
+     "recall": 0.6995364517488412
+    },
+    ">=0.08": {
+     "true_px": 4649,
+     "recall": 0.9670896967089697
+    }
+   }
+  },
+  "antenna_missing": {
+   "verdict": "GEOMETRIC CHANGE: antenna",
+   "correct": true,
+   "pred_px": 4704,
+   "true_px": 2759,
+   "inter": 2619,
+   "union": 4844,
+   "fp_px": 2085,
+   "fp_rate": 0.0039768218994140625,
+   "iou": 0.5406688687035508,
+   "recall": 0.9492569771656397,
+   "precision": 0.5567602040816326,
+   "fp_dist_to_truth_px": {
+    "median": 4.0,
+    "within_3px": 0.46810551558753,
+    "within_6px": 0.5774580335731415,
+    "max": 120.5404496424333
+   },
+   "flagged": {
+    "bus": 927,
+    "solar_array_port": 0,
+    "solar_array_starboard": 0,
+    "antenna": 1956,
+    "thruster": 0
+   },
+   "classes": {
+    "bus": {
+     "type": "appearance",
+     "note": "surface still in place with a consistent new colour",
+     "gaussians_tested": 927,
+     "vanished_share": 0.0,
+     "inconsistent_share": 0.027,
+     "new_matter_fraction": 0.0,
+     "seconds": 0.24
+    },
+    "antenna": {
+     "type": "geometric",
+     "note": "part has vanished: cameras now see empty space where a lit surface was",
+     "gaussians_tested": 1956,
+     "vanished_share": 0.679,
+     "inconsistent_share": 0.03,
+     "new_matter_fraction": 0.0,
+     "seconds": 0.28
+    }
+   },
+   "recall_by_contrast": {
+    "<0.02": {
+     "true_px": 0,
+     "recall": 0.0
+    },
+    "0.02-0.04": {
+     "true_px": 6,
+     "recall": 0.3333333333333333
+    },
+    "0.04-0.08": {
+     "true_px": 114,
+     "recall": 0.5964912280701754
+    },
+    ">=0.08": {
+     "true_px": 2639,
+     "recall": 0.9658961727927245
+    }
+   }
+  },
+  "mli_discoloration": {
+   "verdict": "APPEARANCE CHANGE: bus",
+   "correct": true,
+   "pred_px": 2743,
+   "true_px": 1836,
+   "inter": 1830,
+   "union": 2749,
+   "fp_px": 913,
+   "fp_rate": 0.0017414093017578125,
+   "iou": 0.6656966169516187,
+   "recall": 0.9967320261437909,
+   "precision": 0.6671527524608093,
+   "fp_dist_to_truth_px": {
+    "median": 1.0,
+    "within_3px": 0.7208931419457735,
+    "within_6px": 0.7208931419457735,
+    "max": 125.0
+   },
+   "flagged": {
+    "bus": 2182,
+    "solar_array_port": 0,
+    "solar_array_starboard": 1,
+    "antenna": 253,
+    "thruster": 0
+   },
+   "classes": {
+    "bus": {
+     "type": "appearance",
+     "note": "surface still in place with a consistent new colour",
+     "gaussians_tested": 2182,
+     "vanished_share": 0.0,
+     "inconsistent_share": 0.009,
+     "new_matter_fraction": 0.0,
+     "seconds": 0.21
+    }
+   },
+   "recall_by_contrast": {
+    "<0.02": {
+     "true_px": 0,
+     "recall": 0.0
+    },
+    "0.02-0.04": {
+     "true_px": 0,
+     "recall": 0.0
+    },
+    "0.04-0.08": {
+     "true_px": 14,
+     "recall": 0.8571428571428571
+    },
+    ">=0.08": {
+     "true_px": 1822,
+     "recall": 0.9978046103183315
+    }
+   }
+  },
+  "sun_shift_control": {
+   "verdict": "APPEARANCE CHANGE ON MANY PARTS (likely illumination): bus, solar_array_port, antenna",
+   "correct": true,
+   "pred_px": 16604,
+   "true_px": 0,
+   "inter": 0,
+   "union": 16604,
+   "fp_px": 16604,
+   "fp_rate": 0.03166961669921875,
+   "flagged": {
+    "bus": 8990,
+    "solar_array_port": 717,
+    "solar_array_starboard": 103,
+    "antenna": 1458,
+    "thruster": 0
+   },
+   "classes": {
+    "bus": {
+     "type": "appearance",
+     "note": "surface still in place with a consistent new colour",
+     "gaussians_tested": 8990,
+     "vanished_share": 0.049,
+     "inconsistent_share": 0.142,
+     "new_matter_fraction": 0.0,
+     "seconds": 0.28
+    },
+    "solar_array_port": {
+     "type": "appearance",
+     "note": "surface still in place with a consistent new colour",
+     "gaussians_tested": 717,
+     "vanished_share": 0.0,
+     "inconsistent_share": 0.084,
+     "new_matter_fraction": 0.0,
+     "seconds": 0.24
+    },
+    "antenna": {
+     "type": "appearance",
+     "note": "surface still in place with a consistent new colour",
+     "gaussians_tested": 1458,
+     "vanished_share": 0.001,
+     "inconsistent_share": 0.075,
+     "new_matter_fraction": 0.0,
+     "seconds": 0.28
+    }
+   }
+  }
+ },
+ "antenna_flags": {
+  "healthy_flagged": 253,
+  "all_antenna_by_part": {
+   "mast": 71,
+   "dish_face": 1067,
+   "dish_rim": 864
+  },
+  "healthy_flagged_by_part": {
+   "mast": 0,
+   "dish_face": 247,
+   "dish_rim": 6
+  },
+  "healthy_flagged_face_sign": {
+   "+": 57,
+   "-": 196
+  },
+  "overlap_with_healthy": {
+   "healthy_control": {
+    "flagged": 253,
+    "same_as_healthy": 253
+   },
+   "panel_hinge": {
+    "flagged": 253,
+    "same_as_healthy": 253
+   },
+   "antenna_missing": {
+    "flagged": 1956,
+    "same_as_healthy": 253
+   },
+   "mli_discoloration": {
+    "flagged": 253,
+    "same_as_healthy": 253
+   },
+   "sun_shift_control": {
+    "flagged": 1458,
+    "same_as_healthy": 253
+   }
+  },
+  "per_view": [
+   {
+    "on_surface": 252,
+    "voted_changed": 0
+   },
+   {
+    "on_surface": 0,
+    "voted_changed": 0
+   },
+   {
+    "on_surface": 0,
+    "voted_changed": 0
+   },
+   {
+    "on_surface": 1,
+    "voted_changed": 0
+   },
+   {
+    "on_surface": 0,
+    "voted_changed": 0
+   },
+   {
+    "on_surface": 0,
+    "voted_changed": 0
+   },
+   {
+    "on_surface": 253,
+    "voted_changed": 253
+   },
+   {
+    "on_surface": 0,
+    "voted_changed": 0
+   }
+  ],
+  "cause": {
+   "nominal_pose_no_noise": {
+    "pred_px": 271,
+    "flagged": {
+     "bus": 0,
+     "solar_array_port": 0,
+     "solar_array_starboard": 0,
+     "antenna": 253,
+     "thruster": 0
+    },
+    "antenna_same_as_released": 253
+   },
+   "true_pose_no_noise": {
+    "pred_px": 372,
+    "flagged": {
+     "bus": 0,
+     "solar_array_port": 0,
+     "solar_array_starboard": 0,
+     "antenna": 253,
+     "thruster": 0
+    },
+    "antenna_same_as_released": 253
+   },
+   "nominal_pose_with_noise": {
+    "pred_px": 401,
+    "flagged": {
+     "bus": 0,
+     "solar_array_port": 0,
+     "solar_array_starboard": 0,
+     "antenna": 253,
+     "thruster": 0
+    },
+    "antenna_same_as_released": 253
+   },
+   "released_images": {
+    "pred_px": 300,
+    "flagged": {
+     "bus": 0,
+     "solar_array_port": 0,
+     "solar_array_starboard": 0,
+     "antenna": 253,
+     "thruster": 0
+    },
+    "antenna_same_as_released": 253
+   }
+  },
+  "noise_free_share_above_tau": {
+   "antenna": 0.09527246481414652,
+   "bus": 0.0005586775773111177
+  }
+ },
+ "antenna_missing_bus": {
+  "flagged": 927,
+  "flagged_in_antenna_shadow": 542,
+  "all_bus_in_antenna_shadow": 1175,
+  "all_bus": 22952,
+  "flagged_top_face": 873,
+  "flagged_mean_lum_change": 0.05752506107091904,
+  "flagged_share_brighter": 0.6181229948997498
+ },
+ "sensitivity_detection": [
+  {
+   "tau": 0.03,
+   "vote": 0.4,
+   "offset": 0.01,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.4,
+   "offset": 0.01,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.4,
+   "offset": 0.01,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.4,
+   "offset": 0.02,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.4,
+   "offset": 0.02,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.4,
+   "offset": 0.02,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.4,
+   "offset": 0.04,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.4,
+   "offset": 0.04,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.4,
+   "offset": 0.04,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.5,
+   "offset": 0.01,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.5,
+   "offset": 0.01,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.5,
+   "offset": 0.01,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.5,
+   "offset": 0.02,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.5,
+   "offset": 0.02,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.5,
+   "offset": 0.02,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.5,
+   "offset": 0.04,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.5,
+   "offset": 0.04,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.5,
+   "offset": 0.04,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.6,
+   "offset": 0.01,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.6,
+   "offset": 0.01,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.6,
+   "offset": 0.01,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.6,
+   "offset": 0.02,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.6,
+   "offset": 0.02,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.6,
+   "offset": 0.02,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.6,
+   "offset": 0.04,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.6,
+   "offset": 0.04,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.03,
+   "vote": 0.6,
+   "offset": 0.04,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.4,
+   "offset": 0.01,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.4,
+   "offset": 0.01,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.4,
+   "offset": 0.01,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.4,
+   "offset": 0.02,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.4,
+   "offset": 0.02,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.4,
+   "offset": 0.02,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.4,
+   "offset": 0.04,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.4,
+   "offset": 0.04,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.4,
+   "offset": 0.04,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.5,
+   "offset": 0.01,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.5,
+   "offset": 0.01,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.5,
+   "offset": 0.01,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.5,
+   "offset": 0.02,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.5,
+   "offset": 0.02,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.5,
+   "offset": 0.02,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, solar_array_starboard, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.5,
+   "offset": 0.04,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.5,
+   "offset": 0.04,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.5,
+   "offset": 0.04,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.6,
+   "offset": 0.01,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "geo:solar_array_starboard"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.6,
+   "offset": 0.01,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "geo:solar_array_starboard"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.6,
+   "offset": 0.01,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "geo:solar_array_starboard"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.6,
+   "offset": 0.02,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.6,
+   "offset": 0.02,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.6,
+   "offset": 0.02,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.6,
+   "offset": 0.04,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.6,
+   "offset": 0.04,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.0344,
+   "vote": 0.6,
+   "offset": 0.04,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.4,
+   "offset": 0.01,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "geo:solar_array_starboard"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.4,
+   "offset": 0.01,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "geo:solar_array_starboard"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.4,
+   "offset": 0.01,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "geo:solar_array_starboard"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.4,
+   "offset": 0.02,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.4,
+   "offset": 0.02,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.4,
+   "offset": 0.02,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.4,
+   "offset": 0.04,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.4,
+   "offset": 0.04,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.4,
+   "offset": 0.04,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.5,
+   "offset": 0.01,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "geo:solar_array_starboard"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.5,
+   "offset": 0.01,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "geo:solar_array_starboard"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.5,
+   "offset": 0.01,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "geo:solar_array_starboard"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.5,
+   "offset": 0.02,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.5,
+   "offset": 0.02,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.5,
+   "offset": 0.02,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.5,
+   "offset": 0.04,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.5,
+   "offset": 0.04,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.5,
+   "offset": 0.04,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.6,
+   "offset": 0.01,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "geo:solar_array_starboard"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.6,
+   "offset": 0.01,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "geo:solar_array_starboard"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.6,
+   "offset": 0.01,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "geo:solar_array_starboard"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.6,
+   "offset": 0.02,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.6,
+   "offset": 0.02,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.6,
+   "offset": 0.02,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.6,
+   "offset": 0.04,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.6,
+   "offset": 0.04,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.04,
+   "vote": 0.6,
+   "offset": 0.04,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.4,
+   "offset": 0.01,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "app:antenna",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.4,
+   "offset": 0.01,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "app:antenna",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.4,
+   "offset": 0.01,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "app:antenna",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.4,
+   "offset": 0.02,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "app:antenna",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.4,
+   "offset": 0.02,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "app:antenna",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.4,
+   "offset": 0.02,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "app:antenna",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.4,
+   "offset": 0.04,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "app:antenna",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.4,
+   "offset": 0.04,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "app:antenna",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.4,
+   "offset": 0.04,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "app:antenna",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.5,
+   "offset": 0.01,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "app:antenna",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.5,
+   "offset": 0.01,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "app:antenna",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.5,
+   "offset": 0.01,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "app:antenna",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.5,
+   "offset": 0.02,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "app:antenna",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.5,
+   "offset": 0.02,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "app:antenna",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.5,
+   "offset": 0.02,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "app:antenna",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.5,
+   "offset": 0.04,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "app:antenna",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.5,
+   "offset": 0.04,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "app:antenna",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.5,
+   "offset": 0.04,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "app:antenna",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.6,
+   "offset": 0.01,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.6,
+   "offset": 0.01,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.6,
+   "offset": 0.01,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.6,
+   "offset": 0.02,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "app:bus, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.6,
+   "offset": 0.02,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "app:bus, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.6,
+   "offset": 0.02,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "app:bus, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.6,
+   "offset": 0.04,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "app:bus, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.6,
+   "offset": 0.04,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "app:bus, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.05,
+   "vote": 0.6,
+   "offset": 0.04,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "app:bus, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.4,
+   "offset": 0.01,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.4,
+   "offset": 0.01,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.4,
+   "offset": 0.01,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.4,
+   "offset": 0.02,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.4,
+   "offset": 0.02,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.4,
+   "offset": 0.02,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.4,
+   "offset": 0.04,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.4,
+   "offset": 0.04,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.4,
+   "offset": 0.04,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.5,
+   "offset": 0.01,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.5,
+   "offset": 0.01,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.5,
+   "offset": 0.01,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.5,
+   "offset": 0.02,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.5,
+   "offset": 0.02,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.5,
+   "offset": 0.02,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.5,
+   "offset": 0.04,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "app:bus, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.5,
+   "offset": 0.04,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "app:bus, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.5,
+   "offset": 0.04,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus, antenna",
+    "sun_shift_control": "app:bus, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.6,
+   "offset": 0.01,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "app:bus, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.6,
+   "offset": 0.01,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "app:bus, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.6,
+   "offset": 0.01,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "app:bus, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.6,
+   "offset": 0.02,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "app:bus, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.6,
+   "offset": 0.02,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "app:bus, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.6,
+   "offset": 0.02,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "app:bus, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.6,
+   "offset": 0.04,
+   "factor": 2.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "app:bus, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.6,
+   "offset": 0.04,
+   "factor": 3.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "app:bus, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "tau": 0.06,
+   "vote": 0.6,
+   "offset": 0.04,
+   "factor": 4.0,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "app:bus, antenna"
+   },
+   "ok": 4
+  }
+ ],
+ "sensitivity_classifier": [
+  {
+   "param": "black",
+   "value": 0.02,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "param": "black",
+   "value": 0.035,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "param": "black",
+   "value": 0.05,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "geo:bus"
+   },
+   "ok": 4
+  },
+  {
+   "param": "spread_margin",
+   "value": 0.06,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "param": "spread_margin",
+   "value": 0.12,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "param": "spread_margin",
+   "value": 0.18,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "param": "vanish_share",
+   "value": 0.2,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "param": "vanish_share",
+   "value": 0.4,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "param": "vanish_share",
+   "value": 0.6,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "param": "incons_share",
+   "value": 0.15,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "param": "incons_share",
+   "value": 0.3,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "param": "incons_share",
+   "value": 0.45,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "param": "new_matter",
+   "value": 0.05,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "param": "new_matter",
+   "value": 0.1,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "param": "new_matter",
+   "value": 0.15,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "app:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "param": "new_matter",
+   "value": 0.2,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "app:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 4
+  },
+  {
+   "param": "comp_min",
+   "value": 30,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "param": "comp_min",
+   "value": 60,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "param": "comp_min",
+   "value": 120,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  },
+  {
+   "param": "comp_min",
+   "value": 240,
+   "verdicts": {
+    "healthy_control": "none",
+    "panel_hinge": "geo:solar_array_port",
+    "antenna_missing": "geo:antenna",
+    "mli_discoloration": "app:bus",
+    "sun_shift_control": "illum:bus, solar_array_port, antenna"
+   },
+   "ok": 5
+  }
+ ],
+ "repeats": [
+  {
+   "seed": 0,
+   "tau": 0.04,
+   "levels": {
+    "bus": 0.02,
+    "solar_array_port": 0.0202,
+    "solar_array_starboard": 0.02,
+    "antenna": 0.2169,
+    "thruster": 0.02
+   },
+   "results": {
+    "healthy_control": {
+     "verdict": "none",
+     "correct": true,
+     "flagged": {
+      "bus": 0,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [],
+     "classes": {},
+     "pred_px": 300,
+     "true_px": 0,
+     "inter": 0,
+     "union": 300,
+     "fp_px": 300,
+     "fp_rate": 0.00057220458984375
+    },
+    "panel_hinge": {
+     "verdict": "geo:solar_array_port",
+     "correct": true,
+     "flagged": {
+      "bus": 5,
+      "solar_array_port": 8114,
+      "solar_array_starboard": 0,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "solar_array_port"
+     ],
+     "classes": {
+      "solar_array_port": {
+       "type": "geometric",
+       "vanished_share": 0.207,
+       "inconsistent_share": 0.053,
+       "new_matter_fraction": 0.14
+      }
+     },
+     "pred_px": 12672,
+     "true_px": 8614,
+     "inter": 6352,
+     "union": 14934,
+     "fp_px": 6320,
+     "fp_rate": 0.012054443359375,
+     "iou": 0.425338154546672,
+     "recall": 0.737404225679127,
+     "precision": 0.5012626262626263,
+     "fp_dist_to_truth_px": {
+      "median": 4.47213595499958,
+      "within_3px": 0.42515822784810126,
+      "within_6px": 0.6022151898734177,
+      "max": 105.11898020814318
+     }
+    },
+    "antenna_missing": {
+     "verdict": "geo:antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 927,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 1956,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.027,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "geometric",
+       "vanished_share": 0.679,
+       "inconsistent_share": 0.03,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 4704,
+     "true_px": 2759,
+     "inter": 2619,
+     "union": 4844,
+     "fp_px": 2085,
+     "fp_rate": 0.0039768218994140625,
+     "iou": 0.5406688687035508,
+     "recall": 0.9492569771656397,
+     "precision": 0.5567602040816326,
+     "fp_dist_to_truth_px": {
+      "median": 4.0,
+      "within_3px": 0.46810551558753,
+      "within_6px": 0.5774580335731415,
+      "max": 120.5404496424333
+     }
+    },
+    "mli_discoloration": {
+     "verdict": "app:bus",
+     "correct": true,
+     "flagged": {
+      "bus": 2182,
+      "solar_array_port": 0,
+      "solar_array_starboard": 1,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "bus"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.009,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 2743,
+     "true_px": 1836,
+     "inter": 1830,
+     "union": 2749,
+     "fp_px": 913,
+     "fp_rate": 0.0017414093017578125,
+     "iou": 0.6656966169516187,
+     "recall": 0.9967320261437909,
+     "precision": 0.6671527524608093,
+     "fp_dist_to_truth_px": {
+      "median": 1.0,
+      "within_3px": 0.7208931419457735,
+      "within_6px": 0.7208931419457735,
+      "max": 125.0
+     }
+    },
+    "sun_shift_control": {
+     "verdict": "illum:bus, solar_array_port, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 8990,
+      "solar_array_port": 717,
+      "solar_array_starboard": 103,
+      "antenna": 1458,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.049,
+       "inconsistent_share": 0.142,
+       "new_matter_fraction": 0.0
+      },
+      "solar_array_port": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.084,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.001,
+       "inconsistent_share": 0.075,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 16604,
+     "true_px": 0,
+     "inter": 0,
+     "union": 16604,
+     "fp_px": 16604,
+     "fp_rate": 0.03166961669921875
+    }
+   }
+  },
+  {
+   "seed": 1,
+   "tau": 0.04,
+   "levels": {
+    "bus": 0.02,
+    "solar_array_port": 0.0201,
+    "solar_array_starboard": 0.0204,
+    "antenna": 0.02,
+    "thruster": 0.02
+   },
+   "results": {
+    "healthy_control": {
+     "verdict": "app:antenna",
+     "correct": false,
+     "flagged": {
+      "bus": 0,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 254,
+      "thruster": 0
+     },
+     "changed": [
+      "antenna"
+     ],
+     "classes": {
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.0,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 355,
+     "true_px": 0,
+     "inter": 0,
+     "union": 355,
+     "fp_px": 355,
+     "fp_rate": 0.0006771087646484375
+    },
+    "panel_hinge": {
+     "verdict": "geo:solar_array_port",
+     "correct": true,
+     "flagged": {
+      "bus": 5,
+      "solar_array_port": 8060,
+      "solar_array_starboard": 0,
+      "antenna": 254,
+      "thruster": 0
+     },
+     "changed": [
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "solar_array_port": {
+       "type": "geometric",
+       "vanished_share": 0.199,
+       "inconsistent_share": 0.049,
+       "new_matter_fraction": 0.138
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.0,
+       "new_matter_fraction": 0.099
+      }
+     },
+     "pred_px": 12311,
+     "true_px": 8589,
+     "inter": 6305,
+     "union": 14595,
+     "fp_px": 6006,
+     "fp_rate": 0.011455535888671875,
+     "iou": 0.43199725933538885,
+     "recall": 0.7340784724647805,
+     "precision": 0.5121436114044351,
+     "fp_dist_to_truth_px": {
+      "median": 4.47213595499958,
+      "within_3px": 0.4255744255744256,
+      "within_6px": 0.6013986013986014,
+      "max": 130.23056476879765
+     }
+    },
+    "antenna_missing": {
+     "verdict": "geo:antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 949,
+      "solar_array_port": 1,
+      "solar_array_starboard": 0,
+      "antenna": 1956,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.02,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "geometric",
+       "vanished_share": 0.692,
+       "inconsistent_share": 0.022,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 4788,
+     "true_px": 2758,
+     "inter": 2621,
+     "union": 4925,
+     "fp_px": 2167,
+     "fp_rate": 0.0041332244873046875,
+     "iou": 0.5321827411167512,
+     "recall": 0.9503263234227701,
+     "precision": 0.5474101921470342,
+     "fp_dist_to_truth_px": {
+      "median": 4.47213595499958,
+      "within_3px": 0.4494693124134749,
+      "within_6px": 0.5509921550530688,
+      "max": 120.33287165193059
+     }
+    },
+    "mli_discoloration": {
+     "verdict": "app:bus, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 2120,
+      "solar_array_port": 0,
+      "solar_array_starboard": 1,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.021,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.032,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 2696,
+     "true_px": 1816,
+     "inter": 1809,
+     "union": 2703,
+     "fp_px": 887,
+     "fp_rate": 0.0016918182373046875,
+     "iou": 0.6692563817980022,
+     "recall": 0.9961453744493393,
+     "precision": 0.6709940652818991,
+     "fp_dist_to_truth_px": {
+      "median": 1.0,
+      "within_3px": 0.7317073170731707,
+      "within_6px": 0.7317073170731707,
+      "max": 120.0
+     }
+    },
+    "sun_shift_control": {
+     "verdict": "illum:bus, solar_array_port, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 9338,
+      "solar_array_port": 903,
+      "solar_array_starboard": 170,
+      "antenna": 1514,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.046,
+       "inconsistent_share": 0.174,
+       "new_matter_fraction": 0.0
+      },
+      "solar_array_port": {
+       "type": "appearance",
+       "vanished_share": 0.004,
+       "inconsistent_share": 0.05,
+       "new_matter_fraction": 0.003
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.044,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 18189,
+     "true_px": 0,
+     "inter": 0,
+     "union": 18189,
+     "fp_px": 18189,
+     "fp_rate": 0.03469276428222656
+    }
+   }
+  },
+  {
+   "seed": 2,
+   "tau": 0.04,
+   "levels": {
+    "bus": 0.02,
+    "solar_array_port": 0.02,
+    "solar_array_starboard": 0.0223,
+    "antenna": 0.2787,
+    "thruster": 0.02
+   },
+   "results": {
+    "healthy_control": {
+     "verdict": "none",
+     "correct": true,
+     "flagged": {
+      "bus": 0,
+      "solar_array_port": 1,
+      "solar_array_starboard": 0,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [],
+     "classes": {},
+     "pred_px": 434,
+     "true_px": 0,
+     "inter": 0,
+     "union": 434,
+     "fp_px": 434,
+     "fp_rate": 0.000827789306640625
+    },
+    "panel_hinge": {
+     "verdict": "geo:solar_array_port",
+     "correct": true,
+     "flagged": {
+      "bus": 21,
+      "solar_array_port": 8105,
+      "solar_array_starboard": 1,
+      "antenna": 255,
+      "thruster": 0
+     },
+     "changed": [
+      "solar_array_port"
+     ],
+     "classes": {
+      "solar_array_port": {
+       "type": "geometric",
+       "vanished_share": 0.198,
+       "inconsistent_share": 0.049,
+       "new_matter_fraction": 0.13
+      }
+     },
+     "pred_px": 12372,
+     "true_px": 8609,
+     "inter": 6212,
+     "union": 14769,
+     "fp_px": 6160,
+     "fp_rate": 0.011749267578125,
+     "iou": 0.420610738709459,
+     "recall": 0.7215704495295621,
+     "precision": 0.5021015195602975,
+     "fp_dist_to_truth_px": {
+      "median": 5.0,
+      "within_3px": 0.39756493506493507,
+      "within_6px": 0.5795454545454546,
+      "max": 104.546640309481
+     }
+    },
+    "antenna_missing": {
+     "verdict": "geo:antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 856,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 1956,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.028,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "geometric",
+       "vanished_share": 0.683,
+       "inconsistent_share": 0.031,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 4590,
+     "true_px": 2776,
+     "inter": 2657,
+     "union": 4709,
+     "fp_px": 1933,
+     "fp_rate": 0.0036869049072265625,
+     "iou": 0.5642386918666383,
+     "recall": 0.9571325648414986,
+     "precision": 0.5788671023965142,
+     "fp_dist_to_truth_px": {
+      "median": 3.605551275463989,
+      "within_3px": 0.479565442317641,
+      "within_6px": 0.5913088463528194,
+      "max": 107.33126291998991
+     }
+    },
+    "mli_discoloration": {
+     "verdict": "app:bus",
+     "correct": true,
+     "flagged": {
+      "bus": 2189,
+      "solar_array_port": 0,
+      "solar_array_starboard": 1,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "bus"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.035,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 2599,
+     "true_px": 1825,
+     "inter": 1821,
+     "union": 2603,
+     "fp_px": 778,
+     "fp_rate": 0.001483917236328125,
+     "iou": 0.6995774106799846,
+     "recall": 0.9978082191780822,
+     "precision": 0.7006540977298961,
+     "fp_dist_to_truth_px": {
+      "median": 1.0,
+      "within_3px": 0.803921568627451,
+      "within_6px": 0.803921568627451,
+      "max": 126.0
+     }
+    },
+    "sun_shift_control": {
+     "verdict": "illum:bus, solar_array_port, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 9831,
+      "solar_array_port": 1855,
+      "solar_array_starboard": 103,
+      "antenna": 1462,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.023,
+       "inconsistent_share": 0.156,
+       "new_matter_fraction": 0.0
+      },
+      "solar_array_port": {
+       "type": "appearance",
+       "vanished_share": 0.009,
+       "inconsistent_share": 0.074,
+       "new_matter_fraction": 0.001
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.001,
+       "inconsistent_share": 0.081,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 18429,
+     "true_px": 0,
+     "inter": 0,
+     "union": 18429,
+     "fp_px": 18429,
+     "fp_rate": 0.03515052795410156
+    }
+   }
+  },
+  {
+   "seed": 3,
+   "tau": 0.04,
+   "levels": {
+    "bus": 0.02,
+    "solar_array_port": 0.0201,
+    "solar_array_starboard": 0.021,
+    "antenna": 0.2997,
+    "thruster": 0.02
+   },
+   "results": {
+    "healthy_control": {
+     "verdict": "none",
+     "correct": true,
+     "flagged": {
+      "bus": 0,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [],
+     "classes": {},
+     "pred_px": 471,
+     "true_px": 0,
+     "inter": 0,
+     "union": 471,
+     "fp_px": 471,
+     "fp_rate": 0.0008983612060546875
+    },
+    "panel_hinge": {
+     "verdict": "geo:solar_array_port",
+     "correct": true,
+     "flagged": {
+      "bus": 5,
+      "solar_array_port": 8058,
+      "solar_array_starboard": 0,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "solar_array_port"
+     ],
+     "classes": {
+      "solar_array_port": {
+       "type": "geometric",
+       "vanished_share": 0.185,
+       "inconsistent_share": 0.051,
+       "new_matter_fraction": 0.138
+      }
+     },
+     "pred_px": 12207,
+     "true_px": 8609,
+     "inter": 6201,
+     "union": 14615,
+     "fp_px": 6006,
+     "fp_rate": 0.011455535888671875,
+     "iou": 0.42429011289770785,
+     "recall": 0.7202927169241492,
+     "precision": 0.5079872204472844,
+     "fp_dist_to_truth_px": {
+      "median": 5.0,
+      "within_3px": 0.4219114219114219,
+      "within_6px": 0.5877455877455877,
+      "max": 131.24404748406687
+     }
+    },
+    "antenna_missing": {
+     "verdict": "geo:antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 893,
+      "solar_array_port": 1,
+      "solar_array_starboard": 0,
+      "antenna": 1956,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.025,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "geometric",
+       "vanished_share": 0.696,
+       "inconsistent_share": 0.026,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 4904,
+     "true_px": 2766,
+     "inter": 2610,
+     "union": 5060,
+     "fp_px": 2294,
+     "fp_rate": 0.004375457763671875,
+     "iou": 0.5158102766798419,
+     "recall": 0.9436008676789588,
+     "precision": 0.5322185970636215,
+     "fp_dist_to_truth_px": {
+      "median": 5.830951894845301,
+      "within_3px": 0.42632955536181344,
+      "within_6px": 0.511333914559721,
+      "max": 96.79876032264049
+     }
+    },
+    "mli_discoloration": {
+     "verdict": "app:bus",
+     "correct": true,
+     "flagged": {
+      "bus": 2131,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "bus"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.004,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 2676,
+     "true_px": 1805,
+     "inter": 1799,
+     "union": 2682,
+     "fp_px": 877,
+     "fp_rate": 0.0016727447509765625,
+     "iou": 0.6707680835197614,
+     "recall": 0.9966759002770084,
+     "precision": 0.672272047832586,
+     "fp_dist_to_truth_px": {
+      "median": 1.0,
+      "within_3px": 0.8272727272727273,
+      "within_6px": 0.8272727272727273,
+      "max": 126.0
+     }
+    },
+    "sun_shift_control": {
+     "verdict": "illum:bus, solar_array_port, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 8957,
+      "solar_array_port": 2129,
+      "solar_array_starboard": 103,
+      "antenna": 1439,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.027,
+       "inconsistent_share": 0.132,
+       "new_matter_fraction": 0.0
+      },
+      "solar_array_port": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.049,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.038,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 17510,
+     "true_px": 0,
+     "inter": 0,
+     "union": 17510,
+     "fp_px": 17510,
+     "fp_rate": 0.033397674560546875
+    }
+   }
+  },
+  {
+   "seed": 4,
+   "tau": 0.04,
+   "levels": {
+    "bus": 0.02,
+    "solar_array_port": 0.02,
+    "solar_array_starboard": 0.0233,
+    "antenna": 0.2877,
+    "thruster": 0.02
+   },
+   "results": {
+    "healthy_control": {
+     "verdict": "none",
+     "correct": true,
+     "flagged": {
+      "bus": 0,
+      "solar_array_port": 0,
+      "solar_array_starboard": 1,
+      "antenna": 172,
+      "thruster": 0
+     },
+     "changed": [],
+     "classes": {},
+     "pred_px": 251,
+     "true_px": 0,
+     "inter": 0,
+     "union": 251,
+     "fp_px": 251,
+     "fp_rate": 0.0004787445068359375
+    },
+    "panel_hinge": {
+     "verdict": "geo:solar_array_port",
+     "correct": true,
+     "flagged": {
+      "bus": 5,
+      "solar_array_port": 8029,
+      "solar_array_starboard": 0,
+      "antenna": 252,
+      "thruster": 0
+     },
+     "changed": [
+      "solar_array_port"
+     ],
+     "classes": {
+      "solar_array_port": {
+       "type": "geometric",
+       "vanished_share": 0.178,
+       "inconsistent_share": 0.048,
+       "new_matter_fraction": 0.136
+      }
+     },
+     "pred_px": 11879,
+     "true_px": 8616,
+     "inter": 6112,
+     "union": 14383,
+     "fp_px": 5767,
+     "fp_rate": 0.010999679565429688,
+     "iou": 0.424946116943614,
+     "recall": 0.7093779015784587,
+     "precision": 0.5145214243623201,
+     "fp_dist_to_truth_px": {
+      "median": 5.0,
+      "within_3px": 0.40974510143922316,
+      "within_6px": 0.5918155019941044,
+      "max": 69.77822009767804
+     }
+    },
+    "antenna_missing": {
+     "verdict": "geo:antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 925,
+      "solar_array_port": 0,
+      "solar_array_starboard": 1,
+      "antenna": 1956,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.018,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "geometric",
+       "vanished_share": 0.697,
+       "inconsistent_share": 0.027,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 4631,
+     "true_px": 2786,
+     "inter": 2612,
+     "union": 4805,
+     "fp_px": 2019,
+     "fp_rate": 0.0038509368896484375,
+     "iou": 0.5436004162330905,
+     "recall": 0.9375448671931084,
+     "precision": 0.5640250485856186,
+     "fp_dist_to_truth_px": {
+      "median": 4.0,
+      "within_3px": 0.47003467062902426,
+      "within_6px": 0.5770183259039128,
+      "max": 120.70211265756701
+     }
+    },
+    "mli_discoloration": {
+     "verdict": "app:bus",
+     "correct": true,
+     "flagged": {
+      "bus": 2170,
+      "solar_array_port": 1,
+      "solar_array_starboard": 1,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "bus"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.016,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 2619,
+     "true_px": 1820,
+     "inter": 1813,
+     "union": 2626,
+     "fp_px": 806,
+     "fp_rate": 0.001537322998046875,
+     "iou": 0.6904036557501904,
+     "recall": 0.9961538461538462,
+     "precision": 0.6922489499809087,
+     "fp_dist_to_truth_px": {
+      "median": 1.0,
+      "within_3px": 0.82421875,
+      "within_6px": 0.82421875,
+      "max": 126.0
+     }
+    },
+    "sun_shift_control": {
+     "verdict": "illum:bus, solar_array_port, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 9128,
+      "solar_array_port": 1995,
+      "solar_array_starboard": 104,
+      "antenna": 1481,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.028,
+       "inconsistent_share": 0.165,
+       "new_matter_fraction": 0.0
+      },
+      "solar_array_port": {
+       "type": "appearance",
+       "vanished_share": 0.004,
+       "inconsistent_share": 0.116,
+       "new_matter_fraction": 0.002
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.031,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 18796,
+     "true_px": 0,
+     "inter": 0,
+     "union": 18796,
+     "fp_px": 18796,
+     "fp_rate": 0.03585052490234375
+    }
+   }
+  },
+  {
+   "seed": 5,
+   "tau": 0.04,
+   "levels": {
+    "bus": 0.02,
+    "solar_array_port": 0.0201,
+    "solar_array_starboard": 0.0225,
+    "antenna": 0.02,
+    "thruster": 0.02
+   },
+   "results": {
+    "healthy_control": {
+     "verdict": "app:antenna",
+     "correct": false,
+     "flagged": {
+      "bus": 0,
+      "solar_array_port": 0,
+      "solar_array_starboard": 1,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "antenna"
+     ],
+     "classes": {
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.0,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 467,
+     "true_px": 0,
+     "inter": 0,
+     "union": 467,
+     "fp_px": 467,
+     "fp_rate": 0.0008907318115234375
+    },
+    "panel_hinge": {
+     "verdict": "geo:solar_array_port",
+     "correct": true,
+     "flagged": {
+      "bus": 5,
+      "solar_array_port": 8142,
+      "solar_array_starboard": 1,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "solar_array_port": {
+       "type": "geometric",
+       "vanished_share": 0.19,
+       "inconsistent_share": 0.047,
+       "new_matter_fraction": 0.135
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.004,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 12333,
+     "true_px": 8588,
+     "inter": 6241,
+     "union": 14680,
+     "fp_px": 6092,
+     "fp_rate": 0.01161956787109375,
+     "iou": 0.42513623978201637,
+     "recall": 0.7267116907312529,
+     "precision": 0.5060407038028055,
+     "fp_dist_to_truth_px": {
+      "median": 5.0,
+      "within_3px": 0.42153644123440576,
+      "within_6px": 0.5827314510833881,
+      "max": 168.24089871371942
+     }
+    },
+    "antenna_missing": {
+     "verdict": "geo:antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 935,
+      "solar_array_port": 23,
+      "solar_array_starboard": 0,
+      "antenna": 1956,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.021,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "geometric",
+       "vanished_share": 0.683,
+       "inconsistent_share": 0.017,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 4840,
+     "true_px": 2764,
+     "inter": 2610,
+     "union": 4994,
+     "fp_px": 2230,
+     "fp_rate": 0.004253387451171875,
+     "iou": 0.5226271525830998,
+     "recall": 0.9442836468885673,
+     "precision": 0.5392561983471075,
+     "fp_dist_to_truth_px": {
+      "median": 5.0,
+      "within_3px": 0.4443946188340807,
+      "within_6px": 0.5452914798206278,
+      "max": 120.33287165193059
+     }
+    },
+    "mli_discoloration": {
+     "verdict": "app:bus, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 2171,
+      "solar_array_port": 0,
+      "solar_array_starboard": 1,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.012,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.004,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 2684,
+     "true_px": 1841,
+     "inter": 1831,
+     "union": 2694,
+     "fp_px": 853,
+     "fp_rate": 0.0016269683837890625,
+     "iou": 0.6796585003711952,
+     "recall": 0.9945681694731124,
+     "precision": 0.6821907600596125,
+     "fp_dist_to_truth_px": {
+      "median": 1.0,
+      "within_3px": 0.743421052631579,
+      "within_6px": 0.7516447368421053,
+      "max": 126.0
+     }
+    },
+    "sun_shift_control": {
+     "verdict": "illum:bus, solar_array_port, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 9293,
+      "solar_array_port": 1542,
+      "solar_array_starboard": 90,
+      "antenna": 1505,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.051,
+       "inconsistent_share": 0.173,
+       "new_matter_fraction": 0.0
+      },
+      "solar_array_port": {
+       "type": "appearance",
+       "vanished_share": 0.008,
+       "inconsistent_share": 0.036,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.001,
+       "inconsistent_share": 0.087,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 17488,
+     "true_px": 0,
+     "inter": 0,
+     "union": 17488,
+     "fp_px": 17488,
+     "fp_rate": 0.033355712890625
+    }
+   }
+  },
+  {
+   "seed": 6,
+   "tau": 0.04,
+   "levels": {
+    "bus": 0.02,
+    "solar_array_port": 0.0201,
+    "solar_array_starboard": 0.02,
+    "antenna": 0.2832,
+    "thruster": 0.02
+   },
+   "results": {
+    "healthy_control": {
+     "verdict": "none",
+     "correct": true,
+     "flagged": {
+      "bus": 0,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 250,
+      "thruster": 0
+     },
+     "changed": [],
+     "classes": {},
+     "pred_px": 655,
+     "true_px": 0,
+     "inter": 0,
+     "union": 655,
+     "fp_px": 655,
+     "fp_rate": 0.0012493133544921875
+    },
+    "panel_hinge": {
+     "verdict": "geo:solar_array_port",
+     "correct": true,
+     "flagged": {
+      "bus": 5,
+      "solar_array_port": 8000,
+      "solar_array_starboard": 0,
+      "antenna": 266,
+      "thruster": 0
+     },
+     "changed": [
+      "solar_array_port"
+     ],
+     "classes": {
+      "solar_array_port": {
+       "type": "geometric",
+       "vanished_share": 0.199,
+       "inconsistent_share": 0.048,
+       "new_matter_fraction": 0.127
+      }
+     },
+     "pred_px": 11934,
+     "true_px": 8591,
+     "inter": 5999,
+     "union": 14526,
+     "fp_px": 5935,
+     "fp_rate": 0.011320114135742188,
+     "iou": 0.41298361558584606,
+     "recall": 0.6982889069956931,
+     "precision": 0.5026814144461204,
+     "fp_dist_to_truth_px": {
+      "median": 5.0,
+      "within_3px": 0.41095197978096043,
+      "within_6px": 0.5898904802021904,
+      "max": 99.82484660644363
+     }
+    },
+    "antenna_missing": {
+     "verdict": "geo:antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 854,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 1956,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.02,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "geometric",
+       "vanished_share": 0.676,
+       "inconsistent_share": 0.029,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 4768,
+     "true_px": 2796,
+     "inter": 2635,
+     "union": 4929,
+     "fp_px": 2133,
+     "fp_rate": 0.0040683746337890625,
+     "iou": 0.5345911949685535,
+     "recall": 0.9424177396280401,
+     "precision": 0.5526426174496645,
+     "fp_dist_to_truth_px": {
+      "median": 5.656854249492381,
+      "within_3px": 0.4191279887482419,
+      "within_6px": 0.5194561650257853,
+      "max": 117.04699910719626
+     }
+    },
+    "mli_discoloration": {
+     "verdict": "app:bus",
+     "correct": true,
+     "flagged": {
+      "bus": 2269,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "bus"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.037,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 2790,
+     "true_px": 1817,
+     "inter": 1808,
+     "union": 2799,
+     "fp_px": 982,
+     "fp_rate": 0.001873016357421875,
+     "iou": 0.645944980350125,
+     "recall": 0.9950467804072647,
+     "precision": 0.6480286738351254,
+     "fp_dist_to_truth_px": {
+      "median": 1.4142135623730951,
+      "within_3px": 0.7131901840490797,
+      "within_6px": 0.7131901840490797,
+      "max": 126.0
+     }
+    },
+    "sun_shift_control": {
+     "verdict": "illum:bus, solar_array_port, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 10222,
+      "solar_array_port": 1695,
+      "solar_array_starboard": 105,
+      "antenna": 1473,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.027,
+       "inconsistent_share": 0.159,
+       "new_matter_fraction": 0.0
+      },
+      "solar_array_port": {
+       "type": "appearance",
+       "vanished_share": 0.009,
+       "inconsistent_share": 0.05,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.001,
+       "inconsistent_share": 0.101,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 19164,
+     "true_px": 0,
+     "inter": 0,
+     "union": 19164,
+     "fp_px": 19164,
+     "fp_rate": 0.03655242919921875
+    }
+   }
+  },
+  {
+   "seed": 7,
+   "tau": 0.04,
+   "levels": {
+    "bus": 0.02,
+    "solar_array_port": 0.0248,
+    "solar_array_starboard": 0.0252,
+    "antenna": 0.2832,
+    "thruster": 0.02
+   },
+   "results": {
+    "healthy_control": {
+     "verdict": "none",
+     "correct": true,
+     "flagged": {
+      "bus": 0,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 254,
+      "thruster": 0
+     },
+     "changed": [],
+     "classes": {},
+     "pred_px": 618,
+     "true_px": 0,
+     "inter": 0,
+     "union": 618,
+     "fp_px": 618,
+     "fp_rate": 0.001178741455078125
+    },
+    "panel_hinge": {
+     "verdict": "geo:solar_array_port",
+     "correct": true,
+     "flagged": {
+      "bus": 18,
+      "solar_array_port": 8101,
+      "solar_array_starboard": 1,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "solar_array_port"
+     ],
+     "classes": {
+      "solar_array_port": {
+       "type": "geometric",
+       "vanished_share": 0.197,
+       "inconsistent_share": 0.047,
+       "new_matter_fraction": 0.129
+      }
+     },
+     "pred_px": 12111,
+     "true_px": 8624,
+     "inter": 6197,
+     "union": 14538,
+     "fp_px": 5914,
+     "fp_rate": 0.011280059814453125,
+     "iou": 0.4262622093823084,
+     "recall": 0.7185760667903525,
+     "precision": 0.5116835934274626,
+     "fp_dist_to_truth_px": {
+      "median": 4.357388321059432,
+      "within_3px": 0.43151843084206964,
+      "within_6px": 0.6024687182955698,
+      "max": 106.88779163215975
+     }
+    },
+    "antenna_missing": {
+     "verdict": "geo:antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 909,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 1956,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.022,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "geometric",
+       "vanished_share": 0.699,
+       "inconsistent_share": 0.027,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 4695,
+     "true_px": 2779,
+     "inter": 2626,
+     "union": 4848,
+     "fp_px": 2069,
+     "fp_rate": 0.0039463043212890625,
+     "iou": 0.5416666666666666,
+     "recall": 0.9449442245412019,
+     "precision": 0.5593184238551651,
+     "fp_dist_to_truth_px": {
+      "median": 4.0,
+      "within_3px": 0.4688255195746738,
+      "within_6px": 0.5780570323827936,
+      "max": 95.01578816175763
+     }
+    },
+    "mli_discoloration": {
+     "verdict": "app:bus",
+     "correct": true,
+     "flagged": {
+      "bus": 2151,
+      "solar_array_port": 0,
+      "solar_array_starboard": 1,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "bus"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.007,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 2733,
+     "true_px": 1836,
+     "inter": 1823,
+     "union": 2746,
+     "fp_px": 910,
+     "fp_rate": 0.001735687255859375,
+     "iou": 0.6638747268754552,
+     "recall": 0.9929193899782135,
+     "precision": 0.6670325649469447,
+     "fp_dist_to_truth_px": {
+      "median": 1.4142135623730951,
+      "within_3px": 0.6549192364170338,
+      "within_6px": 0.6549192364170338,
+      "max": 125.0
+     }
+    },
+    "sun_shift_control": {
+     "verdict": "illum:bus, solar_array_port, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 9786,
+      "solar_array_port": 1597,
+      "solar_array_starboard": 97,
+      "antenna": 1436,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.042,
+       "inconsistent_share": 0.194,
+       "new_matter_fraction": 0.0
+      },
+      "solar_array_port": {
+       "type": "appearance",
+       "vanished_share": 0.003,
+       "inconsistent_share": 0.09,
+       "new_matter_fraction": 0.003
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.002,
+       "inconsistent_share": 0.066,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 18287,
+     "true_px": 0,
+     "inter": 0,
+     "union": 18287,
+     "fp_px": 18287,
+     "fp_rate": 0.03487968444824219
+    }
+   }
+  },
+  {
+   "seed": 8,
+   "tau": 0.04,
+   "levels": {
+    "bus": 0.02,
+    "solar_array_port": 0.02,
+    "solar_array_starboard": 0.02,
+    "antenna": 0.318,
+    "thruster": 0.02
+   },
+   "results": {
+    "healthy_control": {
+     "verdict": "none",
+     "correct": true,
+     "flagged": {
+      "bus": 13,
+      "solar_array_port": 0,
+      "solar_array_starboard": 1,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [],
+     "classes": {},
+     "pred_px": 477,
+     "true_px": 0,
+     "inter": 0,
+     "union": 477,
+     "fp_px": 477,
+     "fp_rate": 0.0009098052978515625
+    },
+    "panel_hinge": {
+     "verdict": "geo:solar_array_port",
+     "correct": true,
+     "flagged": {
+      "bus": 5,
+      "solar_array_port": 8026,
+      "solar_array_starboard": 0,
+      "antenna": 260,
+      "thruster": 0
+     },
+     "changed": [
+      "solar_array_port"
+     ],
+     "classes": {
+      "solar_array_port": {
+       "type": "geometric",
+       "vanished_share": 0.205,
+       "inconsistent_share": 0.053,
+       "new_matter_fraction": 0.14
+      }
+     },
+     "pred_px": 12417,
+     "true_px": 8553,
+     "inter": 6242,
+     "union": 14728,
+     "fp_px": 6175,
+     "fp_rate": 0.011777877807617188,
+     "iou": 0.423818576860402,
+     "recall": 0.7298024085116334,
+     "precision": 0.5026979141499557,
+     "fp_dist_to_truth_px": {
+      "median": 5.0,
+      "within_3px": 0.41506072874493927,
+      "within_6px": 0.5936842105263158,
+      "max": 97.86725703727473
+     }
+    },
+    "antenna_missing": {
+     "verdict": "geo:antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 936,
+      "solar_array_port": 0,
+      "solar_array_starboard": 1,
+      "antenna": 1956,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.017,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "geometric",
+       "vanished_share": 0.714,
+       "inconsistent_share": 0.022,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 4627,
+     "true_px": 2772,
+     "inter": 2621,
+     "union": 4778,
+     "fp_px": 2006,
+     "fp_rate": 0.003826141357421875,
+     "iou": 0.5485558811218083,
+     "recall": 0.9455266955266955,
+     "precision": 0.5664577480008645,
+     "fp_dist_to_truth_px": {
+      "median": 3.0,
+      "within_3px": 0.5004985044865404,
+      "within_6px": 0.6061814556331007,
+      "max": 118.10588469674151
+     }
+    },
+    "mli_discoloration": {
+     "verdict": "app:bus",
+     "correct": true,
+     "flagged": {
+      "bus": 2218,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "bus"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.024,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 2693,
+     "true_px": 1838,
+     "inter": 1833,
+     "union": 2698,
+     "fp_px": 860,
+     "fp_rate": 0.00164031982421875,
+     "iou": 0.6793921423276501,
+     "recall": 0.9972796517954298,
+     "precision": 0.6806535462309692,
+     "fp_dist_to_truth_px": {
+      "median": 1.0,
+      "within_3px": 0.7216828478964401,
+      "within_6px": 0.7216828478964401,
+      "max": 127.0
+     }
+    },
+    "sun_shift_control": {
+     "verdict": "illum:bus, solar_array_port, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 9619,
+      "solar_array_port": 1719,
+      "solar_array_starboard": 104,
+      "antenna": 1445,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.035,
+       "inconsistent_share": 0.148,
+       "new_matter_fraction": 0.0
+      },
+      "solar_array_port": {
+       "type": "appearance",
+       "vanished_share": 0.008,
+       "inconsistent_share": 0.053,
+       "new_matter_fraction": 0.006
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.001,
+       "inconsistent_share": 0.069,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 17964,
+     "true_px": 0,
+     "inter": 0,
+     "union": 17964,
+     "fp_px": 17964,
+     "fp_rate": 0.03426361083984375
+    }
+   }
+  },
+  {
+   "seed": 9,
+   "tau": 0.04,
+   "levels": {
+    "bus": 0.02,
+    "solar_array_port": 0.02,
+    "solar_array_starboard": 0.0217,
+    "antenna": 0.2982,
+    "thruster": 0.02
+   },
+   "results": {
+    "healthy_control": {
+     "verdict": "none",
+     "correct": true,
+     "flagged": {
+      "bus": 0,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [],
+     "classes": {},
+     "pred_px": 378,
+     "true_px": 0,
+     "inter": 0,
+     "union": 378,
+     "fp_px": 378,
+     "fp_rate": 0.000720977783203125
+    },
+    "panel_hinge": {
+     "verdict": "geo:solar_array_port",
+     "correct": true,
+     "flagged": {
+      "bus": 5,
+      "solar_array_port": 8101,
+      "solar_array_starboard": 0,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "solar_array_port"
+     ],
+     "classes": {
+      "solar_array_port": {
+       "type": "geometric",
+       "vanished_share": 0.202,
+       "inconsistent_share": 0.054,
+       "new_matter_fraction": 0.143
+      }
+     },
+     "pred_px": 12387,
+     "true_px": 8640,
+     "inter": 6295,
+     "union": 14732,
+     "fp_px": 6092,
+     "fp_rate": 0.01161956787109375,
+     "iou": 0.4273011132229161,
+     "recall": 0.7285879629629629,
+     "precision": 0.5081940744328731,
+     "fp_dist_to_truth_px": {
+      "median": 4.47213595499958,
+      "within_3px": 0.4231779382797111,
+      "within_6px": 0.6014445173998687,
+      "max": 75.82216034906945
+     }
+    },
+    "antenna_missing": {
+     "verdict": "geo:antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 903,
+      "solar_array_port": 0,
+      "solar_array_starboard": 1,
+      "antenna": 1956,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.023,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "geometric",
+       "vanished_share": 0.695,
+       "inconsistent_share": 0.016,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 4710,
+     "true_px": 2784,
+     "inter": 2625,
+     "union": 4869,
+     "fp_px": 2085,
+     "fp_rate": 0.0039768218994140625,
+     "iou": 0.5391250770178682,
+     "recall": 0.9428879310344828,
+     "precision": 0.5573248407643312,
+     "fp_dist_to_truth_px": {
+      "median": 3.605551275463989,
+      "within_3px": 0.47865707434052757,
+      "within_6px": 0.5937649880095923,
+      "max": 128.89142717807107
+     }
+    },
+    "mli_discoloration": {
+     "verdict": "app:bus",
+     "correct": true,
+     "flagged": {
+      "bus": 2154,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "bus"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.025,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 2681,
+     "true_px": 1837,
+     "inter": 1833,
+     "union": 2685,
+     "fp_px": 848,
+     "fp_rate": 0.001617431640625,
+     "iou": 0.6826815642458101,
+     "recall": 0.9978225367446925,
+     "precision": 0.6837001118985453,
+     "fp_dist_to_truth_px": {
+      "median": 1.0,
+      "within_3px": 0.8507462686567164,
+      "within_6px": 0.8507462686567164,
+      "max": 127.0
+     }
+    },
+    "sun_shift_control": {
+     "verdict": "illum:bus, solar_array_port, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 9193,
+      "solar_array_port": 2067,
+      "solar_array_starboard": 98,
+      "antenna": 1437,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.023,
+       "inconsistent_share": 0.156,
+       "new_matter_fraction": 0.0
+      },
+      "solar_array_port": {
+       "type": "appearance",
+       "vanished_share": 0.002,
+       "inconsistent_share": 0.048,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.001,
+       "inconsistent_share": 0.046,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 17935,
+     "true_px": 0,
+     "inter": 0,
+     "union": 17935,
+     "fp_px": 17935,
+     "fp_rate": 0.03420829772949219
+    }
+   }
+  },
+  {
+   "seed": 10,
+   "tau": 0.04,
+   "levels": {
+    "bus": 0.02,
+    "solar_array_port": 0.02,
+    "solar_array_starboard": 0.0268,
+    "antenna": 0.18989999999999999,
+    "thruster": 0.02
+   },
+   "results": {
+    "healthy_control": {
+     "verdict": "none",
+     "correct": true,
+     "flagged": {
+      "bus": 23,
+      "solar_array_port": 0,
+      "solar_array_starboard": 1,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [],
+     "classes": {},
+     "pred_px": 485,
+     "true_px": 0,
+     "inter": 0,
+     "union": 485,
+     "fp_px": 485,
+     "fp_rate": 0.0009250640869140625
+    },
+    "panel_hinge": {
+     "verdict": "geo:solar_array_port",
+     "correct": true,
+     "flagged": {
+      "bus": 5,
+      "solar_array_port": 8069,
+      "solar_array_starboard": 0,
+      "antenna": 227,
+      "thruster": 0
+     },
+     "changed": [
+      "solar_array_port"
+     ],
+     "classes": {
+      "solar_array_port": {
+       "type": "geometric",
+       "vanished_share": 0.198,
+       "inconsistent_share": 0.056,
+       "new_matter_fraction": 0.141
+      }
+     },
+     "pred_px": 12238,
+     "true_px": 8572,
+     "inter": 6250,
+     "union": 14560,
+     "fp_px": 5988,
+     "fp_rate": 0.01142120361328125,
+     "iou": 0.42925824175824173,
+     "recall": 0.7291180587960803,
+     "precision": 0.5107043634580813,
+     "fp_dist_to_truth_px": {
+      "median": 4.0,
+      "within_3px": 0.44939879759519036,
+      "within_6px": 0.6187374749498998,
+      "max": 145.1240848377691
+     }
+    },
+    "antenna_missing": {
+     "verdict": "geo:antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 883,
+      "solar_array_port": 9,
+      "solar_array_starboard": 24,
+      "antenna": 1956,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.024,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "geometric",
+       "vanished_share": 0.693,
+       "inconsistent_share": 0.023,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 4896,
+     "true_px": 2789,
+     "inter": 2630,
+     "union": 5055,
+     "fp_px": 2266,
+     "fp_rate": 0.004322052001953125,
+     "iou": 0.5202769535113749,
+     "recall": 0.9429903191107925,
+     "precision": 0.5371732026143791,
+     "fp_dist_to_truth_px": {
+      "median": 5.0,
+      "within_3px": 0.4293909973521624,
+      "within_6px": 0.5339805825242718,
+      "max": 116.05602095539895
+     }
+    },
+    "mli_discoloration": {
+     "verdict": "app:bus",
+     "correct": true,
+     "flagged": {
+      "bus": 2169,
+      "solar_array_port": 11,
+      "solar_array_starboard": 1,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "bus"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.025,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 3049,
+     "true_px": 1827,
+     "inter": 1814,
+     "union": 3062,
+     "fp_px": 1235,
+     "fp_rate": 0.0023555755615234375,
+     "iou": 0.5924232527759634,
+     "recall": 0.9928845101258894,
+     "precision": 0.5949491636602164,
+     "fp_dist_to_truth_px": {
+      "median": 2.0,
+      "within_3px": 0.5350678733031674,
+      "within_6px": 0.5350678733031674,
+      "max": 126.0
+     }
+    },
+    "sun_shift_control": {
+     "verdict": "illum:bus, solar_array_port, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 9362,
+      "solar_array_port": 710,
+      "solar_array_starboard": 97,
+      "antenna": 1442,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.04,
+       "inconsistent_share": 0.131,
+       "new_matter_fraction": 0.0
+      },
+      "solar_array_port": {
+       "type": "appearance",
+       "vanished_share": 0.021,
+       "inconsistent_share": 0.1,
+       "new_matter_fraction": 0.006
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.001,
+       "inconsistent_share": 0.053,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 17261,
+     "true_px": 0,
+     "inter": 0,
+     "union": 17261,
+     "fp_px": 17261,
+     "fp_rate": 0.03292274475097656
+    }
+   }
+  },
+  {
+   "seed": 11,
+   "tau": 0.04,
+   "levels": {
+    "bus": 0.02,
+    "solar_array_port": 0.020300000000000002,
+    "solar_array_starboard": 0.023,
+    "antenna": 0.02,
+    "thruster": 0.02
+   },
+   "results": {
+    "healthy_control": {
+     "verdict": "app:antenna",
+     "correct": false,
+     "flagged": {
+      "bus": 17,
+      "solar_array_port": 1,
+      "solar_array_starboard": 0,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "antenna"
+     ],
+     "classes": {
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.016,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 483,
+     "true_px": 0,
+     "inter": 0,
+     "union": 483,
+     "fp_px": 483,
+     "fp_rate": 0.0009212493896484375
+    },
+    "panel_hinge": {
+     "verdict": "geo:solar_array_port",
+     "correct": true,
+     "flagged": {
+      "bus": 5,
+      "solar_array_port": 8052,
+      "solar_array_starboard": 0,
+      "antenna": 167,
+      "thruster": 0
+     },
+     "changed": [
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "solar_array_port": {
+       "type": "geometric",
+       "vanished_share": 0.187,
+       "inconsistent_share": 0.053,
+       "new_matter_fraction": 0.134
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.0,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 12070,
+     "true_px": 8625,
+     "inter": 6282,
+     "union": 14413,
+     "fp_px": 5788,
+     "fp_rate": 0.01103973388671875,
+     "iou": 0.43585651842087003,
+     "recall": 0.7283478260869565,
+     "precision": 0.5204639602319802,
+     "fp_dist_to_truth_px": {
+      "median": 4.47213595499958,
+      "within_3px": 0.42709053213545267,
+      "within_6px": 0.6021078092605391,
+      "max": 118.3427226321923
+     }
+    },
+    "antenna_missing": {
+     "verdict": "geo:antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 910,
+      "solar_array_port": 0,
+      "solar_array_starboard": 1,
+      "antenna": 1956,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.036,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "geometric",
+       "vanished_share": 0.712,
+       "inconsistent_share": 0.029,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 4641,
+     "true_px": 2776,
+     "inter": 2608,
+     "union": 4809,
+     "fp_px": 2033,
+     "fp_rate": 0.0038776397705078125,
+     "iou": 0.5423164899147432,
+     "recall": 0.9394812680115274,
+     "precision": 0.5619478560655031,
+     "fp_dist_to_truth_px": {
+      "median": 4.0,
+      "within_3px": 0.4663059517953763,
+      "within_6px": 0.5848499754058042,
+      "max": 117.98728745080972
+     }
+    },
+    "mli_discoloration": {
+     "verdict": "app:bus, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 2130,
+      "solar_array_port": 0,
+      "solar_array_starboard": 1,
+      "antenna": 249,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.03,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.008,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 2524,
+     "true_px": 1820,
+     "inter": 1810,
+     "union": 2534,
+     "fp_px": 714,
+     "fp_rate": 0.001361846923828125,
+     "iou": 0.7142857142857143,
+     "recall": 0.9945054945054945,
+     "precision": 0.7171156893819335,
+     "fp_dist_to_truth_px": {
+      "median": 1.0,
+      "within_3px": 0.8409961685823755,
+      "within_6px": 0.8409961685823755,
+      "max": 125.0
+     }
+    },
+    "sun_shift_control": {
+     "verdict": "illum:bus, solar_array_port, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 9642,
+      "solar_array_port": 879,
+      "solar_array_starboard": 102,
+      "antenna": 1495,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.046,
+       "inconsistent_share": 0.152,
+       "new_matter_fraction": 0.0
+      },
+      "solar_array_port": {
+       "type": "appearance",
+       "vanished_share": 0.001,
+       "inconsistent_share": 0.067,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.071,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 17357,
+     "true_px": 0,
+     "inter": 0,
+     "union": 17357,
+     "fp_px": 17357,
+     "fp_rate": 0.03310585021972656
+    }
+   }
+  },
+  {
+   "seed": 12,
+   "tau": 0.04,
+   "levels": {
+    "bus": 0.02,
+    "solar_array_port": 0.0201,
+    "solar_array_starboard": 0.0259,
+    "antenna": 0.1914,
+    "thruster": 0.02
+   },
+   "results": {
+    "healthy_control": {
+     "verdict": "none",
+     "correct": true,
+     "flagged": {
+      "bus": 60,
+      "solar_array_port": 0,
+      "solar_array_starboard": 1,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [],
+     "classes": {},
+     "pred_px": 431,
+     "true_px": 0,
+     "inter": 0,
+     "union": 431,
+     "fp_px": 431,
+     "fp_rate": 0.0008220672607421875
+    },
+    "panel_hinge": {
+     "verdict": "geo:solar_array_port",
+     "correct": true,
+     "flagged": {
+      "bus": 5,
+      "solar_array_port": 8105,
+      "solar_array_starboard": 1,
+      "antenna": 258,
+      "thruster": 0
+     },
+     "changed": [
+      "solar_array_port"
+     ],
+     "classes": {
+      "solar_array_port": {
+       "type": "geometric",
+       "vanished_share": 0.196,
+       "inconsistent_share": 0.056,
+       "new_matter_fraction": 0.144
+      }
+     },
+     "pred_px": 12589,
+     "true_px": 8630,
+     "inter": 6354,
+     "union": 14865,
+     "fp_px": 6235,
+     "fp_rate": 0.011892318725585938,
+     "iou": 0.4274470232088799,
+     "recall": 0.7362688296639629,
+     "precision": 0.5047263483993963,
+     "fp_dist_to_truth_px": {
+      "median": 5.0,
+      "within_3px": 0.42662389735364875,
+      "within_6px": 0.5876503608660786,
+      "max": 145.1240848377691
+     }
+    },
+    "antenna_missing": {
+     "verdict": "geo:antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 807,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 1956,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.009,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "geometric",
+       "vanished_share": 0.687,
+       "inconsistent_share": 0.023,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 4472,
+     "true_px": 2771,
+     "inter": 2619,
+     "union": 4624,
+     "fp_px": 1853,
+     "fp_rate": 0.0035343170166015625,
+     "iou": 0.5663927335640139,
+     "recall": 0.9451461566221581,
+     "precision": 0.585644007155635,
+     "fp_dist_to_truth_px": {
+      "median": 3.0,
+      "within_3px": 0.5089044792228818,
+      "within_6px": 0.6152185644900162,
+      "max": 120.33287165193059
+     }
+    },
+    "mli_discoloration": {
+     "verdict": "app:bus",
+     "correct": true,
+     "flagged": {
+      "bus": 2187,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "bus"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.025,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 2664,
+     "true_px": 1822,
+     "inter": 1816,
+     "union": 2670,
+     "fp_px": 848,
+     "fp_rate": 0.001617431640625,
+     "iou": 0.6801498127340824,
+     "recall": 0.9967069154774972,
+     "precision": 0.6816816816816816,
+     "fp_dist_to_truth_px": {
+      "median": 1.0,
+      "within_3px": 0.8321299638989169,
+      "within_6px": 0.8321299638989169,
+      "max": 125.0
+     }
+    },
+    "sun_shift_control": {
+     "verdict": "illum:bus, solar_array_port, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 9311,
+      "solar_array_port": 818,
+      "solar_array_starboard": 103,
+      "antenna": 1436,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.035,
+       "inconsistent_share": 0.144,
+       "new_matter_fraction": 0.0
+      },
+      "solar_array_port": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.039,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.006,
+       "inconsistent_share": 0.093,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 17533,
+     "true_px": 0,
+     "inter": 0,
+     "union": 17533,
+     "fp_px": 17533,
+     "fp_rate": 0.03344154357910156
+    }
+   }
+  },
+  {
+   "seed": 13,
+   "tau": 0.04,
+   "levels": {
+    "bus": 0.02,
+    "solar_array_port": 0.02,
+    "solar_array_starboard": 0.0309,
+    "antenna": 0.2064,
+    "thruster": 0.02
+   },
+   "results": {
+    "healthy_control": {
+     "verdict": "none",
+     "correct": true,
+     "flagged": {
+      "bus": 0,
+      "solar_array_port": 1,
+      "solar_array_starboard": 0,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [],
+     "classes": {},
+     "pred_px": 510,
+     "true_px": 0,
+     "inter": 0,
+     "union": 510,
+     "fp_px": 510,
+     "fp_rate": 0.000972747802734375
+    },
+    "panel_hinge": {
+     "verdict": "geo:solar_array_port",
+     "correct": true,
+     "flagged": {
+      "bus": 7,
+      "solar_array_port": 7992,
+      "solar_array_starboard": 2,
+      "antenna": 258,
+      "thruster": 0
+     },
+     "changed": [
+      "solar_array_port"
+     ],
+     "classes": {
+      "solar_array_port": {
+       "type": "geometric",
+       "vanished_share": 0.204,
+       "inconsistent_share": 0.05,
+       "new_matter_fraction": 0.142
+      }
+     },
+     "pred_px": 12487,
+     "true_px": 8625,
+     "inter": 6295,
+     "union": 14817,
+     "fp_px": 6192,
+     "fp_rate": 0.011810302734375,
+     "iou": 0.4248498346493892,
+     "recall": 0.7298550724637681,
+     "precision": 0.5041242892608313,
+     "fp_dist_to_truth_px": {
+      "median": 4.47213595499958,
+      "within_3px": 0.42910206718346255,
+      "within_6px": 0.5978682170542635,
+      "max": 98.73196037757987
+     }
+    },
+    "antenna_missing": {
+     "verdict": "geo:antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 875,
+      "solar_array_port": 3,
+      "solar_array_starboard": 0,
+      "antenna": 1956,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.016,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "geometric",
+       "vanished_share": 0.701,
+       "inconsistent_share": 0.024,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 4669,
+     "true_px": 2770,
+     "inter": 2621,
+     "union": 4818,
+     "fp_px": 2048,
+     "fp_rate": 0.00390625,
+     "iou": 0.5440016604400166,
+     "recall": 0.9462093862815885,
+     "precision": 0.5613621760548297,
+     "fp_dist_to_truth_px": {
+      "median": 3.605551275463989,
+      "within_3px": 0.4814453125,
+      "within_6px": 0.58251953125,
+      "max": 117.04699910719626
+     }
+    },
+    "mli_discoloration": {
+     "verdict": "app:bus",
+     "correct": true,
+     "flagged": {
+      "bus": 2185,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "bus"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.028,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 2566,
+     "true_px": 1831,
+     "inter": 1819,
+     "union": 2578,
+     "fp_px": 747,
+     "fp_rate": 0.0014247894287109375,
+     "iou": 0.7055857253685027,
+     "recall": 0.9934462042599672,
+     "precision": 0.7088854247856586,
+     "fp_dist_to_truth_px": {
+      "median": 1.0,
+      "within_3px": 0.819672131147541,
+      "within_6px": 0.819672131147541,
+      "max": 125.0
+     }
+    },
+    "sun_shift_control": {
+     "verdict": "illum:bus, solar_array_port, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 9591,
+      "solar_array_port": 1033,
+      "solar_array_starboard": 103,
+      "antenna": 1500,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.034,
+       "inconsistent_share": 0.186,
+       "new_matter_fraction": 0.0
+      },
+      "solar_array_port": {
+       "type": "appearance",
+       "vanished_share": 0.006,
+       "inconsistent_share": 0.037,
+       "new_matter_fraction": 0.001
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.001,
+       "inconsistent_share": 0.111,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 17499,
+     "true_px": 0,
+     "inter": 0,
+     "union": 17499,
+     "fp_px": 17499,
+     "fp_rate": 0.03337669372558594
+    }
+   }
+  },
+  {
+   "seed": 14,
+   "tau": 0.04,
+   "levels": {
+    "bus": 0.02,
+    "solar_array_port": 0.0245,
+    "solar_array_starboard": 0.028999999999999998,
+    "antenna": 0.3195,
+    "thruster": 0.02
+   },
+   "results": {
+    "healthy_control": {
+     "verdict": "none",
+     "correct": true,
+     "flagged": {
+      "bus": 0,
+      "solar_array_port": 25,
+      "solar_array_starboard": 0,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [],
+     "classes": {},
+     "pred_px": 607,
+     "true_px": 0,
+     "inter": 0,
+     "union": 607,
+     "fp_px": 607,
+     "fp_rate": 0.0011577606201171875
+    },
+    "panel_hinge": {
+     "verdict": "geo:solar_array_port",
+     "correct": true,
+     "flagged": {
+      "bus": 18,
+      "solar_array_port": 8120,
+      "solar_array_starboard": 1,
+      "antenna": 254,
+      "thruster": 0
+     },
+     "changed": [
+      "solar_array_port"
+     ],
+     "classes": {
+      "solar_array_port": {
+       "type": "geometric",
+       "vanished_share": 0.195,
+       "inconsistent_share": 0.048,
+       "new_matter_fraction": 0.13
+      }
+     },
+     "pred_px": 12396,
+     "true_px": 8608,
+     "inter": 6213,
+     "union": 14791,
+     "fp_px": 6183,
+     "fp_rate": 0.011793136596679688,
+     "iou": 0.42005273477114463,
+     "recall": 0.7217704460966543,
+     "precision": 0.5012100677637947,
+     "fp_dist_to_truth_px": {
+      "median": 5.0,
+      "within_3px": 0.42261038330907325,
+      "within_6px": 0.594048196668284,
+      "max": 71.40028011149536
+     }
+    },
+    "antenna_missing": {
+     "verdict": "geo:antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 873,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 1956,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.037,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "geometric",
+       "vanished_share": 0.68,
+       "inconsistent_share": 0.033,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 4651,
+     "true_px": 2777,
+     "inter": 2598,
+     "union": 4830,
+     "fp_px": 2053,
+     "fp_rate": 0.0039157867431640625,
+     "iou": 0.537888198757764,
+     "recall": 0.935541951746489,
+     "precision": 0.5585895506342722,
+     "fp_dist_to_truth_px": {
+      "median": 4.123105625617661,
+      "within_3px": 0.44909887968826107,
+      "within_6px": 0.5664880662445202,
+      "max": 84.72307831990054
+     }
+    },
+    "mli_discoloration": {
+     "verdict": "app:bus",
+     "correct": true,
+     "flagged": {
+      "bus": 2152,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 250,
+      "thruster": 0
+     },
+     "changed": [
+      "bus"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.005,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 2528,
+     "true_px": 1819,
+     "inter": 1813,
+     "union": 2534,
+     "fp_px": 715,
+     "fp_rate": 0.0013637542724609375,
+     "iou": 0.7154696132596685,
+     "recall": 0.9967014843320505,
+     "precision": 0.7171677215189873,
+     "fp_dist_to_truth_px": {
+      "median": 1.0,
+      "within_3px": 0.8354661791590493,
+      "within_6px": 0.8354661791590493,
+      "max": 75.50496672405067
+     }
+    },
+    "sun_shift_control": {
+     "verdict": "illum:bus, solar_array_port, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 9472,
+      "solar_array_port": 975,
+      "solar_array_starboard": 103,
+      "antenna": 1457,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.035,
+       "inconsistent_share": 0.159,
+       "new_matter_fraction": 0.0
+      },
+      "solar_array_port": {
+       "type": "appearance",
+       "vanished_share": 0.007,
+       "inconsistent_share": 0.045,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.001,
+       "inconsistent_share": 0.069,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 18036,
+     "true_px": 0,
+     "inter": 0,
+     "union": 18036,
+     "fp_px": 18036,
+     "fp_rate": 0.03440093994140625
+    }
+   }
+  },
+  {
+   "seed": 15,
+   "tau": 0.04,
+   "levels": {
+    "bus": 0.02,
+    "solar_array_port": 0.02,
+    "solar_array_starboard": 0.02,
+    "antenna": 0.2877,
+    "thruster": 0.02
+   },
+   "results": {
+    "healthy_control": {
+     "verdict": "none",
+     "correct": true,
+     "flagged": {
+      "bus": 19,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [],
+     "classes": {},
+     "pred_px": 334,
+     "true_px": 0,
+     "inter": 0,
+     "union": 334,
+     "fp_px": 334,
+     "fp_rate": 0.000637054443359375
+    },
+    "panel_hinge": {
+     "verdict": "geo:solar_array_port",
+     "correct": true,
+     "flagged": {
+      "bus": 5,
+      "solar_array_port": 8041,
+      "solar_array_starboard": 6,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "solar_array_port"
+     ],
+     "classes": {
+      "solar_array_port": {
+       "type": "geometric",
+       "vanished_share": 0.208,
+       "inconsistent_share": 0.056,
+       "new_matter_fraction": 0.15
+      }
+     },
+     "pred_px": 12619,
+     "true_px": 8608,
+     "inter": 6371,
+     "union": 14856,
+     "fp_px": 6248,
+     "fp_rate": 0.0119171142578125,
+     "iou": 0.42885029617662895,
+     "recall": 0.7401254646840149,
+     "precision": 0.5048736032966162,
+     "fp_dist_to_truth_px": {
+      "median": 4.47213595499958,
+      "within_3px": 0.4322983354673495,
+      "within_6px": 0.5993918053777209,
+      "max": 91.0494371207203
+     }
+    },
+    "antenna_missing": {
+     "verdict": "geo:antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 921,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 1956,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.021,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "geometric",
+       "vanished_share": 0.699,
+       "inconsistent_share": 0.028,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 4669,
+     "true_px": 2783,
+     "inter": 2658,
+     "union": 4794,
+     "fp_px": 2011,
+     "fp_rate": 0.0038356781005859375,
+     "iou": 0.5544430538172715,
+     "recall": 0.9550844412504491,
+     "precision": 0.5692867851788391,
+     "fp_dist_to_truth_px": {
+      "median": 4.0,
+      "within_3px": 0.47041272998508205,
+      "within_6px": 0.5713575335653903,
+      "max": 118.4736257569591
+     }
+    },
+    "mli_discoloration": {
+     "verdict": "app:bus",
+     "correct": true,
+     "flagged": {
+      "bus": 2254,
+      "solar_array_port": 13,
+      "solar_array_starboard": 1,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "bus"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.029,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 3039,
+     "true_px": 1824,
+     "inter": 1816,
+     "union": 3047,
+     "fp_px": 1223,
+     "fp_rate": 0.0023326873779296875,
+     "iou": 0.5959960617000328,
+     "recall": 0.9956140350877193,
+     "precision": 0.5975649884830536,
+     "fp_dist_to_truth_px": {
+      "median": 2.0,
+      "within_3px": 0.5590128755364807,
+      "within_6px": 0.5590128755364807,
+      "max": 126.0
+     }
+    },
+    "sun_shift_control": {
+     "verdict": "illum:bus, solar_array_port, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 9645,
+      "solar_array_port": 1050,
+      "solar_array_starboard": 125,
+      "antenna": 1379,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.031,
+       "inconsistent_share": 0.168,
+       "new_matter_fraction": 0.0
+      },
+      "solar_array_port": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.041,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.001,
+       "inconsistent_share": 0.078,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 18251,
+     "true_px": 0,
+     "inter": 0,
+     "union": 18251,
+     "fp_px": 18251,
+     "fp_rate": 0.03481101989746094
+    }
+   }
+  },
+  {
+   "seed": 16,
+   "tau": 0.04,
+   "levels": {
+    "bus": 0.02,
+    "solar_array_port": 0.02,
+    "solar_array_starboard": 0.02,
+    "antenna": 0.2877,
+    "thruster": 0.02
+   },
+   "results": {
+    "healthy_control": {
+     "verdict": "none",
+     "correct": true,
+     "flagged": {
+      "bus": 0,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 211,
+      "thruster": 0
+     },
+     "changed": [],
+     "classes": {},
+     "pred_px": 177,
+     "true_px": 0,
+     "inter": 0,
+     "union": 177,
+     "fp_px": 177,
+     "fp_rate": 0.0003376007080078125
+    },
+    "panel_hinge": {
+     "verdict": "geo:solar_array_port",
+     "correct": true,
+     "flagged": {
+      "bus": 6,
+      "solar_array_port": 8040,
+      "solar_array_starboard": 0,
+      "antenna": 266,
+      "thruster": 0
+     },
+     "changed": [
+      "solar_array_port"
+     ],
+     "classes": {
+      "solar_array_port": {
+       "type": "geometric",
+       "vanished_share": 0.201,
+       "inconsistent_share": 0.054,
+       "new_matter_fraction": 0.15
+      }
+     },
+     "pred_px": 12566,
+     "true_px": 8576,
+     "inter": 6288,
+     "union": 14854,
+     "fp_px": 6278,
+     "fp_rate": 0.011974334716796875,
+     "iou": 0.42332031775952605,
+     "recall": 0.7332089552238806,
+     "precision": 0.5003978990927901,
+     "fp_dist_to_truth_px": {
+      "median": 4.47213595499958,
+      "within_3px": 0.4294361261548264,
+      "within_6px": 0.5995539980885632,
+      "max": 77.83315488916018
+     }
+    },
+    "antenna_missing": {
+     "verdict": "geo:antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 963,
+      "solar_array_port": 0,
+      "solar_array_starboard": 1,
+      "antenna": 1956,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.035,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "geometric",
+       "vanished_share": 0.721,
+       "inconsistent_share": 0.021,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 4677,
+     "true_px": 2783,
+     "inter": 2599,
+     "union": 4861,
+     "fp_px": 2078,
+     "fp_rate": 0.003963470458984375,
+     "iou": 0.5346636494548447,
+     "recall": 0.9338842975206612,
+     "precision": 0.5556980970707719,
+     "fp_dist_to_truth_px": {
+      "median": 4.0,
+      "within_3px": 0.4706448508180943,
+      "within_6px": 0.5721847930702598,
+      "max": 118.10588469674151
+     }
+    },
+    "mli_discoloration": {
+     "verdict": "app:bus",
+     "correct": true,
+     "flagged": {
+      "bus": 2164,
+      "solar_array_port": 1,
+      "solar_array_starboard": 0,
+      "antenna": 211,
+      "thruster": 0
+     },
+     "changed": [
+      "bus"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.021,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 2522,
+     "true_px": 1833,
+     "inter": 1825,
+     "union": 2530,
+     "fp_px": 697,
+     "fp_rate": 0.0013294219970703125,
+     "iou": 0.7213438735177866,
+     "recall": 0.9956355701036552,
+     "precision": 0.7236320380650277,
+     "fp_dist_to_truth_px": {
+      "median": 1.0,
+      "within_3px": 0.7577235772357723,
+      "within_6px": 0.7577235772357723,
+      "max": 126.0
+     }
+    },
+    "sun_shift_control": {
+     "verdict": "illum:bus, solar_array_port, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 9003,
+      "solar_array_port": 1883,
+      "solar_array_starboard": 93,
+      "antenna": 1462,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.032,
+       "inconsistent_share": 0.174,
+       "new_matter_fraction": 0.0
+      },
+      "solar_array_port": {
+       "type": "appearance",
+       "vanished_share": 0.005,
+       "inconsistent_share": 0.038,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.002,
+       "inconsistent_share": 0.052,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 17664,
+     "true_px": 0,
+     "inter": 0,
+     "union": 17664,
+     "fp_px": 17664,
+     "fp_rate": 0.03369140625
+    }
+   }
+  },
+  {
+   "seed": 17,
+   "tau": 0.04,
+   "levels": {
+    "bus": 0.02,
+    "solar_array_port": 0.02,
+    "solar_array_starboard": 0.025,
+    "antenna": 0.2982,
+    "thruster": 0.02
+   },
+   "results": {
+    "healthy_control": {
+     "verdict": "none",
+     "correct": true,
+     "flagged": {
+      "bus": 9,
+      "solar_array_port": 1,
+      "solar_array_starboard": 0,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [],
+     "classes": {},
+     "pred_px": 602,
+     "true_px": 0,
+     "inter": 0,
+     "union": 602,
+     "fp_px": 602,
+     "fp_rate": 0.001148223876953125
+    },
+    "panel_hinge": {
+     "verdict": "geo:solar_array_port",
+     "correct": true,
+     "flagged": {
+      "bus": 5,
+      "solar_array_port": 8044,
+      "solar_array_starboard": 0,
+      "antenna": 250,
+      "thruster": 0
+     },
+     "changed": [
+      "solar_array_port"
+     ],
+     "classes": {
+      "solar_array_port": {
+       "type": "geometric",
+       "vanished_share": 0.184,
+       "inconsistent_share": 0.06,
+       "new_matter_fraction": 0.139
+      }
+     },
+     "pred_px": 12188,
+     "true_px": 8599,
+     "inter": 6247,
+     "union": 14540,
+     "fp_px": 5941,
+     "fp_rate": 0.011331558227539062,
+     "iou": 0.4296423658872077,
+     "recall": 0.72647982323526,
+     "precision": 0.5125533311453889,
+     "fp_dist_to_truth_px": {
+      "median": 4.123105625617661,
+      "within_3px": 0.43814172698198955,
+      "within_6px": 0.6086517421309544,
+      "max": 98.85848471426213
+     }
+    },
+    "antenna_missing": {
+     "verdict": "geo:antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 870,
+      "solar_array_port": 1,
+      "solar_array_starboard": 0,
+      "antenna": 1956,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.024,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "geometric",
+       "vanished_share": 0.696,
+       "inconsistent_share": 0.03,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 4930,
+     "true_px": 2794,
+     "inter": 2612,
+     "union": 5112,
+     "fp_px": 2318,
+     "fp_rate": 0.004421234130859375,
+     "iou": 0.5109546165884195,
+     "recall": 0.9348604151753758,
+     "precision": 0.529817444219067,
+     "fp_dist_to_truth_px": {
+      "median": 6.4031242374328485,
+      "within_3px": 0.40336496980155306,
+      "within_6px": 0.49223468507333906,
+      "max": 128.41339493993607
+     }
+    },
+    "mli_discoloration": {
+     "verdict": "app:bus",
+     "correct": true,
+     "flagged": {
+      "bus": 2183,
+      "solar_array_port": 0,
+      "solar_array_starboard": 1,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "bus"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.02,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 2607,
+     "true_px": 1836,
+     "inter": 1830,
+     "union": 2613,
+     "fp_px": 777,
+     "fp_rate": 0.0014820098876953125,
+     "iou": 0.7003444316877153,
+     "recall": 0.9967320261437909,
+     "precision": 0.7019562715765247,
+     "fp_dist_to_truth_px": {
+      "median": 1.0,
+      "within_3px": 0.8778195488721805,
+      "within_6px": 0.8778195488721805,
+      "max": 125.0
+     }
+    },
+    "sun_shift_control": {
+     "verdict": "illum:bus, solar_array_port, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 10168,
+      "solar_array_port": 750,
+      "solar_array_starboard": 103,
+      "antenna": 1481,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.04,
+       "inconsistent_share": 0.214,
+       "new_matter_fraction": 0.0
+      },
+      "solar_array_port": {
+       "type": "appearance",
+       "vanished_share": 0.009,
+       "inconsistent_share": 0.031,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.001,
+       "inconsistent_share": 0.066,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 17973,
+     "true_px": 0,
+     "inter": 0,
+     "union": 17973,
+     "fp_px": 17973,
+     "fp_rate": 0.03428077697753906
+    }
+   }
+  },
+  {
+   "seed": 18,
+   "tau": 0.04,
+   "levels": {
+    "bus": 0.02,
+    "solar_array_port": 0.0201,
+    "solar_array_starboard": 0.0223,
+    "antenna": 0.02,
+    "thruster": 0.02
+   },
+   "results": {
+    "healthy_control": {
+     "verdict": "app:antenna",
+     "correct": false,
+     "flagged": {
+      "bus": 61,
+      "solar_array_port": 0,
+      "solar_array_starboard": 1,
+      "antenna": 179,
+      "thruster": 0
+     },
+     "changed": [
+      "antenna"
+     ],
+     "classes": {
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.0,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 203,
+     "true_px": 0,
+     "inter": 0,
+     "union": 203,
+     "fp_px": 203,
+     "fp_rate": 0.0003871917724609375
+    },
+    "panel_hinge": {
+     "verdict": "geo:solar_array_port",
+     "correct": true,
+     "flagged": {
+      "bus": 5,
+      "solar_array_port": 8112,
+      "solar_array_starboard": 5,
+      "antenna": 264,
+      "thruster": 0
+     },
+     "changed": [
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "solar_array_port": {
+       "type": "geometric",
+       "vanished_share": 0.207,
+       "inconsistent_share": 0.05,
+       "new_matter_fraction": 0.141
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.019,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 12710,
+     "true_px": 8595,
+     "inter": 6390,
+     "union": 14915,
+     "fp_px": 6320,
+     "fp_rate": 0.012054443359375,
+     "iou": 0.4284277572913175,
+     "recall": 0.743455497382199,
+     "precision": 0.5027537372147916,
+     "fp_dist_to_truth_px": {
+      "median": 5.0,
+      "within_3px": 0.419620253164557,
+      "within_6px": 0.5882911392405064,
+      "max": 145.01379244747721
+     }
+    },
+    "antenna_missing": {
+     "verdict": "geo:antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 921,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 1956,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.027,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "geometric",
+       "vanished_share": 0.708,
+       "inconsistent_share": 0.027,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 4643,
+     "true_px": 2786,
+     "inter": 2613,
+     "union": 4816,
+     "fp_px": 2030,
+     "fp_rate": 0.003871917724609375,
+     "iou": 0.5425664451827242,
+     "recall": 0.9379038047379756,
+     "precision": 0.562782683609735,
+     "fp_dist_to_truth_px": {
+      "median": 3.1622776601683795,
+      "within_3px": 0.4945812807881773,
+      "within_6px": 0.6098522167487684,
+      "max": 128.89142717807107
+     }
+    },
+    "mli_discoloration": {
+     "verdict": "app:bus, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 2169,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.037,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.012,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 2719,
+     "true_px": 1830,
+     "inter": 1817,
+     "union": 2732,
+     "fp_px": 902,
+     "fp_rate": 0.001720428466796875,
+     "iou": 0.6650805270863837,
+     "recall": 0.992896174863388,
+     "precision": 0.6682603898492092,
+     "fp_dist_to_truth_px": {
+      "median": 1.4142135623730951,
+      "within_3px": 0.7163461538461539,
+      "within_6px": 0.7163461538461539,
+      "max": 126.0
+     }
+    },
+    "sun_shift_control": {
+     "verdict": "illum:bus, solar_array_port, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 9620,
+      "solar_array_port": 1596,
+      "solar_array_starboard": 104,
+      "antenna": 1488,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.041,
+       "inconsistent_share": 0.141,
+       "new_matter_fraction": 0.0
+      },
+      "solar_array_port": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.029,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.005,
+       "inconsistent_share": 0.096,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 17762,
+     "true_px": 0,
+     "inter": 0,
+     "union": 17762,
+     "fp_px": 17762,
+     "fp_rate": 0.033878326416015625
+    }
+   }
+  },
+  {
+   "seed": 19,
+   "tau": 0.04,
+   "levels": {
+    "bus": 0.02,
+    "solar_array_port": 0.02,
+    "solar_array_starboard": 0.0213,
+    "antenna": 0.02,
+    "thruster": 0.02
+   },
+   "results": {
+    "healthy_control": {
+     "verdict": "app:antenna",
+     "correct": false,
+     "flagged": {
+      "bus": 3,
+      "solar_array_port": 1,
+      "solar_array_starboard": 1,
+      "antenna": 251,
+      "thruster": 0
+     },
+     "changed": [
+      "antenna"
+     ],
+     "classes": {
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.0,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 372,
+     "true_px": 0,
+     "inter": 0,
+     "union": 372,
+     "fp_px": 372,
+     "fp_rate": 0.00070953369140625
+    },
+    "panel_hinge": {
+     "verdict": "geo:solar_array_port",
+     "correct": true,
+     "flagged": {
+      "bus": 5,
+      "solar_array_port": 7977,
+      "solar_array_starboard": 0,
+      "antenna": 266,
+      "thruster": 0
+     },
+     "changed": [
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "solar_array_port": {
+       "type": "geometric",
+       "vanished_share": 0.2,
+       "inconsistent_share": 0.051,
+       "new_matter_fraction": 0.142
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.011,
+       "new_matter_fraction": 0.079
+      }
+     },
+     "pred_px": 12362,
+     "true_px": 8663,
+     "inter": 6241,
+     "union": 14784,
+     "fp_px": 6121,
+     "fp_rate": 0.011674880981445312,
+     "iou": 0.42214556277056275,
+     "recall": 0.720420177767517,
+     "precision": 0.5048535835625303,
+     "fp_dist_to_truth_px": {
+      "median": 5.0,
+      "within_3px": 0.41774219898709364,
+      "within_6px": 0.5834014049991831,
+      "max": 168.24089871371942
+     }
+    },
+    "antenna_missing": {
+     "verdict": "geo:antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 863,
+      "solar_array_port": 10,
+      "solar_array_starboard": 1,
+      "antenna": 1956,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.016,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "geometric",
+       "vanished_share": 0.689,
+       "inconsistent_share": 0.021,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 4941,
+     "true_px": 2777,
+     "inter": 2619,
+     "union": 5099,
+     "fp_px": 2322,
+     "fp_rate": 0.004428863525390625,
+     "iou": 0.513630123553638,
+     "recall": 0.9431040691393591,
+     "precision": 0.5300546448087432,
+     "fp_dist_to_truth_px": {
+      "median": 5.830951894845301,
+      "within_3px": 0.4198966408268734,
+      "within_6px": 0.5094745908699397,
+      "max": 128.41339493993607
+     }
+    },
+    "mli_discoloration": {
+     "verdict": "app:bus, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 2236,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 215,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.041,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.014,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 2534,
+     "true_px": 1823,
+     "inter": 1813,
+     "union": 2544,
+     "fp_px": 721,
+     "fp_rate": 0.0013751983642578125,
+     "iou": 0.7126572327044025,
+     "recall": 0.9945145364783324,
+     "precision": 0.7154696132596685,
+     "fp_dist_to_truth_px": {
+      "median": 1.0,
+      "within_3px": 0.7545304777594728,
+      "within_6px": 0.7545304777594728,
+      "max": 126.0
+     }
+    },
+    "sun_shift_control": {
+     "verdict": "illum:bus, solar_array_port, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 9535,
+      "solar_array_port": 1688,
+      "solar_array_starboard": 164,
+      "antenna": 1465,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.028,
+       "inconsistent_share": 0.144,
+       "new_matter_fraction": 0.0
+      },
+      "solar_array_port": {
+       "type": "appearance",
+       "vanished_share": 0.001,
+       "inconsistent_share": 0.04,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.003,
+       "inconsistent_share": 0.073,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 18574,
+     "true_px": 0,
+     "inter": 0,
+     "union": 18574,
+     "fp_px": 18574,
+     "fp_rate": 0.035427093505859375
+    }
+   }
+  },
+  {
+   "seed": 20,
+   "tau": 0.04,
+   "levels": {
+    "bus": 0.02,
+    "solar_array_port": 0.0259,
+    "solar_array_starboard": 0.0202,
+    "antenna": 0.02,
+    "thruster": 0.02
+   },
+   "results": {
+    "healthy_control": {
+     "verdict": "app:antenna",
+     "correct": false,
+     "flagged": {
+      "bus": 118,
+      "solar_array_port": 0,
+      "solar_array_starboard": 0,
+      "antenna": 196,
+      "thruster": 0
+     },
+     "changed": [
+      "antenna"
+     ],
+     "classes": {
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.02,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 264,
+     "true_px": 0,
+     "inter": 0,
+     "union": 264,
+     "fp_px": 264,
+     "fp_rate": 0.0005035400390625
+    },
+    "panel_hinge": {
+     "verdict": "geo:solar_array_port",
+     "correct": true,
+     "flagged": {
+      "bus": 48,
+      "solar_array_port": 8059,
+      "solar_array_starboard": 0,
+      "antenna": 217,
+      "thruster": 0
+     },
+     "changed": [
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "solar_array_port": {
+       "type": "geometric",
+       "vanished_share": 0.193,
+       "inconsistent_share": 0.048,
+       "new_matter_fraction": 0.141
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.009,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 12099,
+     "true_px": 8649,
+     "inter": 6252,
+     "union": 14496,
+     "fp_px": 5847,
+     "fp_rate": 0.011152267456054688,
+     "iou": 0.43129139072847683,
+     "recall": 0.7228581338883108,
+     "precision": 0.5167369204066452,
+     "fp_dist_to_truth_px": {
+      "median": 4.0,
+      "within_3px": 0.443988370104327,
+      "within_6px": 0.6141611082606465,
+      "max": 70.2353187506115
+     }
+    },
+    "antenna_missing": {
+     "verdict": "geo:antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 921,
+      "solar_array_port": 0,
+      "solar_array_starboard": 10,
+      "antenna": 1956,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.023,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "geometric",
+       "vanished_share": 0.7,
+       "inconsistent_share": 0.021,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 4614,
+     "true_px": 2786,
+     "inter": 2608,
+     "union": 4792,
+     "fp_px": 2006,
+     "fp_rate": 0.003826141357421875,
+     "iou": 0.5442404006677797,
+     "recall": 0.9361091170136396,
+     "precision": 0.5652362375379281,
+     "fp_dist_to_truth_px": {
+      "median": 3.802775637731995,
+      "within_3px": 0.4810568295114656,
+      "within_6px": 0.584247258225324,
+      "max": 117.04699910719626
+     }
+    },
+    "mli_discoloration": {
+     "verdict": "app:bus, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 2151,
+      "solar_array_port": 0,
+      "solar_array_starboard": 8,
+      "antenna": 253,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.008,
+       "new_matter_fraction": 0.0
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.0,
+       "inconsistent_share": 0.016,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 2697,
+     "true_px": 1817,
+     "inter": 1810,
+     "union": 2704,
+     "fp_px": 887,
+     "fp_rate": 0.0016918182373046875,
+     "iou": 0.6693786982248521,
+     "recall": 0.996147495872317,
+     "precision": 0.671116054875788,
+     "fp_dist_to_truth_px": {
+      "median": 1.0,
+      "within_3px": 0.825938566552901,
+      "within_6px": 0.825938566552901,
+      "max": 125.0
+     }
+    },
+    "sun_shift_control": {
+     "verdict": "illum:bus, solar_array_port, antenna",
+     "correct": true,
+     "flagged": {
+      "bus": 9102,
+      "solar_array_port": 1599,
+      "solar_array_starboard": 104,
+      "antenna": 1452,
+      "thruster": 0
+     },
+     "changed": [
+      "bus",
+      "solar_array_port",
+      "antenna"
+     ],
+     "classes": {
+      "bus": {
+       "type": "appearance",
+       "vanished_share": 0.033,
+       "inconsistent_share": 0.156,
+       "new_matter_fraction": 0.0
+      },
+      "solar_array_port": {
+       "type": "appearance",
+       "vanished_share": 0.001,
+       "inconsistent_share": 0.079,
+       "new_matter_fraction": 0.004
+      },
+      "antenna": {
+       "type": "appearance",
+       "vanished_share": 0.001,
+       "inconsistent_share": 0.127,
+       "new_matter_fraction": 0.0
+      }
+     },
+     "pred_px": 18449,
+     "true_px": 0,
+     "inter": 0,
+     "union": 18449,
+     "fp_px": 18449,
+     "fp_rate": 0.03518867492675781
+    }
+   }
+  }
+ ],
+ "seconds": 651.6646800041199
+}

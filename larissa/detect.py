@@ -2,7 +2,7 @@
 
 Stages (matching the Project Larissa pipeline):
   1. render the baseline at each inspection camera pose
-  2. compare with the new image (colour difference + structural difference)
+  2. compare with the new image (shift-tolerant colour difference)
   3. vote per Gaussian across views, so a change must be seen consistently
   4. report per component
   5. classify each flagged component as a geometric or an appearance change

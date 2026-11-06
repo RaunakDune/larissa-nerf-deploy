@@ -1,0 +1,219 @@
+calibration {
+ "pixels": 786432,
+ "foreground_share": 0.10118357837200165,
+ "q995_all": 0.03436426818370819,
+ "q999_all": 0.10947215557098389,
+ "q995_foreground": 0.1444104015827179,
+ "q995_background": 0.006868876051157713,
+ "max": 0.19034622609615326,
+ "share_above_0.04": 0.0036163330078125,
+ "share_above_0.04_foreground": 0.0344710573554039,
+ "tau": 0.04,
+ "healthy_fraction": {
+  "bus": 0.0,
+  "solar_array_port": 0.00022279157847833353,
+  "solar_array_starboard": 0.0,
+  "antenna": 0.07232546459065796,
+  "thruster": 0.0
+ },
+ "healthy_flagged": {
+  "bus": 0,
+  "solar_array_port": 2,
+  "solar_array_starboard": 0,
+  "antenna": 144,
+  "thruster": 0
+ },
+ "levels": {
+  "bus": 0.02,
+  "solar_array_port": 0.0202,
+  "solar_array_starboard": 0.02,
+  "antenna": 0.2169,
+  "thruster": 0.02
+ }
+}
+healthy_control NO CHANGE {'pred_px': 300, 'true_px': 0, 'inter': 0, 'union': 300, 'fp_rate': 0.00057220458984375}
+panel_hinge GEOMETRIC CHANGE: solar_array_port {'pred_px': 12672, 'true_px': 8614, 'inter': 6352, 'union': 14934, 'fp_rate': 0.012054443359375}
+antenna_missing GEOMETRIC CHANGE: antenna {'pred_px': 4704, 'true_px': 2759, 'inter': 2619, 'union': 4844, 'fp_rate': 0.0039768218994140625}
+mli_discoloration APPEARANCE CHANGE: bus {'pred_px': 2743, 'true_px': 1836, 'inter': 1830, 'union': 2749, 'fp_rate': 0.0017414093017578125}
+sun_shift_control APPEARANCE CHANGE ON MANY PARTS (likely illumination): bus, solar_array_port, antenna {'pred_px': 16604, 'true_px': 0, 'inter': 0, 'union': 16604, 'fp_rate': 0.03166961669921875}
+antenna {
+ "healthy_flagged": 253,
+ "all_antenna_by_part": {
+  "mast": 71,
+  "dish_face": 1067,
+  "dish_rim": 864
+ },
+ "healthy_flagged_by_part": {
+  "mast": 0,
+  "dish_face": 247,
+  "dish_rim": 6
+ },
+ "healthy_flagged_face_sign": {
+  "+": 57,
+  "-": 196
+ },
+ "overlap_with_healthy": {
+  "healthy_control": {
+   "flagged": 253,
+   "same_as_healthy": 253
+  },
+  "panel_hinge": {
+   "flagged": 253,
+   "same_as_healthy": 253
+  },
+  "antenna_missing": {
+   "flagged": 1956,
+   "same_as_healthy": 253
+  },
+  "mli_discoloration": {
+   "flagged": 253,
+   "same_as_healthy": 253
+  },
+  "sun_shift_control": {
+   "flagged": 1458,
+   "same_as_healthy": 253
+  }
+ },
+ "per_view": [
+  {
+   "on_surface": 252,
+   "voted_changed": 0
+  },
+  {
+   "on_surface": 0,
+   "voted_changed": 0
+  },
+  {
+   "on_surface": 0,
+   "voted_changed": 0
+  },
+  {
+   "on_surface": 1,
+   "voted_changed": 0
+  },
+  {
+   "on_surface": 0,
+   "voted_changed": 0
+  },
+  {
+   "on_surface": 0,
+   "voted_changed": 0
+  },
+  {
+   "on_surface": 253,
+   "voted_changed": 253
+  },
+  {
+   "on_surface": 0,
+   "voted_changed": 0
+  }
+ ],
+ "cause": {
+  "nominal_pose_no_noise": {
+   "pred_px": 271,
+   "flagged": {
+    "bus": 0,
+    "solar_array_port": 0,
+    "solar_array_starboard": 0,
+    "antenna": 253,
+    "thruster": 0
+   },
+   "antenna_same_as_released": 253
+  },
+  "true_pose_no_noise": {
+   "pred_px": 372,
+   "flagged": {
+    "bus": 0,
+    "solar_array_port": 0,
+    "solar_array_starboard": 0,
+    "antenna": 253,
+    "thruster": 0
+   },
+   "antenna_same_as_released": 253
+  },
+  "nominal_pose_with_noise": {
+   "pred_px": 401,
+   "flagged": {
+    "bus": 0,
+    "solar_array_port": 0,
+    "solar_array_starboard": 0,
+    "antenna": 253,
+    "thruster": 0
+   },
+   "antenna_same_as_released": 253
+  },
+  "released_images": {
+   "pred_px": 300,
+   "flagged": {
+    "bus": 0,
+    "solar_array_port": 0,
+    "solar_array_starboard": 0,
+    "antenna": 253,
+    "thruster": 0
+   },
+   "antenna_same_as_released": 253
+  }
+ },
+ "noise_free_share_above_tau": {
+  "antenna": 0.09527246481414652,
+  "bus": 0.0005586775773111177
+ }
+}
+antenna_missing bus {'flagged': 927, 'flagged_in_antenna_shadow': 542, 'all_bus_in_antenna_shadow': 1175, 'all_bus': 22952, 'flagged_top_face': 873, 'flagged_mean_lum_change': 0.05752506107091904, 'flagged_share_brighter': 0.6181229948997498}
+sens tau 0.03 vote 0.4: 5 5 5 5 5 5 5 5 5
+sens tau 0.03 vote 0.5: 5 5 5 5 5 5 5 5 5
+sens tau 0.03 vote 0.6: 5 5 5 5 5 5 5 5 5
+sens tau 0.0344 vote 0.4: 5 5 5 5 5 5 5 5 5
+sens tau 0.0344 vote 0.5: 5 5 5 5 5 5 5 5 5
+sens tau 0.0344 vote 0.6: 4 4 4 5 5 5 5 5 5
+sens tau 0.04 vote 0.4: 4 4 4 5 5 5 5 5 5
+sens tau 0.04 vote 0.5: 4 4 4 5 5 5 5 5 5
+sens tau 0.04 vote 0.6: 4 4 4 5 5 5 5 5 5
+sens tau 0.05 vote 0.4: 4 4 4 4 4 4 4 4 4
+sens tau 0.05 vote 0.5: 4 4 4 4 4 4 4 4 4
+sens tau 0.05 vote 0.6: 5 5 5 4 4 4 4 4 4
+sens tau 0.06 vote 0.4: 5 5 5 5 5 5 5 5 5
+sens tau 0.06 vote 0.5: 5 5 5 5 5 5 4 4 4
+sens tau 0.06 vote 0.6: 4 4 4 4 4 4 4 4 4
+cls black 0.02 5 {'healthy_control': 'none', 'panel_hinge': 'geo:solar_array_port', 'antenna_missing': 'geo:antenna', 'mli_discoloration': 'app:bus', 'sun_shift_control': 'illum:bus, solar_array_port, antenna'}
+cls black 0.035 5 {'healthy_control': 'none', 'panel_hinge': 'geo:solar_array_port', 'antenna_missing': 'geo:antenna', 'mli_discoloration': 'app:bus', 'sun_shift_control': 'illum:bus, solar_array_port, antenna'}
+cls black 0.05 4 {'healthy_control': 'none', 'panel_hinge': 'geo:solar_array_port', 'antenna_missing': 'geo:antenna', 'mli_discoloration': 'app:bus', 'sun_shift_control': 'geo:bus'}
+cls spread_margin 0.06 5 {'healthy_control': 'none', 'panel_hinge': 'geo:solar_array_port', 'antenna_missing': 'geo:antenna', 'mli_discoloration': 'app:bus', 'sun_shift_control': 'illum:bus, solar_array_port, antenna'}
+cls spread_margin 0.12 5 {'healthy_control': 'none', 'panel_hinge': 'geo:solar_array_port', 'antenna_missing': 'geo:antenna', 'mli_discoloration': 'app:bus', 'sun_shift_control': 'illum:bus, solar_array_port, antenna'}
+cls spread_margin 0.18 5 {'healthy_control': 'none', 'panel_hinge': 'geo:solar_array_port', 'antenna_missing': 'geo:antenna', 'mli_discoloration': 'app:bus', 'sun_shift_control': 'illum:bus, solar_array_port, antenna'}
+cls vanish_share 0.2 5 {'healthy_control': 'none', 'panel_hinge': 'geo:solar_array_port', 'antenna_missing': 'geo:antenna', 'mli_discoloration': 'app:bus', 'sun_shift_control': 'illum:bus, solar_array_port, antenna'}
+cls vanish_share 0.4 5 {'healthy_control': 'none', 'panel_hinge': 'geo:solar_array_port', 'antenna_missing': 'geo:antenna', 'mli_discoloration': 'app:bus', 'sun_shift_control': 'illum:bus, solar_array_port, antenna'}
+cls vanish_share 0.6 5 {'healthy_control': 'none', 'panel_hinge': 'geo:solar_array_port', 'antenna_missing': 'geo:antenna', 'mli_discoloration': 'app:bus', 'sun_shift_control': 'illum:bus, solar_array_port, antenna'}
+cls incons_share 0.15 5 {'healthy_control': 'none', 'panel_hinge': 'geo:solar_array_port', 'antenna_missing': 'geo:antenna', 'mli_discoloration': 'app:bus', 'sun_shift_control': 'illum:bus, solar_array_port, antenna'}
+cls incons_share 0.3 5 {'healthy_control': 'none', 'panel_hinge': 'geo:solar_array_port', 'antenna_missing': 'geo:antenna', 'mli_discoloration': 'app:bus', 'sun_shift_control': 'illum:bus, solar_array_port, antenna'}
+cls incons_share 0.45 5 {'healthy_control': 'none', 'panel_hinge': 'geo:solar_array_port', 'antenna_missing': 'geo:antenna', 'mli_discoloration': 'app:bus', 'sun_shift_control': 'illum:bus, solar_array_port, antenna'}
+cls new_matter 0.05 5 {'healthy_control': 'none', 'panel_hinge': 'geo:solar_array_port', 'antenna_missing': 'geo:antenna', 'mli_discoloration': 'app:bus', 'sun_shift_control': 'illum:bus, solar_array_port, antenna'}
+cls new_matter 0.1 5 {'healthy_control': 'none', 'panel_hinge': 'geo:solar_array_port', 'antenna_missing': 'geo:antenna', 'mli_discoloration': 'app:bus', 'sun_shift_control': 'illum:bus, solar_array_port, antenna'}
+cls new_matter 0.15 4 {'healthy_control': 'none', 'panel_hinge': 'app:solar_array_port', 'antenna_missing': 'geo:antenna', 'mli_discoloration': 'app:bus', 'sun_shift_control': 'illum:bus, solar_array_port, antenna'}
+cls new_matter 0.2 4 {'healthy_control': 'none', 'panel_hinge': 'app:solar_array_port', 'antenna_missing': 'geo:antenna', 'mli_discoloration': 'app:bus', 'sun_shift_control': 'illum:bus, solar_array_port, antenna'}
+comp_min 30 5 {'healthy_control': 'none', 'panel_hinge': 'geo:solar_array_port', 'antenna_missing': 'geo:antenna', 'mli_discoloration': 'app:bus', 'sun_shift_control': 'illum:bus, solar_array_port, antenna'}
+comp_min 60 5 {'healthy_control': 'none', 'panel_hinge': 'geo:solar_array_port', 'antenna_missing': 'geo:antenna', 'mli_discoloration': 'app:bus', 'sun_shift_control': 'illum:bus, solar_array_port, antenna'}
+comp_min 120 5 {'healthy_control': 'none', 'panel_hinge': 'geo:solar_array_port', 'antenna_missing': 'geo:antenna', 'mli_discoloration': 'app:bus', 'sun_shift_control': 'illum:bus, solar_array_port, antenna'}
+comp_min 240 5 {'healthy_control': 'none', 'panel_hinge': 'geo:solar_array_port', 'antenna_missing': 'geo:antenna', 'mli_discoloration': 'app:bus', 'sun_shift_control': 'illum:bus, solar_array_port, antenna'}
+seed 0: tau 0.0400 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 1: tau 0.0400 ok 4/5 health=app:antenna panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus, antenna sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 2: tau 0.0400 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (16s)
+seed 3: tau 0.0400 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (15s)
+seed 4: tau 0.0400 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (13s)
+seed 5: tau 0.0400 ok 4/5 health=app:antenna panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus, antenna sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 6: tau 0.0400 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (16s)
+seed 7: tau 0.0400 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 8: tau 0.0400 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 9: tau 0.0400 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 10: tau 0.0400 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (15s)
+seed 11: tau 0.0400 ok 4/5 health=app:antenna panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus, antenna sun_sh=illum:bus, solar_array_port, antenna (15s)
+seed 12: tau 0.0400 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 13: tau 0.0400 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 14: tau 0.0400 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 15: tau 0.0400 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 16: tau 0.0400 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 17: tau 0.0400 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 18: tau 0.0400 ok 4/5 health=app:antenna panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus, antenna sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 19: tau 0.0400 ok 4/5 health=app:antenna panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus, antenna sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 20: tau 0.0400 ok 4/5 health=app:antenna panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus, antenna sun_sh=illum:bus, solar_array_port, antenna (14s)
+done in 651.6646800041199
