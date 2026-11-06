@@ -1,0 +1,210 @@
+{
+ "holdout_fraction_by_tau": {
+  "0.03": {
+   "bus": {
+    "flagged": 75,
+    "fraction": 0.0033
+   },
+   "solar_array_port": {
+    "flagged": 948,
+    "fraction": 0.1056
+   },
+   "solar_array_starboard": {
+    "flagged": 0,
+    "fraction": 0.0
+   },
+   "antenna": {
+    "flagged": 244,
+    "fraction": 0.1226
+   },
+   "thruster": {
+    "flagged": 0,
+    "fraction": 0.0
+   }
+  },
+  "0.04": {
+   "bus": {
+    "flagged": 0,
+    "fraction": 0.0
+   },
+   "solar_array_port": {
+    "flagged": 2,
+    "fraction": 0.0002
+   },
+   "solar_array_starboard": {
+    "flagged": 0,
+    "fraction": 0.0
+   },
+   "antenna": {
+    "flagged": 144,
+    "fraction": 0.0723
+   },
+   "thruster": {
+    "flagged": 0,
+    "fraction": 0.0
+   }
+  },
+  "0.05": {
+   "bus": {
+    "flagged": 0,
+    "fraction": 0.0
+   },
+   "solar_array_port": {
+    "flagged": 0,
+    "fraction": 0.0
+   },
+   "solar_array_starboard": {
+    "flagged": 0,
+    "fraction": 0.0
+   },
+   "antenna": {
+    "flagged": 0,
+    "fraction": 0.0
+   },
+   "thruster": {
+    "flagged": 0,
+    "fraction": 0.0
+   }
+  },
+  "0.06": {
+   "bus": {
+    "flagged": 0,
+    "fraction": 0.0
+   },
+   "solar_array_port": {
+    "flagged": 0,
+    "fraction": 0.0
+   },
+   "solar_array_starboard": {
+    "flagged": 0,
+    "fraction": 0.0
+   },
+   "antenna": {
+    "flagged": 0,
+    "fraction": 0.0
+   },
+   "thruster": {
+    "flagged": 0,
+    "fraction": 0.0
+   }
+  }
+ },
+ "sun_shift_offset_0.01": {
+  "levels": {
+   "bus": 0.01,
+   "solar_array_port": 0.0102,
+   "solar_array_starboard": 0.01,
+   "antenna": 0.2169,
+   "thruster": 0.01
+  },
+  "components": {
+   "bus": {
+    "id": 1,
+    "evaluated": 19943,
+    "flagged": 8990,
+    "fraction": 0.4508,
+    "threshold": 0.01,
+    "changed": true
+   },
+   "solar_array_port": {
+    "id": 2,
+    "evaluated": 8977,
+    "flagged": 717,
+    "fraction": 0.0799,
+    "threshold": 0.0102,
+    "changed": true
+   },
+   "solar_array_starboard": {
+    "id": 3,
+    "evaluated": 9359,
+    "flagged": 103,
+    "fraction": 0.011,
+    "threshold": 0.01,
+    "changed": true
+   },
+   "antenna": {
+    "id": 4,
+    "evaluated": 1956,
+    "flagged": 1458,
+    "fraction": 0.7454,
+    "threshold": 0.2169,
+    "changed": true
+   },
+   "thruster": {
+    "id": 5,
+    "evaluated": 564,
+    "flagged": 0,
+    "fraction": 0.0,
+    "threshold": 0.01,
+    "changed": false
+   }
+  },
+  "classes": {
+   "bus": {
+    "type": "appearance",
+    "note": "surface still in place with a consistent new colour",
+    "gaussians_tested": 8990,
+    "vanished_share": 0.049,
+    "inconsistent_share": 0.142,
+    "new_matter_fraction": 0.0,
+    "seconds": 0.27
+   },
+   "solar_array_port": {
+    "type": "appearance",
+    "note": "surface still in place with a consistent new colour",
+    "gaussians_tested": 717,
+    "vanished_share": 0.0,
+    "inconsistent_share": 0.084,
+    "new_matter_fraction": 0.0,
+    "seconds": 0.24
+   },
+   "solar_array_starboard": {
+    "type": "geometric",
+    "note": "part moved or deformed: cameras disagree on what is now at its location",
+    "gaussians_tested": 103,
+    "vanished_share": 0.0,
+    "inconsistent_share": 0.592,
+    "new_matter_fraction": 0.0,
+    "seconds": 0.17
+   },
+   "antenna": {
+    "type": "appearance",
+    "note": "surface still in place with a consistent new colour",
+    "gaussians_tested": 1458,
+    "vanished_share": 0.001,
+    "inconsistent_share": 0.075,
+    "new_matter_fraction": 0.0,
+    "seconds": 0.28
+   }
+  },
+  "verdict": "GEOMETRIC CHANGE: solar_array_starboard"
+ },
+ "healthy_inspection_fraction": {
+  "bus": 0.0,
+  "solar_array_port": 0.0,
+  "solar_array_starboard": 0.0,
+  "antenna": 0.1293,
+  "thruster": 0.0
+ }
+}
+seed 1: levels bus=0.020 sola=0.020 sola=0.020 ante=0.393 thru=0.020 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 2: levels bus=0.020 sola=0.020 sola=0.020 ante=0.388 thru=0.020 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 3: levels bus=0.020 sola=0.020 sola=0.020 ante=0.388 thru=0.020 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 4: levels bus=0.024 sola=0.020 sola=0.020 ante=0.281 thru=0.020 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 5: levels bus=0.020 sola=0.020 sola=0.020 ante=0.388 thru=0.020 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 6: levels bus=0.020 sola=0.020 sola=0.020 ante=0.388 thru=0.020 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 7: levels bus=0.020 sola=0.020 sola=0.020 ante=0.388 thru=0.020 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 8: levels bus=0.021 sola=0.020 sola=0.020 ante=0.388 thru=0.020 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 9: levels bus=0.020 sola=0.020 sola=0.020 ante=0.388 thru=0.020 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 10: levels bus=0.023 sola=0.020 sola=0.020 ante=0.302 thru=0.020 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 11: levels bus=0.020 sola=0.020 sola=0.020 ante=0.388 thru=0.020 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 12: levels bus=0.020 sola=0.021 sola=0.021 ante=0.388 thru=0.020 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (15s)
+seed 13: levels bus=0.020 sola=0.020 sola=0.020 ante=0.383 thru=0.020 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (15s)
+seed 14: levels bus=0.021 sola=0.020 sola=0.020 ante=0.388 thru=0.020 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (16s)
+seed 15: levels bus=0.020 sola=0.020 sola=0.020 ante=0.388 thru=0.020 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (14s)
+seed 16: levels bus=0.021 sola=0.020 sola=0.020 ante=0.388 thru=0.020 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (17s)
+seed 17: levels bus=0.020 sola=0.020 sola=0.020 ante=0.388 thru=0.020 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (17s)
+seed 18: levels bus=0.020 sola=0.020 sola=0.020 ante=0.383 thru=0.020 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (16s)
+seed 19: levels bus=0.020 sola=0.020 sola=0.020 ante=0.388 thru=0.020 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (16s)
+seed 20: levels bus=0.020 sola=0.020 sola=0.020 ante=0.388 thru=0.020 ok 5/5 health=none panel_=geo:solar_array_port antenn=geo:antenna mli_di=app:bus sun_sh=illum:bus, solar_array_port, antenna (15s)
+done

@@ -60,10 +60,12 @@ on one Tesla P40 in `joshi.hpcc.uh.edu`, at commit `4e61b23`. Full output:
 [`results/summary.md`](results/summary.md), [`results/summary.json`](results/summary.json),
 [`results/log.txt`](results/log.txt).
 
-**All 5 scenarios gave the expected verdict.** The three faults were detected,
-attributed to the right component and given the right type; the healthy control
-raised no alarm; the Sun-shift control raised no fault, only an illumination
-notice.
+**All 5 scenarios gave the expected verdict in this run.** The three faults
+were detected, attributed to the right component and given the right type; the
+healthy control raised no alarm; the Sun-shift control raised no fault, only an
+illumination notice. Over 20 further random draws of pose error and noise the
+faults were always right, but the healthy control raised a false antenna alarm
+in 6 of 20 draws (94 of 100 verdicts correct); see [Audit](#audit-repeat-draws-parameter-sweep-and-diagnostics).
 
 | Scenario | Verdict | Flagged Gaussians on the changed part | Pixel recall | Pixel IoU |
 |---|---|---|---|---|
@@ -81,16 +83,17 @@ takes at most 1.3 s.
 
 **How to read the figure.** The third column shows pixel-level changes
 *before* voting; the fourth shows the Gaussians that survive voting on a 3D
-overview. A small cluster on the antenna dish is flagged in every scenario,
-including the healthy control (253 of 1,956 antenna Gaussians): the baseline
-renders the thin, tilted dish slightly differently from the ray-tracer.
-Calibration on healthy views absorbs this by raising the antenna's alarm level
-to 22%, which also makes the antenna the least sensitive component.
+overview. The same 253 of 1,956 antenna Gaussians are flagged in every
+scenario, including the healthy control. They stay flagged with pose error and
+noise switched off, so they come from a reconstruction error of the baseline on
+the dish, which one inspection camera sees. In this run calibration raised the
+antenna's alarm level to 22%, which absorbs them; in other draws it does not
+(see the audit below).
 
 **The illumination control.** Moving the Sun 30° moves every shadow and glint,
 and 45% of the bus, 8% of the port array and 75% of the antenna are flagged.
-The cameras still agree on a single new colour for each Gaussian, so all three
-are classified as appearance changes, and because three parts change at once
+Most flagged Gaussians still show one consistent new colour across cameras
+(at most 14% inconsistent), so all three are classified as appearance changes, and because three parts change at once
 the pass is reported as a likely illumination change, not a fault. This is
 acceptable here, but it means a real appearance fault (such as the blanket
 discoloration) occurring together with a change in Sun angle would be hidden in
@@ -99,12 +102,48 @@ matching Sun geometry, remains the key next step.
 
 **A bug found and fixed.** An earlier version of the rasterizer kept at most
 768 Gaussians per 16 x 16 pixel tile. Crowded tiles hold up to about 9,800,
-so every render (training and detection) was silently truncated. With that
-bug the baseline reached only 32.5 dB, the threshold had to be twice as high,
+so renders (training and detection) were silently truncated wherever a tile
+was crowded. With that bug the baseline reached only 32.5 dB, the calibrated
+threshold was 0.077 instead of 0.040,
 and the Sun-shift control was misclassified as a geometric fault (4/5 correct).
 The bug was found while preparing paper figures and fixed in commit `4e61b23`;
 the renderer now matches a brute-force reference to within 4e-7. The detection
 rules were not changed after the fix. The git history keeps the earlier results.
+
+## Audit: repeat draws, parameter sweep and diagnostics
+
+`tools/audit_checks.py` and `tools/audit_followup.py` re-examine the claims
+above from the released dataset and baseline (about 17 minutes on a P40);
+outputs are in [`audit/`](audit). Main findings:
+
+- **Calibration is mostly the hand-set floors.** The raw 99.5th percentile of
+  the difference map on the held-out views is 0.034 (90% of their pixels are
+  black space), so tau = 0.040 is the floor. Four of five component levels are
+  the 0.02 offset because the held-out views flag (almost) no Gaussians on them;
+  only the antenna level (0.217) comes from the data.
+- **Repeat draws (seeds 1 to 20, same baseline): 94 of 100 verdicts correct.**
+  Hinge, antenna and blanket were correct in all 20 draws; the Sun-shift pass
+  was an illumination notice in all 20. The healthy control raised a false
+  antenna alarm in 6 draws: in those draws the held-out views flagged no antenna
+  Gaussian, so the antenna level fell to 0.02, while the inspection cameras
+  still saw the dish error (172 to 254 antenna Gaussians flagged).
+- **Calibrating on the inspection cameras fixes it (post hoc).** With component
+  levels set from a separate healthy pass of the eight inspection cameras, all
+  100 verdicts were correct. This was designed after seeing the failures.
+- **Parameter sweep (135 settings of tau, vote score, offset and factor):** 87
+  give 5/5 and 48 give 4/5. The three faults are right in every setting; the
+  errors are a false geometric Sun-shift verdict from glints on the starboard
+  array (offset 0.01), the antenna false alarm (tau 0.05), and Sun-shift passes
+  where only two parts are reported so no illumination note is given.
+- **Thin margins in the classifier.** The hinge is typed geometric by the
+  new-matter test alone (0.13 to 0.15 against a level of 0.10); a level of 0.15
+  types it as appearance. A black level of 0.05 types the shadowed bus in the
+  Sun-shift pass as vanished.
+- **Pixel metrics.** Hinge recall is limited by contrast: 18% of its truly
+  changed pixels differ from the healthy image by less than tau (dark panel
+  against black space). 68% of the hinge's false-positive pixels are on the
+  rotated panel where its shading really changed but the ground truth (component
+  and material changes only) does not mark it.
 
 ## Dataset and notebook
 
@@ -146,13 +185,16 @@ not committed).
 | `larissa/dataset.py` | Loader for the released dataset |
 | `tools/export_dataset.py` | Regenerates the dataset (replays the random sequence of `run_demo.py`) |
 | `tools/classifier_check.py` | Re-runs detection and classification on all scenarios using a saved baseline (minutes, not the full training time) |
+| `tools/paper_figures.py` | Figures 2 and 3 of the paper, from the released dataset |
+| `tools/audit_checks.py` | Calibration diagnostics, exact pixel metrics, antenna and shadow checks, parameter sweep, repeat draws |
+| `tools/audit_followup.py` | Failure modes of the sweep; calibration on a healthy pass of the inspection cameras |
 | `larissa/report.py` | Figures and the markdown summary |
 | `run_demo.py` | End-to-end script |
 
 The rasterizer is written with ordinary PyTorch operations, without custom
 CUDA kernels. That makes it portable (it runs on the Tesla P40 cards in
-`joshi.hpcc.uh.edu`, which recent compiled 3DGS libraries no longer target)
-but slower than the reference implementation. Swapping in a
+`joshi.hpcc.uh.edu` without compiling custom extensions) but slower than the
+reference implementation. Swapping in a
 compiled rasterizer such as `gsplat` is the obvious first speed-up.
 
 ## Limitations
@@ -176,7 +218,11 @@ funded project.
   published methods such as MV3DCD or GS-Diff.
 - **Rules tuned on the scenarios they are tested on.** The detector went
   through several iterations against these same five scenarios (git history
-  shows each change). The pixel and component thresholds are calibrated on
-  healthy data, but the voting, classification thresholds and component alarm
-  offset were chosen by hand while looking at these results. Independent fault
+  shows each change). The threshold floor, the component alarm offset (which
+  set four of the five levels), the voting and the classification thresholds
+  were chosen by hand while looking at these results. Independent fault
   scenarios are needed before any accuracy claim.
+- **Calibration views.** The held-out calibration views do not see the
+  baseline's dish error that one inspection camera sees, which causes false
+  antenna alarms in some draws. Calibrating on healthy passes of the inspection
+  cameras themselves is the planned fix.
