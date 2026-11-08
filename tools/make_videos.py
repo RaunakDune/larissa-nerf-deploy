@@ -25,7 +25,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from larissa.dataset import LarissaSynth  # noqa: E402
 from larissa.detect import calibrate_components, calibrate_threshold, classify_components, detect, verdict  # noqa: E402
 from larissa.gaussians import GaussianModel, render, sh_to_rgb  # noqa: E402
-from larissa.scene import build_satellite, look_at, render_scene  # noqa: E402
+from larissa.scene import Camera, build_satellite, look_at, render_scene  # noqa: E402
 
 W, H, FPS, P = 1280, 720, 30, 400
 XS = (20, 440, 860)
@@ -50,6 +50,79 @@ def font(size, bold=False):
 
 
 F_TITLE, F_SUB, F_LAB, F_CAP = font(40, True), font(24), font(20), font(21)
+F_CREDIT, F_NUM = font(19), font(15, True)
+CREDIT = "Raunak Sarbajna, University of Houston"
+G_W, G_H, P2 = 600, 450, 450        # camera scenes: overview panel and image panel
+TRAIN_C, HOLD_C, INSP_C, ACT_C = (70, 200, 160), (170, 120, 255), (255, 160, 60), (255, 230, 80)
+
+
+def credit(d):
+    d.text((W - 22, H - 16), CREDIT, font=F_CREDIT, fill=(120, 128, 142), anchor="rs")
+
+
+def god_cam(t):
+    """Wide overview that shows the whole camera sphere."""
+    az, el, r = math.radians(30.0 + 100.0 * t), math.radians(20.0), 20.0
+    eye = (r * math.cos(el) * math.cos(az), r * math.cos(el) * math.sin(az), r * math.sin(el))
+    return look_at(eye, target=(0.0, 0.0, 0.0), W=G_W, H=G_H, fov_scale=0.6)
+
+
+def project(cam, X):
+    Xc = X @ cam.R.T + cam.t
+    return cam.fx * Xc[:, 0] / Xc[:, 2] + cam.cx, cam.fy * Xc[:, 1] / Xc[:, 2] + cam.cy, Xc[:, 2]
+
+
+def mix(c, a):
+    return tuple(int(BG[k] + (c[k] - BG[k]) * a) for k in range(3))
+
+
+def draw_frustum(d, god, c, color, width=1, size=1.0, sight=False, dim=True):
+    """Camera as a small pyramid pointing at what it sees; dimmed when on the far side."""
+    half = size * 0.5 * c.W / c.fx
+    loc = torch.tensor([[0.0, 0.0, 0.0], [-half, -half, size], [half, -half, size], [half, half, size], [-half, half, size]])
+    pts = (loc - c.t) @ c.R  # camera -> world
+    u, v, z = project(god, pts)
+    zc = float(project(god, torch.zeros(1, 3))[2][0])
+    col = color if (not dim or float(z[0]) < zc + 2.0) else mix(color, 0.45)
+    P_ = [(float(a), float(b)) for a, b in zip(u, v)]
+    if sight:
+        uo, vo, _ = project(god, torch.zeros(1, 3))
+        d.line([P_[0], (float(uo[0]), float(vo[0]))], fill=mix(color, 0.55), width=1)
+    for k in range(1, 5):
+        d.line([P_[0], P_[k]], fill=col, width=width)
+    d.line(P_[1:] + [P_[1]], fill=col, width=width)
+    return P_[0]
+
+
+def draw_rings(d, god, radius, els, color):
+    for el in els:
+        e = math.radians(el)
+        a = torch.linspace(0, 2 * math.pi, 181)
+        X = torch.stack([radius * math.cos(e) * torch.cos(a), radius * math.cos(e) * torch.sin(a),
+                         torch.full_like(a, radius * math.sin(e))], 1)
+        u, v, _ = project(god, X)
+        d.line([(float(x), float(y)) for x, y in zip(u, v)], fill=color, width=1)
+
+
+def scaled(c, n):
+    s = n / c.W
+    return Camera(c.R, c.t, c.fx * s, c.fy * s, n / 2, n / 2, n, n)
+
+
+def cam_frame(god_img, right, right_label, god_label, caption, fade=1.0):
+    im = Image.new("RGB", (W, H), BG)
+    im.paste(god_img, (20, 92))
+    im.paste(right, (650 + (610 - right.size[0]) // 2, 92))
+    d = ImageDraw.Draw(im)
+    d.text((W // 2, 46), "Project Larissa: spacecraft change detection with 3D Gaussian Splatting", font=F_SUB, fill=FG, anchor="mm")
+    d.rectangle((19, 91, 20 + G_W, 92 + G_H), outline=(45, 52, 66))
+    d.text((20 + G_W // 2, 92 + G_H + 22), god_label, font=F_LAB, fill=DIM, anchor="mm")
+    d.text((955, 92 + G_H + 22), right_label, font=F_LAB, fill=DIM, anchor="mm")
+    for k, line in enumerate(caption):
+        d.text((W // 2, 606 + 36 * k), line, font=F_CAP if k else F_SUB, fill=FG if k == 0 else DIM, anchor="mm")
+    credit(d)
+    a = np.asarray(im)
+    return a if fade >= 1 else (a * fade).astype(np.uint8)
 
 
 def orbit_cam(t, az0=35.0, r=9.0):
@@ -83,6 +156,7 @@ def frame(panels, labels, title, caption=None, caption_color=FG, fade=1.0):
         for k, line in enumerate(caption if isinstance(caption, list) else [caption]):
             col = caption_color if k == 0 else DIM
             d.text((W // 2, 590 + 38 * k), line, font=F_CAP if k else F_SUB, fill=col, anchor="mm")
+    credit(d)
     a = np.asarray(im)
     return a if fade >= 1 else (a * fade).astype(np.uint8)
 
@@ -145,9 +219,89 @@ def main():
         d.text((W // 2, 300), "Project Larissa", font=F_TITLE, fill=FG, anchor="mm")
         d.text((W // 2, 360), "Spacecraft change detection with 3D Gaussian Splatting", font=F_SUB, fill=FG, anchor="mm")
         d.text((W // 2, 420), "Synthetic satellite, Larissa-Synth v1. Rendered on a Tesla P40.", font=F_CAP, fill=DIM, anchor="mm")
+        d.text((W // 2, 500), CREDIT, font=F_SUB, fill=FG, anchor="mm")
+        d.text((W // 2, 534), "Department of Computer Science", font=F_CAP, fill=DIM, anchor="mm")
         a = np.asarray(im)
         for i in range(90):
             yield (a * fade_of(i, 90)).astype(np.uint8)
+
+    train_cams = data.train_cameras()
+    hold_nom = hold_cams
+    insp_imgs, insp_cams, _ = data.inspection("healthy_control")
+
+    def img_u8(x, n):
+        return Image.fromarray(to_u8(x)).resize((n, n), Image.BILINEAR)
+
+    def god_base(gc):
+        return Image.fromarray(to_u8(render_scene(healthy, gc, device=dev)["rgb"]))
+
+    def scene_training(n=390):
+        a, b = int(0.62 * n), int(0.80 * n)
+        for i in range(n):
+            gc = god_cam(i / n * 0.6)
+            g = god_base(gc)
+            d = ImageDraw.Draw(g)
+            draw_rings(d, gc, 9.0, (-60, -30, 0, 30, 60), (32, 40, 54))
+            if i < a:
+                k = min(95, int(96 * i / a))
+                for j in range(k):
+                    draw_frustum(d, gc, train_cams[j], TRAIN_C)
+                draw_frustum(d, gc, train_cams[k], ACT_C, width=3, size=1.4, sight=True, dim=False)
+                right = img_u8(data.train_view(k)["rgb"], P2)
+                rl, gl = f"What training camera {k + 1} of 96 sees", f"Training cameras: {k + 1}"
+                cap = ["Step 1: 96 cameras on a 9 m sphere photograph the healthy spacecraft",
+                       "Their images train the 3D Gaussian Splatting baseline (15 minutes on one GPU)"]
+            elif i < b:
+                k = min(11, int(12 * (i - a) / (b - a)))
+                for c in train_cams:
+                    draw_frustum(d, gc, c, mix(TRAIN_C, 0.5))
+                for j in range(k):
+                    draw_frustum(d, gc, hold_nom[j], HOLD_C, width=2)
+                draw_frustum(d, gc, hold_nom[k], ACT_C, width=3, size=1.4, sight=True, dim=False)
+                right = img_u8(hold[k], P2)
+                rl, gl = f"Held-out camera {k + 1} of 12", "Training (green) and held-out (purple) cameras"
+                cap = ["Step 2: 12 held-out views of the healthy spacecraft, never used for training",
+                       "They show how much the baseline differs from a healthy image, which sets the alarm levels"]
+            else:
+                k = (int((i - b) / 12) * 23) % 96
+                for c in train_cams:
+                    draw_frustum(d, gc, c, mix(TRAIN_C, 0.5))
+                draw_frustum(d, gc, train_cams[k], ACT_C, width=3, size=1.4, sight=True, dim=False)
+                right = Image.fromarray(gs(model, scaled(train_cams[k], P2)))
+                rl, gl = f"3DGS baseline rendered from camera {k + 1}", "Training cameras"
+                cap = ["Result: a 3D model of the healthy spacecraft that renders from any pose",
+                       "43,929 Gaussians, each labeled with the part it belongs to"]
+            yield cam_frame(g, right, rl, gl, cap, fade_of(i, n))
+
+    def scene_inspection(n=300):
+        tile, gap = 146, 6
+        for i in range(n):
+            gc = god_cam(0.6 + 0.25 * i / n)
+            g = god_base(gc)
+            d = ImageDraw.Draw(g)
+            draw_rings(d, gc, 8.5, (28, -12), (70, 60, 45))
+            k = int(8 * i / n * 1.5) % 8
+            for j, c in enumerate(insp_cams):
+                p0 = draw_frustum(d, gc, c, ACT_C if j == k else INSP_C, width=3 if j == k else 2,
+                                  size=1.4, sight=True, dim=j != k)
+                d.text((p0[0], p0[1] - 12), str(j + 1), font=F_NUM, fill=ACT_C if j == k else INSP_C, anchor="mm")
+            right = Image.new("RGB", (4 * tile + 3 * gap, 2 * tile + gap + 150), BG)
+            rd = ImageDraw.Draw(right)
+            for j, im in enumerate(insp_imgs):
+                x, y = (j % 4) * (tile + gap), (j // 4) * (tile + gap)
+                right.paste(img_u8(im, tile), (x, y))
+                rd.rectangle((x, y, x + tile - 1, y + tile - 1), outline=ACT_C if j == k else (45, 52, 66), width=3 if j == k else 1)
+                rd.text((x + 8, y + 6), str(j + 1), font=F_NUM, fill=ACT_C if j == k else INSP_C)
+            y0 = 2 * tile + gap + 18
+            for m, line in enumerate(["Every inspection pass:",
+                                      "1. render the baseline at each camera's pose",
+                                      "2. compare it with the new image",
+                                      "3. vote across cameras on each Gaussian"]):
+                rd.text((4, y0 + 30 * m), line, font=F_CAP, fill=FG if m == 0 else DIM)
+            yield cam_frame(g, right, "What the 8 inspection cameras see (healthy)", "Fixed inspection cameras (orange)",
+                            ["Step 3: 8 fixed inspection cameras watch the spacecraft",
+                             "8.5 m away on two rings, 28\u00b0 above and 12\u00b0 below, at poses not used for training"],
+                            fade_of(i, n))
 
     def scene_healthy(n=240):
         for i in range(n):
@@ -186,13 +340,15 @@ def main():
                         title, [desc, f"Verdict from 8 inspection cameras: {short}" + (f" ({parts})" if parts else "")],
                         caption_color=FG, fade=fade_of(i, n))
 
-    scenes = [scene_title(), scene_healthy(), scene_inside()] + [scene_fault(*a) for a in SCEN]
+    scenes = [scene_title(), scene_training(), scene_healthy(), scene_inside(), scene_inspection()] + \
+        [scene_fault(*a) for a in SCEN]
 
     if args.preview:
-        picks = [scene_healthy(240), scene_inside(180), scene_fault(*SCEN[0]), scene_fault(*SCEN[3])]
-        for k, g in enumerate(picks):
+        picks = [(scene_training(), 100), (scene_training(), 270), (scene_training(), 350),
+                 (scene_inspection(), 60), (scene_fault(*SCEN[3]), 40)]
+        for k, (g, at) in enumerate(picks):
             for j, f in enumerate(g):
-                if j == 40:
+                if j == at:
                     Image.fromarray(f).save(out / f"preview_{k}.jpg", quality=92)
                     break
         print("previews written", flush=True)
