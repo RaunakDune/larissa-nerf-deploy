@@ -1,0 +1,234 @@
+delta 0: baseline PSNR 39.58 dB, foreground above 0.04: 0.52%
+delta 0 seed 0: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (27s)
+delta 0 seed 1: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (30s)
+delta 0 seed 2: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 0 seed 3: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 0 seed 4: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 0 seed 5: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 0 seed 6: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (28s)
+delta 0 seed 7: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (31s)
+delta 0 seed 8: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 0 seed 9: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (27s)
+delta 0 seed 10: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 0 seed 11: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (30s)
+delta 0 seed 12: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 0 seed 13: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 0 seed 14: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 0 seed 15: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (30s)
+delta 0 seed 16: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 0 seed 17: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 0 seed 18: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 0 seed 19: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 0.5: baseline PSNR 39.67 dB, foreground above 0.04: 0.53%
+delta 0.5 seed 0: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (27s)
+delta 0.5 seed 1: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (28s)
+delta 0.5 seed 2: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (27s)
+delta 0.5 seed 3: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (27s)
+delta 0.5 seed 4: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (27s)
+delta 0.5 seed 5: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (30s)
+delta 0.5 seed 6: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (28s)
+delta 0.5 seed 7: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (27s)
+delta 0.5 seed 8: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 0.5 seed 9: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 0.5 seed 10: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 0.5 seed 11: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 0.5 seed 12: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (27s)
+delta 0.5 seed 13: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (30s)
+delta 0.5 seed 14: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (31s)
+delta 0.5 seed 15: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (29s)
+delta 0.5 seed 16: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (27s)
+delta 0.5 seed 17: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 0.5 seed 18: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 0.5 seed 19: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 1: baseline PSNR 39.66 dB, foreground above 0.04: 0.49%
+delta 1 seed 0: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 1 seed 1: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 1 seed 2: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 1 seed 3: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (27s)
+delta 1 seed 4: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (27s)
+delta 1 seed 5: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/app:s panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 1 seed 6: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (31s)
+delta 1 seed 7: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (29s)
+delta 1 seed 8: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (29s)
+delta 1 seed 9: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (29s)
+delta 1 seed 10: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/app:a/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (30s)
+delta 1 seed 11: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 1 seed 12: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (28s)
+delta 1 seed 13: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 1 seed 14: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 1 seed 15: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (29s)
+delta 1 seed 16: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (31s)
+delta 1 seed 17: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (30s)
+delta 1 seed 18: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 1 seed 19: tau 3dgs 0.040 ref2d 0.040 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+
+delta method   tau    correct verdicts by scenario (healthy hinge antenna blanket sun) | total | IoU hinge/antenna/blanket | healthy FP px
+    0 3dgs     0.040  20 20 20 20 20 | 100/100 | 0.43/0.53/0.66 | 0.09%
+    0 3dgs_k1  0.040  20 20 20 20 20 | 100/100 | 0.43/0.53/0.66 | 0.09%
+    0 ref2d    0.040  20 20 20 20 20 | 100/100 | 0.43/0.54/0.78 | 0.03%
+    0 warp2d   0.040  20 20 20 20 20 | 100/100 | 0.43/0.54/0.78 | 0.03%
+  0.5 3dgs     0.040  20 20 20 20 20 | 100/100 | 0.42/0.54/0.67 | 0.09%
+  0.5 3dgs_k1  0.040  20 20 20 20 20 | 100/100 | 0.42/0.54/0.67 | 0.09%
+  0.5 ref2d    0.040  20 20 20 20 20 | 100/100 | 0.42/0.53/0.75 | 0.04%
+  0.5 warp2d   0.040  20 20 20 20 20 | 100/100 | 0.42/0.53/0.77 | 0.03%
+    1 3dgs     0.040  20 20 20 20 20 | 100/100 | 0.43/0.55/0.68 | 0.08%
+    1 3dgs_k1  0.040  19 20 20 20 20 |  99/100 | 0.43/0.55/0.68 | 0.08%
+    1 ref2d    0.040  20 20 20 20 20 | 100/100 | 0.41/0.49/0.59 | 0.17%
+    1 warp2d   0.040  19 20 20 20 20 |  99/100 | 0.42/0.49/0.61 | 0.14%
+done
+delta 2: baseline PSNR 39.74 dB, foreground above 0.04: 0.45%
+delta 2 seed 0: tau 3dgs 0.040 ref2d 0.058 warp2d 0.040 | healt none/app:a/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 2 seed 1: tau 3dgs 0.040 ref2d 0.057 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/illum (25s)
+delta 2 seed 2: tau 3dgs 0.040 ref2d 0.093 warp2d 0.057 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/app:b (26s)
+delta 2 seed 3: tau 3dgs 0.040 ref2d 0.058 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/illum (31s)
+delta 2 seed 4: tau 3dgs 0.040 ref2d 0.064 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/illum (29s)
+delta 2 seed 5: tau 3dgs 0.040 ref2d 0.055 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/illum (28s)
+delta 2 seed 6: tau 3dgs 0.040 ref2d 0.058 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/app:b (26s)
+delta 2 seed 7: tau 3dgs 0.040 ref2d 0.046 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (25s)
+delta 2 seed 8: tau 3dgs 0.040 ref2d 0.070 warp2d 0.048 | healt none/app:a/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/illum (26s)
+delta 2 seed 9: tau 3dgs 0.040 ref2d 0.058 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/app:b (29s)
+delta 2 seed 10: tau 3dgs 0.040 ref2d 0.049 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/illum (30s)
+delta 2 seed 11: tau 3dgs 0.040 ref2d 0.056 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 2 seed 12: tau 3dgs 0.040 ref2d 0.051 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (31s)
+delta 2 seed 13: tau 3dgs 0.040 ref2d 0.069 warp2d 0.041 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/app:b (25s)
+delta 2 seed 14: tau 3dgs 0.040 ref2d 0.066 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (31s)
+delta 2 seed 15: tau 3dgs 0.040 ref2d 0.055 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (25s)
+delta 2 seed 16: tau 3dgs 0.040 ref2d 0.051 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (27s)
+delta 2 seed 17: tau 3dgs 0.040 ref2d 0.056 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (31s)
+delta 2 seed 18: tau 3dgs 0.040 ref2d 0.059 warp2d 0.040 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 2 seed 19: tau 3dgs 0.040 ref2d 0.074 warp2d 0.049 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/app:b (30s)
+delta 3: baseline PSNR 39.78 dB, foreground above 0.04: 0.40%
+delta 3 seed 0: tau 3dgs 0.040 ref2d 0.131 warp2d 0.089 | healt none/none/none/none panel geo:s/geo:s/none/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/app:b (25s)
+delta 3 seed 1: tau 3dgs 0.040 ref2d 0.120 warp2d 0.082 | healt none/none/none/none panel geo:s/geo:s/none/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/app:b (26s)
+delta 3 seed 2: tau 3dgs 0.040 ref2d 0.149 warp2d 0.096 | healt none/none/none/none panel geo:s/geo:s/none/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/illum (31s)
+delta 3 seed 3: tau 3dgs 0.040 ref2d 0.124 warp2d 0.079 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (29s)
+delta 3 seed 4: tau 3dgs 0.040 ref2d 0.140 warp2d 0.093 | healt none/none/none/none panel geo:s/geo:s/none/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/app:b (26s)
+delta 3 seed 5: tau 3dgs 0.040 ref2d 0.116 warp2d 0.071 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s geo:s/geo:s/illum/illum (26s)
+delta 3 seed 6: tau 3dgs 0.040 ref2d 0.149 warp2d 0.090 | healt none/none/none/none panel geo:s/geo:s/none/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/app:b (25s)
+delta 3 seed 7: tau 3dgs 0.040 ref2d 0.131 warp2d 0.080 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/app:b (25s)
+delta 3 seed 8: tau 3dgs 0.040 ref2d 0.140 warp2d 0.081 | healt none/none/none/none panel geo:s/geo:s/none/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/app:b (25s)
+delta 3 seed 9: tau 3dgs 0.040 ref2d 0.127 warp2d 0.089 | healt none/app:a/none/none panel geo:s/geo:s/none/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/illum (26s)
+delta 3 seed 10: tau 3dgs 0.040 ref2d 0.107 warp2d 0.060 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/illum (25s)
+delta 3 seed 11: tau 3dgs 0.040 ref2d 0.113 warp2d 0.065 | healt none/none/none/none panel geo:s/geo:s/none/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/app:b (25s)
+delta 3 seed 12: tau 3dgs 0.040 ref2d 0.133 warp2d 0.069 | healt none/none/none/none panel geo:s/geo:s/none/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/app:b (29s)
+delta 3 seed 13: tau 3dgs 0.040 ref2d 0.121 warp2d 0.076 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (26s)
+delta 3 seed 14: tau 3dgs 0.040 ref2d 0.140 warp2d 0.088 | healt none/none/none/none panel geo:s/geo:s/none/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/app:b (25s)
+delta 3 seed 15: tau 3dgs 0.040 ref2d 0.119 warp2d 0.076 | healt none/none/none/none panel geo:s/geo:s/none/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/app:b (26s)
+delta 3 seed 16: tau 3dgs 0.040 ref2d 0.154 warp2d 0.099 | healt none/none/none/none panel geo:s/geo:s/none/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/app:b (25s)
+delta 3 seed 17: tau 3dgs 0.040 ref2d 0.141 warp2d 0.098 | healt none/none/none/none panel geo:s/geo:s/none/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/app:b/app:b (26s)
+delta 3 seed 18: tau 3dgs 0.040 ref2d 0.132 warp2d 0.084 | healt none/none/none/none panel geo:s/geo:s/none/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (27s)
+delta 3 seed 19: tau 3dgs 0.040 ref2d 0.117 warp2d 0.068 | healt none/none/none/none panel geo:s/geo:s/geo:s/geo:s anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/app:b/app:b sun_s illum/illum/illum/illum (29s)
+delta 5: baseline PSNR 39.84 dB, foreground above 0.04: 0.34%
+delta 5 seed 0: tau 3dgs 0.040 ref2d 0.296 warp2d 0.164 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/app:b sun_s illum/illum/none/app:b (30s)
+delta 5 seed 1: tau 3dgs 0.040 ref2d 0.308 warp2d 0.191 | healt none/app:a/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/app:b sun_s illum/illum/none/app:b (29s)
+delta 5 seed 2: tau 3dgs 0.040 ref2d 0.298 warp2d 0.202 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/app:b sun_s app:b/illum/none/none (29s)
+delta 5 seed 3: tau 3dgs 0.040 ref2d 0.292 warp2d 0.171 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/app:b sun_s illum/illum/none/app:b (30s)
+delta 5 seed 4: tau 3dgs 0.040 ref2d 0.291 warp2d 0.166 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/app:b sun_s illum/illum/none/geo:s (30s)
+delta 5 seed 5: tau 3dgs 0.040 ref2d 0.296 warp2d 0.173 | healt none/app:a/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/app:b sun_s illum/illum/none/geo:s (25s)
+delta 5 seed 6: tau 3dgs 0.040 ref2d 0.281 warp2d 0.167 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/app:b sun_s illum/illum/none/app:b (25s)
+delta 5 seed 7: tau 3dgs 0.040 ref2d 0.278 warp2d 0.156 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/app:b sun_s app:b/app:b/none/illum (24s)
+delta 5 seed 8: tau 3dgs 0.040 ref2d 0.299 warp2d 0.178 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/app:b sun_s illum/illum/none/app:b (25s)
+delta 5 seed 9: tau 3dgs 0.040 ref2d 0.285 warp2d 0.169 | healt none/app:a/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/app:b sun_s illum/illum/none/app:b (26s)
+delta 5 seed 10: tau 3dgs 0.040 ref2d 0.290 warp2d 0.174 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/app:b sun_s app:b/app:b/none/app:b (24s)
+delta 5 seed 11: tau 3dgs 0.040 ref2d 0.299 warp2d 0.188 | healt none/app:a/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/app:b sun_s illum/illum/none/app:b (25s)
+delta 5 seed 12: tau 3dgs 0.040 ref2d 0.302 warp2d 0.183 | healt none/app:a/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/app:b sun_s illum/illum/none/app:b (26s)
+delta 5 seed 13: tau 3dgs 0.040 ref2d 0.318 warp2d 0.215 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s app:b/app:b/none/app:b (25s)
+delta 5 seed 14: tau 3dgs 0.040 ref2d 0.295 warp2d 0.188 | healt none/app:a/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/app:b sun_s illum/illum/none/app:b (30s)
+delta 5 seed 15: tau 3dgs 0.040 ref2d 0.333 warp2d 0.217 | healt none/app:a/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s illum/illum/none/none (28s)
+delta 5 seed 16: tau 3dgs 0.040 ref2d 0.289 warp2d 0.166 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/app:b sun_s illum/illum/none/app:b (25s)
+delta 5 seed 17: tau 3dgs 0.040 ref2d 0.282 warp2d 0.163 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/app:b sun_s illum/illum/none/geo:s (25s)
+delta 5 seed 18: tau 3dgs 0.040 ref2d 0.271 warp2d 0.172 | healt none/app:a/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/app:b sun_s illum/illum/none/app:b (25s)
+delta 5 seed 19: tau 3dgs 0.040 ref2d 0.302 warp2d 0.214 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s illum/illum/none/app:b (25s)
+
+delta method   tau    correct verdicts by scenario (healthy hinge antenna blanket sun) | total | IoU hinge/antenna/blanket | healthy FP px
+    2 3dgs     0.040  20 20 20 20 20 | 100/100 | 0.43/0.54/0.69 | 0.07%
+    2 3dgs_k1  0.040  18 20 20 20 20 |  98/100 | 0.43/0.54/0.69 | 0.07%
+    2 ref2d    0.060  20 20 20 20  9 |  89/100 | 0.32/0.34/0.39 | 0.47%
+    2 warp2d   0.042  20 20 20 20 15 |  95/100 | 0.39/0.37/0.40 | 0.42%
+    3 3dgs     0.040  20 20 20 20 19 |  99/100 | 0.43/0.54/0.71 | 0.08%
+    3 3dgs_k1  0.040  19 20 20 20 19 |  98/100 | 0.43/0.54/0.71 | 0.08%
+    3 ref2d    0.130  20  5 20 20  7 |  72/100 | 0.22/0.29/0.29 | 0.48%
+    3 warp2d   0.082  20 19 20 20  8 |  87/100 | 0.26/0.30/0.39 | 0.49%
+    5 3dgs     0.040  20 20 20 20 16 |  96/100 | 0.43/0.53/0.70 | 0.07%
+    5 3dgs_k1  0.040  12 20 20 20 17 |  89/100 | 0.43/0.53/0.70 | 0.07%
+    5 ref2d    0.295  20  0 20  0 20 |  60/100 | 0.07/0.22/0.00 | 0.48%
+    5 warp2d   0.181  20  0 20 17  3 |  60/100 | 0.16/0.27/0.13 | 0.48%
+done
+delta 10: baseline PSNR 39.55 dB, foreground above 0.04: 2.26%
+delta 10 seed 0: tau 3dgs 0.040 ref2d 0.515 warp2d 0.434 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s geo:s/geo:s/none/none (26s)
+delta 10 seed 1: tau 3dgs 0.040 ref2d 0.521 warp2d 0.427 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s geo:s/geo:s/none/none (25s)
+delta 10 seed 2: tau 3dgs 0.040 ref2d 0.508 warp2d 0.413 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s illum/illum/none/none (25s)
+delta 10 seed 3: tau 3dgs 0.040 ref2d 0.523 warp2d 0.439 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s geo:a/geo:a/none/none (25s)
+delta 10 seed 4: tau 3dgs 0.040 ref2d 0.514 warp2d 0.428 | healt app:a/app:a/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s illum/illum/none/none (25s)
+delta 10 seed 5: tau 3dgs 0.040 ref2d 0.518 warp2d 0.430 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s geo:s/geo:s/none/none (25s)
+delta 10 seed 6: tau 3dgs 0.040 ref2d 0.512 warp2d 0.425 | healt app:a/app:a/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s geo:s/geo:s/none/none (26s)
+delta 10 seed 7: tau 3dgs 0.040 ref2d 0.504 warp2d 0.408 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s illum/illum/none/none (25s)
+delta 10 seed 8: tau 3dgs 0.040 ref2d 0.523 warp2d 0.439 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s illum/illum/none/none (25s)
+delta 10 seed 9: tau 3dgs 0.040 ref2d 0.511 warp2d 0.418 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s app:b/geo:a/none/none (25s)
+delta 10 seed 10: tau 3dgs 0.040 ref2d 0.522 warp2d 0.434 | healt app:a/app:a/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s geo:s/geo:s/none/none (26s)
+delta 10 seed 11: tau 3dgs 0.040 ref2d 0.511 warp2d 0.414 | healt app:a/app:a/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s geo:s/geo:s/none/none (26s)
+delta 10 seed 12: tau 3dgs 0.040 ref2d 0.509 warp2d 0.417 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s illum/illum/none/none (26s)
+delta 10 seed 13: tau 3dgs 0.040 ref2d 0.518 warp2d 0.414 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 10 seed 14: tau 3dgs 0.040 ref2d 0.515 warp2d 0.418 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s geo:s/geo:s/none/none (25s)
+delta 10 seed 15: tau 3dgs 0.040 ref2d 0.515 warp2d 0.405 | healt app:a/app:a/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s geo:s/geo:s/none/none (26s)
+delta 10 seed 16: tau 3dgs 0.040 ref2d 0.509 warp2d 0.415 | healt app:a/app:a/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s illum/illum/none/none (26s)
+delta 10 seed 17: tau 3dgs 0.040 ref2d 0.517 warp2d 0.432 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s app:b/geo:s/none/none (25s)
+delta 10 seed 18: tau 3dgs 0.040 ref2d 0.515 warp2d 0.418 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s illum/illum/none/none (25s)
+delta 10 seed 19: tau 3dgs 0.040 ref2d 0.503 warp2d 0.410 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s geo:s/geo:s/none/none (25s)
+delta 20: baseline PSNR 38.23 dB, foreground above 0.04: 7.82%
+delta 20 seed 0: tau 3dgs 0.072 ref2d 0.559 warp2d 0.550 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 20 seed 1: tau 3dgs 0.066 ref2d 0.559 warp2d 0.552 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 20 seed 2: tau 3dgs 0.069 ref2d 0.553 warp2d 0.543 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 20 seed 3: tau 3dgs 0.065 ref2d 0.546 warp2d 0.541 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 20 seed 4: tau 3dgs 0.060 ref2d 0.555 warp2d 0.542 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 20 seed 5: tau 3dgs 0.061 ref2d 0.546 warp2d 0.537 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 20 seed 6: tau 3dgs 0.068 ref2d 0.559 warp2d 0.547 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 20 seed 7: tau 3dgs 0.065 ref2d 0.558 warp2d 0.542 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 20 seed 8: tau 3dgs 0.064 ref2d 0.552 warp2d 0.544 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 20 seed 9: tau 3dgs 0.070 ref2d 0.560 warp2d 0.545 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 20 seed 10: tau 3dgs 0.066 ref2d 0.552 warp2d 0.548 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 20 seed 11: tau 3dgs 0.063 ref2d 0.543 warp2d 0.536 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 20 seed 12: tau 3dgs 0.065 ref2d 0.549 warp2d 0.541 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 20 seed 13: tau 3dgs 0.065 ref2d 0.556 warp2d 0.549 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 20 seed 14: tau 3dgs 0.065 ref2d 0.551 warp2d 0.541 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 20 seed 15: tau 3dgs 0.068 ref2d 0.551 warp2d 0.538 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 20 seed 16: tau 3dgs 0.067 ref2d 0.546 warp2d 0.536 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 20 seed 17: tau 3dgs 0.061 ref2d 0.552 warp2d 0.542 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 20 seed 18: tau 3dgs 0.059 ref2d 0.551 warp2d 0.540 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s illum/illum/none/none (24s)
+delta 20 seed 19: tau 3dgs 0.066 ref2d 0.553 warp2d 0.542 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d app:b/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 45: baseline PSNR 38.43 dB, foreground above 0.04: 10.93%
+delta 45 seed 0: tau 3dgs 0.089 ref2d 0.563 warp2d 0.559 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d none/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 45 seed 1: tau 3dgs 0.089 ref2d 0.563 warp2d 0.559 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d none/none/none/none sun_s app:b/app:b/none/none (24s)
+delta 45 seed 2: tau 3dgs 0.083 ref2d 0.564 warp2d 0.562 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d none/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 45 seed 3: tau 3dgs 0.083 ref2d 0.568 warp2d 0.566 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d none/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 45 seed 4: tau 3dgs 0.089 ref2d 0.559 warp2d 0.555 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d none/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 45 seed 5: tau 3dgs 0.087 ref2d 0.568 warp2d 0.566 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d none/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 45 seed 6: tau 3dgs 0.088 ref2d 0.561 warp2d 0.558 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d none/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 45 seed 7: tau 3dgs 0.087 ref2d 0.566 warp2d 0.564 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d none/none/none/none sun_s app:b/app:b/none/none (24s)
+delta 45 seed 8: tau 3dgs 0.090 ref2d 0.572 warp2d 0.566 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/none mli_d none/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 45 seed 9: tau 3dgs 0.090 ref2d 0.565 warp2d 0.561 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d none/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 45 seed 10: tau 3dgs 0.090 ref2d 0.564 warp2d 0.561 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d none/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 45 seed 11: tau 3dgs 0.088 ref2d 0.567 warp2d 0.566 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/none mli_d none/none/none/none sun_s app:b/app:b/none/none (24s)
+delta 45 seed 12: tau 3dgs 0.096 ref2d 0.561 warp2d 0.558 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d none/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 45 seed 13: tau 3dgs 0.090 ref2d 0.569 warp2d 0.564 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d none/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 45 seed 14: tau 3dgs 0.084 ref2d 0.564 warp2d 0.560 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d none/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 45 seed 15: tau 3dgs 0.086 ref2d 0.566 warp2d 0.565 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d none/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 45 seed 16: tau 3dgs 0.090 ref2d 0.564 warp2d 0.562 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d none/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 45 seed 17: tau 3dgs 0.081 ref2d 0.564 warp2d 0.560 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d none/app:b/none/none sun_s app:b/app:b/none/none (24s)
+delta 45 seed 18: tau 3dgs 0.088 ref2d 0.561 warp2d 0.558 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d none/none/none/none sun_s app:b/app:b/none/none (24s)
+delta 45 seed 19: tau 3dgs 0.079 ref2d 0.565 warp2d 0.562 | healt none/none/none/none panel geo:s/geo:s/none/none anten geo:a/geo:a/geo:a/geo:a mli_d none/none/none/none sun_s app:b/app:b/none/none (24s)
+
+delta method   tau    correct verdicts by scenario (healthy hinge antenna blanket sun) | total | IoU hinge/antenna/blanket | healthy FP px
+   10 3dgs     0.040  14 20 20 20  7 |  81/100 | 0.42/0.42/0.51 | 0.31%
+   10 3dgs_k1  0.040  14 20 20 20  7 |  81/100 | 0.42/0.42/0.51 | 0.31%
+   10 ref2d    0.514  20  0 20  0 20 |  60/100 | 0.00/0.10/0.00 | 0.48%
+   10 warp2d   0.422  20  0 20  0 20 |  60/100 | 0.01/0.13/0.00 | 0.49%
+   20 3dgs     0.065  20 20 20 20  1 |  81/100 | 0.33/0.33/0.39 | 0.51%
+   20 3dgs_k1  0.065  20 20 20 20  1 |  81/100 | 0.33/0.33/0.39 | 0.51%
+   20 ref2d    0.553  20  0 20  0 20 |  60/100 | 0.00/0.06/0.00 | 0.53%
+   20 warp2d   0.543  20  0 20  0 20 |  60/100 | 0.00/0.06/0.00 | 0.47%
+   45 3dgs     0.087  20 20 20  0  0 |  60/100 | 0.30/0.29/0.39 | 0.45%
+   45 3dgs_k1  0.087  20 20 20 15  0 |  75/100 | 0.30/0.29/0.39 | 0.45%
+   45 ref2d    0.565  20  0 20  0 20 |  60/100 | 0.00/0.03/0.00 | 0.53%
+   45 warp2d   0.562  20  0 18  0 20 |  58/100 | 0.00/0.02/0.00 | 0.49%
+done

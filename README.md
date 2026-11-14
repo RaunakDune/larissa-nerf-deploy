@@ -145,6 +145,37 @@ outputs are in [`audit/`](audit). Main findings:
   rotated panel where its shading really changed but the ground truth (component
   and material changes only) does not mark it.
 
+## Is the 3D model needed? Camera-offset comparison
+
+`tools/ablation_reference.py` compares the 3DGS detector with two detectors that use no 3D model: a stored
+healthy reference image per camera, and the same image warped to the new pose with a plane-induced homography.
+All share the same difference map, threshold rule and alarm rule, and are calibrated on five healthy passes.
+The eight inspection cameras are moved 0 to 45 degrees along their rings away from the poses of the reference
+images; 20 random draws per offset (results in `audit/ablation_offsets.json`, figure from `tools/offset_figure.py`).
+
+| Offset | 3DGS: faults /60, healthy /20, Sun /20 | Reference image | Warped reference image |
+|---|---|---|---|
+| 0° | 60, 20, 20 | 60, 20, 20 | 60, 20, 20 |
+| 1° | 60, 20, 20 | 60, 20, 20 | 60, 19, 20 |
+| 2° | 60, 20, 20 | 60, 20, 9 | 60, 20, 15 |
+| 3° | 60, 20, 19 | 45, 20, 7 | 59, 20, 8 |
+| 5° | 60, 20, 16 | 20, 20, 20 | 37, 20, 3 |
+| 10° | 60, 14, 7 | 20, 20, 20 | 20, 20, 20 |
+| 20° | 60, 20, 1 | 20, 20, 20 | 20, 20, 20 |
+| 45° | 40, 20, 0 | 20, 20, 20 | 18, 20, 20 |
+
+- **Fixed cameras: the 3D model adds nothing.** All three give 100 of 100 verdicts and the reference image has
+  cleaner masks.
+- **Moving cameras: only 3DGS still finds the faults** from 5 degrees. The image-based detectors' thresholds rise
+  until they report only the missing antenna (their control scores at large offsets are empty: they report nothing).
+- **The cost of the 3D model is false alarms on the controls.** The antenna-dish error is flagged intermittently
+  (`tools/offset_diag_healthy.py`), so even five calibration passes miss it at 10 degrees (6 of 20 false alarms).
+  At 20 and 45 degrees one camera nears a specular reflection the baseline cannot reproduce
+  (`tools/offset_diag_render.py`), and the Sun-shift control fails almost always.
+
+`audit/ablation_offsets_singlepass_v1.json` is an earlier run of the same experiment with single-pass calibration
+and without the warped detector.
+
 ## Dataset and notebook
 
 - **[`data/larissa_synth_v1`](data/larissa_synth_v1)**: Larissa-Synth v1, every
